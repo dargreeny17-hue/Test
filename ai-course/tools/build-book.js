@@ -367,6 +367,7 @@ h3::before { content: ''; display: inline-block; width: 10px; height: 10px; bord
 h3 + p, h3 + ul, h3 + ol { margin-top: 0; }
 p, ul, ol { margin: 0 0 16px; }
 strong { font-weight: 700; }
+:not(pre) > code { font: 0.88em/1 var(--f-mono); background: var(--zebra); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }
 hr { display: none; }
 
 /* lists */
