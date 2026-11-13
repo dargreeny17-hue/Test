@@ -563,6 +563,13 @@ ${TEAM.map((t, i) => `  :root:root:root:root .acc-${i} { --acc-50: ${t.l}; --acc
   .table-wrap, .sec-box, nav.toc, .sec-hw .ch-head + p { box-shadow: none; }
   .table-wrap { overflow: visible; }
   footer { margin-top: 12mm; }
+  table { font-size: 9.5pt; }
+  .pc-foot, .callout { font-size: 10pt; }
+  .pc-foot { padding: 10px 16px; }
+  .sec-cheat .ch-head { margin-bottom: 12px; }
+  .sec-cheat .sec-box { padding: 10px; column-gap: 10px; }
+  .cs-item { font-size: 9.3pt; line-height: 1.45; padding: 9px 12px; margin-bottom: 10px; }
+  .hero-big { opacity: .1; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
