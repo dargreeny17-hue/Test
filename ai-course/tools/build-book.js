@@ -14,6 +14,8 @@ const color700 = opt('--color700', '#1A3FA6');
 const member = opt('--member', 'Ассистент');
 const num = opt('--num', '1');
 const title = opt('--title', 'Первый результат');
+const lead = opt('--lead', 'Всё, что было на уроке, — подробно, с готовыми промптами и шпаргалкой. Промпты копируются одной кнопкой.');
+const label = opt('--label', `ИИ‑КОМАНДА · КНИЖКА ${num}`);
 
 const md = fs.readFileSync(src, 'utf8');
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -23,7 +25,7 @@ const toc = [];
 const renderer = new marked.Renderer();
 renderer.heading = (text, level) => {
   const id = slug(text);
-  if (level === 2) toc.push({ id, text: text.replace(/<[^>]+>/g, '') });
+  if (level === 2 || (args.includes('--toc3') && level === 3)) toc.push({ id, text: text.replace(/<[^>]+>/g, '') });
   return `<h${level} id="${id}">${text}</h${level}>\n`;
 };
 renderer.code = (code) =>
@@ -137,9 +139,9 @@ footer { margin-top: 64px; color: var(--soft); font-size: 14px; }
 <div class="wrap">
 <header class="hero">
   <div>
-    <span class="brand">ИИ‑КОМАНДА · КНИЖКА ${num}</span>
+    <span class="brand">${label}</span>
     <h1>${title}</h1>
-    <p>Всё, что было на уроке, — подробно, с готовыми промптами и шпаргалкой. Промпты копируются одной кнопкой.</p>
+    <p>${lead}</p>
   </div>
   <div class="pass" aria-hidden="true"><div class="pass-top"><span>ПРОПУСК</span><span>№ 0${num}</span></div>
     <div class="pass-body"><div class="pass-av"></div><div class="pass-name">${member}</div><div class="pass-role">Участник вашей ИИ‑команды с урока ${num}</div></div></div>
