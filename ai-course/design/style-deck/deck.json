@@ -1,0 +1,19 @@
+{
+  "v": 5,
+  "createdOnFiles": { "v": 1, "at": "2026-11-13T15:00:00Z" },
+  "lists": "css",
+  "format": { "v": 1, "shared": ["project/deck.css"] },
+  "title": "ИИ-команда · стиль",
+  "order": ["course-cover", "lesson-cover", "roster", "thesis", "chat", "services", "demo", "turn", "homework", "lesson4"],
+  "sections": {
+    "s1": { "description": "Обложка курса, обложка урока с пропуском нового участника и состав команды", "start": "course-cover" },
+    "s2": { "description": "Содержательные макеты: тезис, промпт в виде чата, таблица сервисов", "start": "thesis" },
+    "s3": { "description": "Демо, интерактив, домашнее задание и обложка урока 4 в фиолетовом цвете агента", "start": "demo" }
+  },
+  "faces": {
+    "manrope": { "family": "Manrope", "href": "https://fonts.googleapis.com/css2?family=Manrope:wght@500..800&display=swap" },
+    "golos-text": { "family": "Golos Text", "href": "https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..700&display=swap" },
+    "jetbrains-mono": { "family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&display=swap" }
+  },
+  "designSystems": []
+}
