@@ -47,8 +47,6 @@
     "formula",
     "live-prompt",
     "bad-good",
-    "turn-learn",
-    "live-search",
     "turn-meeting",
     "s-safety",
     "traffic",
@@ -88,7 +86,7 @@
       "start": "s-how"
     },
     "g": {
-      "description": "Блок 6. Формула запроса: показываю — повторяете",
+      "description": "Блок 6. Формула запроса: показываю я, повторяете вы",
       "start": "s-formula"
     },
     "h": {
