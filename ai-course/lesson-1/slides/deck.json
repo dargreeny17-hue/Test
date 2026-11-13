@@ -17,6 +17,7 @@
     "lesson",
     "roster",
     "agenda",
+    "poll",
     "install",
     "demo-doc",
     "demo-photo",
@@ -27,16 +28,13 @@
     "ai-gen",
     "ai-can",
     "s-history",
-    "timeline-1",
-    "timeline-2",
-    "chatgpt-stat",
+    "timeline",
     "s-why",
     "why-use",
     "story",
     "numbers",
     "professions",
     "thesis",
-    "poll",
     "s-how",
     "autocomplete",
     "errors",
@@ -47,10 +45,10 @@
     "formula",
     "live-prompt",
     "bad-good",
-    "turn-meeting",
     "s-safety",
     "traffic",
     "anonymize",
+    "turn-meeting",
     "s-life",
     "scenarios",
     "medical",
@@ -62,7 +60,7 @@
   ],
   "sections": {
     "a": {
-      "description": "Старт: обложка, пропуск Ассистента, команда, план урока и установка DeepSeek",
+      "description": "Старт: обложка, пропуск Ассистента, команда, план, опрос и проверка DeepSeek",
       "start": "cover"
     },
     "b": {
@@ -86,11 +84,11 @@
       "start": "s-how"
     },
     "g": {
-      "description": "Блок 6. Формула запроса: показываю я, повторяете вы",
+      "description": "Блок 6. Формула запроса: показываю я",
       "start": "s-formula"
     },
     "h": {
-      "description": "Блок 7. Безопасность данных",
+      "description": "Блок 7. Безопасность данных и ваш ход: подготовка к встрече",
       "start": "s-safety"
     },
     "i": {
