@@ -7,7 +7,7 @@
    team colour for its opener, bullets and table head. Callouts are coloured by type. */
 :root {
   --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
-  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: #16181D;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: transparent;
   --lesson-50: #E3EBFF; --lesson-700: #1A3FA6;
   --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
   --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
@@ -16,12 +16,12 @@
   --warn: #D93036; --mistake: #FF7A1A; --ok: #12A35B; --date: #6B7080;
   --f-head: 'Manrope', Verdana, sans-serif; --f-body: 'Golos Text', Arial, sans-serif; --f-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
-.acc-0 { --acc: #2F6BFF; --acc-mark: #2F6BFF; --acc-on: #FFFFFF; --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
-.acc-1 { --acc: #12A35B; --acc-mark: #12A35B; --acc-on: #FFFFFF; --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
-.acc-2 { --acc: #FF7A1A; --acc-mark: #FF7A1A; --acc-on: #16181D; --acc-50: #FFEBDC; --acc-700: #A3460A; }
-.acc-3 { --acc: #7B4DFF; --acc-mark: #7B4DFF; --acc-on: #FFFFFF; --acc-50: #ECE5FF; --acc-700: #4F26C9; }
-.acc-4 { --acc: #EE3E86; --acc-mark: #EE3E86; --acc-on: #FFFFFF; --acc-50: #FDE4EF; --acc-700: #A3184F; }
-.acc-5 { --acc: #F5B400; --acc-mark: #DDA200; --acc-on: #16181D; --acc-50: #FFF4CC; --acc-700: #7A5700; }
+.acc-0 { --acc: #2F6BFF; --acc-mark: #2F6BFF; --acc-on: #FFFFFF; --acc-s: #2E68F7; --acc-s-on: #FFFFFF; --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
+.acc-1 { --acc: #12A35B; --acc-mark: #12A35B; --acc-on: #FFFFFF; --acc-s: #10844A; --acc-s-on: #FFFFFF; --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
+.acc-2 { --acc: #FF7A1A; --acc-mark: #FF7A1A; --acc-on: #16181D; --acc-s: #FF7A1A; --acc-s-on: #16181D; --acc-50: #FFEBDC; --acc-700: #A3460A; }
+.acc-3 { --acc: #7B4DFF; --acc-mark: #7B4DFF; --acc-on: #FFFFFF; --acc-s: #7B4DFF; --acc-s-on: #FFFFFF; --acc-50: #ECE5FF; --acc-700: #4F26C9; }
+.acc-4 { --acc: #EE3E86; --acc-mark: #EE3E86; --acc-on: #FFFFFF; --acc-s: #D23676; --acc-s-on: #FFFFFF; --acc-50: #FDE4EF; --acc-700: #A3184F; }
+.acc-5 { --acc: #F5B400; --acc-mark: #DDA200; --acc-on: #16181D; --acc-s: #F5B400; --acc-s-on: #16181D; --acc-50: #FFF4CC; --acc-700: #7A5700; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038; --zebra: #20242B;
   --code-bg: #0B0C0F; --code-fg: #E6E8EE; --code-line: #2C3038;
@@ -122,7 +122,7 @@ nav.toc.many ul { grid-template-columns: 1fr; }
 .side .toc-t { padding-top: 2px; }
 .side .toc-l3 a { padding-left: 8px; }
 .side a[aria-current="true"] { background: var(--acc-50); font-weight: 600; }
-.side a[aria-current="true"] .toc-b { background: var(--acc); color: var(--acc-on); }
+.side a[aria-current="true"] .toc-b { background: var(--acc-s); color: var(--acc-s-on); }
 
 /* ---------- chapters ---------- */
 .chapter { margin-top: 72px; }
@@ -150,14 +150,15 @@ main ol > li::before { content: counter(li); position: absolute; left: 0; top: 0
   font: 800 13.5px/26px var(--f-head); text-align: center; font-variant-numeric: tabular-nums; }
 
 /* tasks (check-list) */
-ul.tasks > li { padding-left: 0; }
+ul.tasks > li { padding-left: 0; margin: 2px 0; }
 ul.tasks > li::before { display: none; }
-.task label { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; padding: 10px 12px; border-radius: 14px; }
+.task label { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; padding: 8px 12px; border-radius: 14px; }
+.task p { margin: 0; }
 .task label:hover { background: var(--zebra); }
 .task input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .task .box { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--acc); display: grid; place-items: center; color: transparent; margin-top: 1px; background: var(--card); }
 .task .box .i { width: 16px; height: 16px; stroke-width: 3; }
-.task input:checked + .box { background: var(--acc); color: var(--acc-on); }
+.task input:checked + .box { background: var(--acc-s); border-color: var(--acc-s); color: var(--acc-s-on); }
 .task input:checked ~ .task-t { color: var(--soft); text-decoration: line-through; text-decoration-thickness: 1px; }
 .task input:focus-visible + .box { outline: 3px solid var(--lesson); outline-offset: 2px; }
 
@@ -231,9 +232,9 @@ pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border: 1px 
 /* special sections */
 .sec-box { background: var(--card); border-radius: 24px; padding: 24px 28px; box-shadow: var(--shadow); border: 1px solid var(--line); }
 .sec-box > :last-child { margin-bottom: 0; }
-.sec-quiz .sec-box { background: var(--acc-50); border: 0; box-shadow: none; }
-.sec-quiz .sec-box ol > li { padding: 10px 14px 10px 52px; background: var(--card); border-radius: 14px; }
-.sec-quiz .sec-box ol > li::before { left: 14px; top: 11px; background: var(--acc); color: var(--acc-on); }
+.sec-quiz .sec-box { border: 2px solid var(--acc); box-shadow: none; }
+.sec-quiz .sec-box ol > li { padding: 10px 14px 10px 52px; background: var(--zebra); border-radius: 14px; }
+.sec-quiz .sec-box ol > li::before { left: 14px; top: 11px; background: var(--acc-s); color: var(--acc-s-on); }
 .sec-cheat .sec-box { border: 2px solid var(--acc); columns: 2 300px; column-gap: 16px; padding: 18px; }
 .cs-item { break-inside: avoid; background: var(--acc-50); border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; font-size: 15.5px; line-height: 1.6; display: flow-root; }
 .cs-item p, .cs-item ul, .cs-item ol { margin: 0 0 6px; }
@@ -250,7 +251,7 @@ pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border: 1px 
 /* presenter script */
 .slide-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-top: 28px; border-top: 1px solid var(--line); }
 .slide-h::before { display: none; }
-.slide-no { font: 800 12.5px/1 var(--f-head); letter-spacing: .06em; text-transform: uppercase; background: var(--acc); color: var(--acc-on); border-radius: 8px; padding: 7px 10px; transform: translateY(-3px); }
+.slide-no { font: 800 12.5px/1 var(--f-head); letter-spacing: .06em; text-transform: uppercase; background: var(--acc-s); color: var(--acc-s-on); border-radius: 8px; padding: 7px 10px; transform: translateY(-3px); }
 .p-time { max-width: 100%; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; background: var(--acc-50); color: var(--acc-700); border-radius: 999px; padding: 4px 14px 4px 10px; }
 .p-time .i { width: 16px; height: 16px; }
 .p-do { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--mistake); border-radius: 14px; padding: 12px 16px; }
@@ -271,7 +272,8 @@ footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; g
   .pass-av .i { width: 32px; height: 32px; }
   .pass-name { font-size: 22px; align-self: end; }
   .pass-role { align-self: start; }
-  .pass-team, .pass-code { grid-column: 1 / -1; }
+  .pass-team { grid-column: 1 / -1; }
+  .pass-code { display: none; }
   .facts { gap: 8px; }
   .facts li { flex: 1 1 140px; }
   .layout { padding-top: 28px; }
@@ -302,7 +304,7 @@ footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; g
 @media print {
   :root:root:root:root {
   --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
-  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: #16181D;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: transparent;
   --lesson-50: #E3EBFF; --lesson-700: #1A3FA6;
   --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
   --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
@@ -325,7 +327,7 @@ footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; g
   .hero h1 { font-size: 52pt; margin: 0 0 6mm; }
   .hero .lead { font-size: 14pt; max-width: 150mm; }
   .hero .facts { grid-row: 3; margin-top: 12mm; }
-  .hero-big { font-size: 150mm; right: -8mm; bottom: -40mm; }
+  .hero-big { font-size: 150mm; right: -10mm; bottom: -36mm; }
   .layout { display: block; max-width: none; padding: 0; }
   .content { max-width: none; }
   nav.toc { display: block; box-shadow: none; border: 1px solid var(--line); break-after: page; padding: 8mm; }

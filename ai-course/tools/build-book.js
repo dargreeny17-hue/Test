@@ -239,11 +239,11 @@ const tocList = toc.map(t => tocItem(t)).join('');
 
 // ---------- CSS tokens ----------
 const teamVars = (mode) => TEAM.map((t, i) => mode === 'light'
-  ? `.acc-${i} { --acc: ${t.c}; --acc-mark: ${markOf(t.c)}; --acc-on: ${onOf(t.c)}; --acc-50: ${t.l}; --acc-700: ${t.d}; }`
+  ? `.acc-${i} { --acc: ${t.c}; --acc-mark: ${markOf(t.c)}; --acc-on: ${onOf(t.c)}; --acc-s: ${strongOf(t.c).bg}; --acc-s-on: ${strongOf(t.c).on}; --acc-50: ${t.l}; --acc-700: ${t.d}; }`
   : `.acc-${i} { --acc-50: ${darkTint(t.c)}; --acc-700: ${darkText(t.c)}; }`).join('\n');
 const LIGHT = `
   --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
-  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: #16181D;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: transparent;
   --lesson-50: ${color50}; --lesson-700: ${color700};
   --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
   --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
@@ -351,7 +351,7 @@ nav.toc.many ul { grid-template-columns: 1fr; }
 .side .toc-t { padding-top: 2px; }
 .side .toc-l3 a { padding-left: 8px; }
 .side a[aria-current="true"] { background: var(--acc-50); font-weight: 600; }
-.side a[aria-current="true"] .toc-b { background: var(--acc); color: var(--acc-on); }
+.side a[aria-current="true"] .toc-b { background: var(--acc-s); color: var(--acc-s-on); }
 
 /* ---------- chapters ---------- */
 .chapter { margin-top: 72px; }
@@ -379,14 +379,15 @@ main ol > li::before { content: counter(li); position: absolute; left: 0; top: 0
   font: 800 13.5px/26px var(--f-head); text-align: center; font-variant-numeric: tabular-nums; }
 
 /* tasks (check-list) */
-ul.tasks > li { padding-left: 0; }
+ul.tasks > li { padding-left: 0; margin: 2px 0; }
 ul.tasks > li::before { display: none; }
-.task label { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; padding: 10px 12px; border-radius: 14px; }
+.task label { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; padding: 8px 12px; border-radius: 14px; }
+.task p { margin: 0; }
 .task label:hover { background: var(--zebra); }
 .task input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .task .box { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--acc); display: grid; place-items: center; color: transparent; margin-top: 1px; background: var(--card); }
 .task .box .i { width: 16px; height: 16px; stroke-width: 3; }
-.task input:checked + .box { background: var(--acc); color: var(--acc-on); }
+.task input:checked + .box { background: var(--acc-s); border-color: var(--acc-s); color: var(--acc-s-on); }
 .task input:checked ~ .task-t { color: var(--soft); text-decoration: line-through; text-decoration-thickness: 1px; }
 .task input:focus-visible + .box { outline: 3px solid var(--lesson); outline-offset: 2px; }
 
@@ -460,9 +461,9 @@ pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border: 1px 
 /* special sections */
 .sec-box { background: var(--card); border-radius: 24px; padding: 24px 28px; box-shadow: var(--shadow); border: 1px solid var(--line); }
 .sec-box > :last-child { margin-bottom: 0; }
-.sec-quiz .sec-box { background: var(--acc-50); border: 0; box-shadow: none; }
-.sec-quiz .sec-box ol > li { padding: 10px 14px 10px 52px; background: var(--card); border-radius: 14px; }
-.sec-quiz .sec-box ol > li::before { left: 14px; top: 11px; background: var(--acc); color: var(--acc-on); }
+.sec-quiz .sec-box { border: 2px solid var(--acc); box-shadow: none; }
+.sec-quiz .sec-box ol > li { padding: 10px 14px 10px 52px; background: var(--zebra); border-radius: 14px; }
+.sec-quiz .sec-box ol > li::before { left: 14px; top: 11px; background: var(--acc-s); color: var(--acc-s-on); }
 .sec-cheat .sec-box { border: 2px solid var(--acc); columns: 2 300px; column-gap: 16px; padding: 18px; }
 .cs-item { break-inside: avoid; background: var(--acc-50); border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; font-size: 15.5px; line-height: 1.6; display: flow-root; }
 .cs-item p, .cs-item ul, .cs-item ol { margin: 0 0 6px; }
@@ -479,7 +480,7 @@ pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border: 1px 
 /* presenter script */
 .slide-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-top: 28px; border-top: 1px solid var(--line); }
 .slide-h::before { display: none; }
-.slide-no { font: 800 12.5px/1 var(--f-head); letter-spacing: .06em; text-transform: uppercase; background: var(--acc); color: var(--acc-on); border-radius: 8px; padding: 7px 10px; transform: translateY(-3px); }
+.slide-no { font: 800 12.5px/1 var(--f-head); letter-spacing: .06em; text-transform: uppercase; background: var(--acc-s); color: var(--acc-s-on); border-radius: 8px; padding: 7px 10px; transform: translateY(-3px); }
 .p-time { max-width: 100%; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; background: var(--acc-50); color: var(--acc-700); border-radius: 999px; padding: 4px 14px 4px 10px; }
 .p-time .i { width: 16px; height: 16px; }
 .p-do { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--mistake); border-radius: 14px; padding: 12px 16px; }
@@ -500,7 +501,8 @@ footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; g
   .pass-av .i { width: 32px; height: 32px; }
   .pass-name { font-size: 22px; align-self: end; }
   .pass-role { align-self: start; }
-  .pass-team, .pass-code { grid-column: 1 / -1; }
+  .pass-team { grid-column: 1 / -1; }
+  .pass-code { display: none; }
   .facts { gap: 8px; }
   .facts li { flex: 1 1 140px; }
   .layout { padding-top: 28px; }
@@ -543,7 +545,7 @@ ${TEAM.map((t, i) => `  :root:root:root:root .acc-${i} { --acc-50: ${t.l}; --acc
   .hero h1 { font-size: 52pt; margin: 0 0 6mm; }
   .hero .lead { font-size: 14pt; max-width: 150mm; }
   .hero .facts { grid-row: 3; margin-top: 12mm; }
-  .hero-big { font-size: 150mm; right: -8mm; bottom: -40mm; }
+  .hero-big { font-size: 150mm; right: -10mm; bottom: -36mm; }
   .layout { display: block; max-width: none; padding: 0; }
   .content { max-width: none; }
   nav.toc { display: block; box-shadow: none; border: 1px solid var(--line); break-after: page; padding: 8mm; }
@@ -651,10 +653,22 @@ if (outPdf) {
     await p.setContent(`<!doctype html><html lang="ru"><head><meta charset="utf-8"></head><body>${page}</body></html>`, { waitUntil: 'networkidle' });
     await p.evaluate(() => document.fonts.ready);
     const runHead = `font-family:Arial,sans-serif;font-size:7.5pt;color:#6B7080;width:100%;padding:0 17mm;display:flex;justify-content:space-between;align-items:center;-webkit-print-color-adjust:exact`;
-    await p.pdf({ path: outPdf, format: 'A4', printBackground: true, preferCSSPageSize: true,
-      displayHeaderFooter: true,
+    const base = { format: 'A4', printBackground: true, preferCSSPageSize: true };
+    const pdfMain = await p.pdf({ ...base, displayHeaderFooter: true,
       headerTemplate: `<div style="${runHead};padding-top:8mm"><span style="letter-spacing:.08em;font-weight:bold"><span style="display:inline-block;width:7px;height:7px;border-radius:2px;background:${color};margin-right:6px"></span>${esc(label)}</span><span>${esc(strip(title))}</span></div>`,
       footerTemplate: `<div style="${runHead};padding-bottom:6mm;justify-content:flex-end"><span style="font-weight:bold;color:#16181D"><span class="pageNumber"></span></span><span style="margin:0 4px">/</span><span class="totalPages"></span></div>` });
+    let out = pdfMain;
+    // the cover is full-bleed: take page 1 from a pass without running head/footer (needs pdf-lib)
+    let PDFDocument = null;
+    try { ({ PDFDocument } = require(require.resolve('pdf-lib', { paths: [process.cwd(), __dirname] }))); } catch (e) { console.log('pdf: pdf-lib not found, the cover keeps the running head (npm i pdf-lib@1.17.1)'); }
+    if (PDFDocument) {
+      const pdfCover = await p.pdf({ ...base, displayHeaderFooter: false, pageRanges: '1' });
+      const doc = await PDFDocument.load(pdfMain);
+      const [cover] = await doc.copyPages(await PDFDocument.load(pdfCover), [0]);
+      doc.removePage(0); doc.insertPage(0, cover);
+      out = await doc.save();
+    }
+    fs.writeFileSync(outPdf, out);
     await browser.close();
     console.log('pdf:', outPdf);
   })();
