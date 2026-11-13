@@ -1,25 +1,122 @@
 {
   "v": 5,
-  "createdOnFiles": { "v": 1, "at": "2026-11-13T17:00:00Z" },
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-13T17:00:00Z"
+  },
   "lists": "css",
-  "format": { "v": 1, "shared": ["project/deck.css"] },
+  "format": {
+    "v": 1,
+    "shared": [
+      "project/deck.css"
+    ]
+  },
   "title": "ИИ-команда · Урок 1. Первый результат",
-  "order": ["cover", "lesson", "roster", "agenda", "demo", "demo-result", "s-why", "story", "thesis", "poll", "s-how", "autocomplete", "timeline", "errors", "s-formula", "formula", "bad-good", "turn-learn", "turn-meeting", "turn-search", "break", "s-check", "hallucination", "checklist", "s-safety", "traffic", "anonymize", "s-life", "scenarios", "medical", "services", "context", "homework", "summary", "next"],
+  "order": [
+    "cover",
+    "lesson",
+    "roster",
+    "agenda",
+    "install",
+    "demo-doc",
+    "demo-photo",
+    "wow-result",
+    "s-what",
+    "ai-around",
+    "ai-define",
+    "ai-gen",
+    "ai-can",
+    "s-history",
+    "timeline-1",
+    "timeline-2",
+    "chatgpt-stat",
+    "s-why",
+    "why-use",
+    "story",
+    "numbers",
+    "professions",
+    "thesis",
+    "poll",
+    "s-how",
+    "autocomplete",
+    "errors",
+    "hallucination",
+    "checklist",
+    "break",
+    "s-formula",
+    "formula",
+    "live-prompt",
+    "bad-good",
+    "turn-learn",
+    "live-search",
+    "turn-meeting",
+    "s-safety",
+    "traffic",
+    "anonymize",
+    "s-life",
+    "scenarios",
+    "medical",
+    "services",
+    "context",
+    "homework",
+    "summary",
+    "next"
+  ],
   "sections": {
-    "a": { "description": "Открытие: обложка, новый участник команды, карта курса и план урока", "start": "cover" },
-    "b": { "description": "Блок 1. Вау-демо: протокол планёрки за минуту", "start": "demo" },
-    "c": { "description": "Блок 2. Почему изучать ИИ сейчас", "start": "s-why" },
-    "d": { "description": "Блок 3. Как устроен ИИ и почему он ошибается", "start": "s-how" },
-    "e": { "description": "Блок 4. Формула запроса и три задачи вместе с группой", "start": "s-formula" },
-    "f": { "description": "Блок 5. Как проверять ответ: игра «Найди ошибку»", "start": "s-check" },
-    "g": { "description": "Блок 6. Безопасность данных: светофор и обезличивание", "start": "s-safety" },
-    "h": { "description": "Блок 7. ИИ в жизни, сервисы и лимиты", "start": "s-life" },
-    "i": { "description": "Домашнее задание, итоги и анонс урока 2", "start": "homework" }
+    "a": {
+      "description": "Старт: обложка, пропуск Ассистента, команда, план урока и установка DeepSeek",
+      "start": "cover"
+    },
+    "b": {
+      "description": "Блок 1. Вау-демо: закон и фото заметок за минуту",
+      "start": "demo-doc"
+    },
+    "c": {
+      "description": "Блок 2. Что такое ИИ",
+      "start": "s-what"
+    },
+    "d": {
+      "description": "Блок 3. История ИИ",
+      "start": "s-history"
+    },
+    "e": {
+      "description": "Блок 4. Зачем и почему сейчас",
+      "start": "s-why"
+    },
+    "f": {
+      "description": "Блок 5. Как ИИ работает и где ошибается",
+      "start": "s-how"
+    },
+    "g": {
+      "description": "Блок 6. Формула запроса: показываю — повторяете",
+      "start": "s-formula"
+    },
+    "h": {
+      "description": "Блок 7. Безопасность данных",
+      "start": "s-safety"
+    },
+    "i": {
+      "description": "Блок 8. ИИ в жизни, сервисы и лимиты",
+      "start": "s-life"
+    },
+    "j": {
+      "description": "Домашнее задание, итоги и анонс урока 2",
+      "start": "homework"
+    }
   },
   "faces": {
-    "manrope": { "family": "Manrope", "href": "https://fonts.googleapis.com/css2?family=Manrope:wght@500..800&display=swap" },
-    "golos-text": { "family": "Golos Text", "href": "https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..700&display=swap" },
-    "jetbrains-mono": { "family": "JetBrains Mono", "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&display=swap" }
+    "manrope": {
+      "family": "Manrope",
+      "href": "https://fonts.googleapis.com/css2?family=Manrope:wght@500..800&display=swap"
+    },
+    "golos-text": {
+      "family": "Golos Text",
+      "href": "https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..700&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&display=swap"
+    }
   },
   "designSystems": []
 }
