@@ -109,7 +109,7 @@ a:hover { text-decoration-thickness: 2px; }
 .toc li, .side li { margin: 0; padding: 0; }
 .toc a, .side a { display: flex; align-items: flex-start; gap: 12px; color: var(--ink); text-decoration: none; border-radius: 12px; padding: 7px 8px; line-height: 1.35; }
 .toc a:hover, .side a:hover { background: var(--acc-50); }
-.toc-b { flex: none; min-width: 40px; height: 26px; padding: 0 7px; display: inline-grid; place-items: center; border-radius: 8px; background: var(--acc-50); color: var(--acc-700);
+.toc-b { flex: none; min-width: 44px; height: 26px; padding: 0 7px; display: inline-grid; place-items: center; border-radius: 8px; background: var(--acc-50); color: var(--acc-700);
   font: 800 13px/1 var(--f-head); font-variant-numeric: tabular-nums; }
 .toc-i .i { width: 15px; height: 15px; }
 .toc-t { padding-top: 3px; }
@@ -118,7 +118,7 @@ nav.toc ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; ro
 nav.toc.many ul { grid-template-columns: 1fr; }
 .side .toc-h { padding-left: 8px; }
 .side a { font-size: 14.5px; padding: 6px 8px; gap: 10px; }
-.side .toc-b { min-width: 34px; height: 22px; font-size: 11.5px; border-radius: 7px; }
+.side .toc-b { min-width: 38px; height: 22px; font-size: 11.5px; border-radius: 7px; }
 .side .toc-t { padding-top: 2px; }
 .side .toc-l3 a { padding-left: 8px; }
 .side a[aria-current="true"] { background: var(--acc-50); font-weight: 600; }
@@ -173,6 +173,7 @@ td + td, th + th { border-left: 1px solid var(--line); }
 .kv td:first-child { width: 32%; color: var(--soft); font-weight: 600; }
 .kv td + td { border-left: 0; }
 .tl { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -0.05em; box-shadow: 0 0 0 3px var(--card); }
+.tm-dot { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 10px; vertical-align: -0.05em; }
 .tl-red { background: #E5484D; } .tl-yellow { background: #F5B400; } .tl-green { background: #12A35B; }
 
 /* code + copy */
@@ -328,12 +329,14 @@ footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; g
   .hero h1 { font-size: 52pt; margin: 0 0 6mm; }
   .hero .lead { font-size: 14pt; max-width: 150mm; }
   .hero .facts { grid-row: 3; margin-top: 12mm; }
-  .hero-big { font-size: 150mm; right: -10mm; bottom: -36mm; }
   .layout { display: block; max-width: none; padding: 0; }
   .content { max-width: none; }
   nav.toc { display: block; box-shadow: none; border: 1px solid var(--line); break-after: page; padding: 8mm; }
   nav.toc ul { grid-template-columns: 1fr 1fr; }
-  nav.toc.many ul { grid-template-columns: 1fr 1fr; font-size: 9pt; }
+  nav.toc.many ul { grid-template-columns: 1fr 1fr 1fr; column-gap: 8px; font-size: 8.5pt; }
+  nav.toc.many a { padding: 3px 4px; gap: 8px; }
+  nav.toc.many .toc-b { min-width: 30px; height: 18px; font-size: 8pt; border-radius: 5px; }
+  nav.toc.many .toc-t { padding-top: 1px; }
   .chapter { margin-top: 0; break-before: page; }
   .chapter:first-child { break-before: auto; }
   .ch-head { break-after: avoid; }
@@ -352,7 +355,7 @@ footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; g
   .sec-cheat .ch-head { margin-bottom: 12px; }
   .sec-cheat .sec-box { padding: 10px; column-gap: 10px; }
   .cs-item { font-size: 9.3pt; line-height: 1.45; padding: 9px 12px; margin-bottom: 10px; }
-  .hero-big { opacity: .1; }
+  .hero-big { top: 92mm; bottom: auto; right: 14mm; font-size: 80mm; line-height: 1; opacity: .12; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
@@ -683,39 +686,39 @@ footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; g
 <section class="chapter acc-0" aria-labelledby="1-3-ваш-первый-участник-команды-ассистент">
 <header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">1.3</span></span><h2 id="1-3-ваш-первый-участник-команды-ассистент"><span class="vh">1.3. </span>Ваш первый участник команды — Ассистент</h2></header>
 <p>Курс называется «ИИ‑команда», потому что за шесть уроков вы соберёте себе команду помощников. На каждом уроке в ней появляется новый участник.</p>
-<div class="table-wrap"><table><thead><tr>
+<div class="table-wrap team-table"><table><thead><tr>
 <th>Урок</th>
 <th>Участник</th>
 <th>Что делает</th>
 </tr>
 </thead><tbody><tr>
 <td>1</td>
-<td><strong>Ассистент</strong></td>
+<td><span class="tm-dot" style="background:#2F6BFF" aria-hidden="true"></span><strong>Ассистент</strong></td>
 <td>Отвечает, ищет, объясняет, готовит черновики</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Аналитик</td>
+<td><span class="tm-dot" style="background:#12A35B" aria-hidden="true"></span>Аналитик</td>
 <td>Разбирает документы и таблицы по вашей работе</td>
 </tr>
 <tr>
 <td>3</td>
-<td>Редактор</td>
+<td><span class="tm-dot" style="background:#FF7A1A" aria-hidden="true"></span>Редактор</td>
 <td>Доводит результат до рабочего качества</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Агент</td>
+<td><span class="tm-dot" style="background:#7B4DFF" aria-hidden="true"></span>Агент</td>
 <td>Сам выполняет работу: читает файлы, пишет код, делает сайт</td>
 </tr>
 <tr>
 <td>5</td>
-<td>Архитектор</td>
+<td><span class="tm-dot" style="background:#EE3E86" aria-hidden="true"></span>Архитектор</td>
 <td>Помогает спроектировать ваш собственный проект (по желанию)</td>
 </tr>
 <tr>
 <td>6</td>
-<td>Продюсер</td>
+<td><span class="tm-dot" style="background:#F5B400" aria-hidden="true"></span>Продюсер</td>
 <td>Помогает представить проект и спланировать развитие (по желанию)</td>
 </tr>
 </tbody></table></div>

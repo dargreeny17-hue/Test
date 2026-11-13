@@ -184,6 +184,9 @@ body = body.replace(/(<p>(Было|Стало):<\/p>\n)<aside class="callout c-n
 // traffic-light cells
 const TL = { 'Красный': 'red', 'Жёлтый': 'yellow', 'Зелёный': 'green' };
 body = body.replace(/<td><strong>(Красный|Жёлтый|Зелёный)<\/strong>/g, (all, w) => `<td><span class="tl tl-${TL[w]}" aria-hidden="true"></span><strong>${w}</strong>`);
+// team table (Урок | Участник | ...): each member gets their team colour
+body = body.replace(/<div class="table-wrap"><table><thead><tr>\n<th>Урок<\/th>\n<th>Участник<\/th>[\s\S]*?<\/table><\/div>/g, t =>
+  t.replace(/<tr>\n<td>([1-6])<\/td>\n<td>/g, (a, n) => `<tr>\n<td>${n}</td>\n<td><span class="tm-dot" style="background:${TEAM[n - 1].c}" aria-hidden="true"></span>`).replace('class="table-wrap"', 'class="table-wrap team-table"'));
 // task lists -> real checkboxes with labels
 body = body.replace(/<li><input (?:disabled="" )?type="checkbox"(?: checked="")?(?: disabled="")?>\s*([\s\S]*?)<\/li>/g, (all, t) => `<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true">${svg('check')}</span><span class="task-t">${t}</span></label></li>`);
 body = body.replace(/<ul>\n<li class="task">/g, '<ul class="tasks">\n<li class="task">');
@@ -338,7 +341,7 @@ a:hover { text-decoration-thickness: 2px; }
 .toc li, .side li { margin: 0; padding: 0; }
 .toc a, .side a { display: flex; align-items: flex-start; gap: 12px; color: var(--ink); text-decoration: none; border-radius: 12px; padding: 7px 8px; line-height: 1.35; }
 .toc a:hover, .side a:hover { background: var(--acc-50); }
-.toc-b { flex: none; min-width: 40px; height: 26px; padding: 0 7px; display: inline-grid; place-items: center; border-radius: 8px; background: var(--acc-50); color: var(--acc-700);
+.toc-b { flex: none; min-width: 44px; height: 26px; padding: 0 7px; display: inline-grid; place-items: center; border-radius: 8px; background: var(--acc-50); color: var(--acc-700);
   font: 800 13px/1 var(--f-head); font-variant-numeric: tabular-nums; }
 .toc-i .i { width: 15px; height: 15px; }
 .toc-t { padding-top: 3px; }
@@ -347,7 +350,7 @@ nav.toc ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; ro
 nav.toc.many ul { grid-template-columns: 1fr; }
 .side .toc-h { padding-left: 8px; }
 .side a { font-size: 14.5px; padding: 6px 8px; gap: 10px; }
-.side .toc-b { min-width: 34px; height: 22px; font-size: 11.5px; border-radius: 7px; }
+.side .toc-b { min-width: 38px; height: 22px; font-size: 11.5px; border-radius: 7px; }
 .side .toc-t { padding-top: 2px; }
 .side .toc-l3 a { padding-left: 8px; }
 .side a[aria-current="true"] { background: var(--acc-50); font-weight: 600; }
@@ -402,6 +405,7 @@ td + td, th + th { border-left: 1px solid var(--line); }
 .kv td:first-child { width: 32%; color: var(--soft); font-weight: 600; }
 .kv td + td { border-left: 0; }
 .tl { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -0.05em; box-shadow: 0 0 0 3px var(--card); }
+.tm-dot { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 10px; vertical-align: -0.05em; }
 .tl-red { background: #E5484D; } .tl-yellow { background: #F5B400; } .tl-green { background: #12A35B; }
 
 /* code + copy */
@@ -546,12 +550,14 @@ ${TEAM.map((t, i) => `  :root:root:root:root .acc-${i} { --acc-50: ${t.l}; --acc
   .hero h1 { font-size: 52pt; margin: 0 0 6mm; }
   .hero .lead { font-size: 14pt; max-width: 150mm; }
   .hero .facts { grid-row: 3; margin-top: 12mm; }
-  .hero-big { font-size: 150mm; right: -10mm; bottom: -36mm; }
   .layout { display: block; max-width: none; padding: 0; }
   .content { max-width: none; }
   nav.toc { display: block; box-shadow: none; border: 1px solid var(--line); break-after: page; padding: 8mm; }
   nav.toc ul { grid-template-columns: 1fr 1fr; }
-  nav.toc.many ul { grid-template-columns: 1fr 1fr; font-size: 9pt; }
+  nav.toc.many ul { grid-template-columns: 1fr 1fr 1fr; column-gap: 8px; font-size: 8.5pt; }
+  nav.toc.many a { padding: 3px 4px; gap: 8px; }
+  nav.toc.many .toc-b { min-width: 30px; height: 18px; font-size: 8pt; border-radius: 5px; }
+  nav.toc.many .toc-t { padding-top: 1px; }
   .chapter { margin-top: 0; break-before: page; }
   .chapter:first-child { break-before: auto; }
   .ch-head { break-after: avoid; }
@@ -570,7 +576,7 @@ ${TEAM.map((t, i) => `  :root:root:root:root .acc-${i} { --acc-50: ${t.l}; --acc
   .sec-cheat .ch-head { margin-bottom: 12px; }
   .sec-cheat .sec-box { padding: 10px; column-gap: 10px; }
   .cs-item { font-size: 9.3pt; line-height: 1.45; padding: 9px 12px; margin-bottom: 10px; }
-  .hero-big { opacity: .1; }
+  .hero-big { top: 92mm; bottom: auto; right: 14mm; font-size: 80mm; line-height: 1; opacity: .12; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
