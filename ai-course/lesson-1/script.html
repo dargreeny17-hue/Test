@@ -1,101 +1,373 @@
 <title>ИИ‑команда · Книжка 1</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600..800&family=Golos+Text:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap">
 <style>
-/* Layout: one reading column with a contents block; course colours per lesson. */
+/* Course colours: the lesson colour leads (cover, prompts, links); every chapter gets one
+   team colour for its opener, bullets and table head. Callouts are coloured by type. */
 :root {
-  --bg: #F5F6F8; --card: #FEFEFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB;
-  --code-bg: #16181D; --code-fg: #EEF0F4;
-  --lesson: #2F6BFF; --lesson-50: #E3EBFF; --lesson-700: #1A3FA6;
-  --warn: #A11A1F; --warn-50: #FDE8E8; --mistake: #A3460A; --mistake-50: #FFEEDF;
-  --ok: #0A6A3A; --ok-50: #DFF5E8; --date: #555A66; --date-50: #ECEEF3;
+  --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: #16181D;
+  --lesson-50: #E3EBFF; --lesson-700: #1A3FA6;
+  --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
+  --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
+  --shadow: 0 1px 2px rgba(22,24,29,.05), 0 10px 30px -16px rgba(22,24,29,.25);
+  --lesson: #2F6BFF; --lesson-strong: #2E68F7; --on-lesson: #FFFFFF;
+  --warn: #D93036; --mistake: #FF7A1A; --ok: #12A35B; --date: #6B7080;
   --f-head: 'Manrope', Verdana, sans-serif; --f-body: 'Golos Text', Arial, sans-serif; --f-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
+.acc-0 { --acc: #2F6BFF; --acc-mark: #2F6BFF; --acc-on: #FFFFFF; --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
+.acc-1 { --acc: #12A35B; --acc-mark: #12A35B; --acc-on: #FFFFFF; --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
+.acc-2 { --acc: #FF7A1A; --acc-mark: #FF7A1A; --acc-on: #16181D; --acc-50: #FFEBDC; --acc-700: #A3460A; }
+.acc-3 { --acc: #7B4DFF; --acc-mark: #7B4DFF; --acc-on: #FFFFFF; --acc-50: #ECE5FF; --acc-700: #4F26C9; }
+.acc-4 { --acc: #EE3E86; --acc-mark: #EE3E86; --acc-on: #FFFFFF; --acc-50: #FDE4EF; --acc-700: #A3184F; }
+.acc-5 { --acc: #F5B400; --acc-mark: #DDA200; --acc-on: #16181D; --acc-50: #FFF4CC; --acc-700: #7A5700; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038;
-  --code-bg: #0B0C0F; --code-fg: #E6E8EE;
-  --lesson-50: #1E2A4A; --lesson-700: #9DB8FF;
-  --warn: #FF9A9E; --warn-50: #3A1E20; --mistake: #FFB37A; --mistake-50: #3A2617;
-  --ok: #7FDDA8; --ok-50: #16301F; --date: #AEB3BF; --date-50: #22262D; color-scheme: dark; } }
+  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038; --zebra: #20242B;
+  --code-bg: #0B0C0F; --code-fg: #E6E8EE; --code-line: #2C3038;
+  --lesson-50: #1F2D50; --lesson-700: #A1BCFF;
+  --warn-50: #3A1E20; --warn-700: #FF9A9E; --mistake-50: #3A2617; --mistake-700: #FFB37A;
+  --ok-50: #16301F; --ok-700: #7FDDA8; --date-50: #22262D; --date-700: #AEB3BF;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6); color-scheme: dark; }
+:root:not([data-theme="light"]) .acc-0 { --acc-50: #1F2D50; --acc-700: #A1BCFF; }
+:root:not([data-theme="light"]) .acc-1 { --acc-50: #19392F; --acc-700: #94D6B5; }
+:root:not([data-theme="light"]) .acc-2 { --acc-50: #493022; --acc-700: #FFC398; }
+:root:not([data-theme="light"]) .acc-3 { --acc-50: #2E2750; --acc-700: #C4AFFF; }
+:root:not([data-theme="light"]) .acc-4 { --acc-50: #452438; --acc-700: #F7A8C9; }
+:root:not([data-theme="light"]) .acc-5 { --acc-50: #473C1D; --acc-700: #FBDD8C; } }
 :root[data-theme="dark"] {
-  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038;
-  --code-bg: #0B0C0F; --code-fg: #E6E8EE;
-  --lesson-50: #1E2A4A; --lesson-700: #9DB8FF;
-  --warn: #FF9A9E; --warn-50: #3A1E20; --mistake: #FFB37A; --mistake-50: #3A2617;
-  --ok: #7FDDA8; --ok-50: #16301F; --date: #AEB3BF; --date-50: #22262D; color-scheme: dark; }
+  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038; --zebra: #20242B;
+  --code-bg: #0B0C0F; --code-fg: #E6E8EE; --code-line: #2C3038;
+  --lesson-50: #1F2D50; --lesson-700: #A1BCFF;
+  --warn-50: #3A1E20; --warn-700: #FF9A9E; --mistake-50: #3A2617; --mistake-700: #FFB37A;
+  --ok-50: #16301F; --ok-700: #7FDDA8; --date-50: #22262D; --date-700: #AEB3BF;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6); color-scheme: dark; }
+:root[data-theme="dark"] .acc-0 { --acc-50: #1F2D50; --acc-700: #A1BCFF; }
+:root[data-theme="dark"] .acc-1 { --acc-50: #19392F; --acc-700: #94D6B5; }
+:root[data-theme="dark"] .acc-2 { --acc-50: #493022; --acc-700: #FFC398; }
+:root[data-theme="dark"] .acc-3 { --acc-50: #2E2750; --acc-700: #C4AFFF; }
+:root[data-theme="dark"] .acc-4 { --acc-50: #452438; --acc-700: #F7A8C9; }
+:root[data-theme="dark"] .acc-5 { --acc-50: #473C1D; --acc-700: #FBDD8C; }
+
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 var(--f-body);
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.7 var(--f-body);
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-.wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 96px; }
-header.hero { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding-block: 24px 32px; }
-.brand { display: inline-block; font: 700 13px/1 var(--f-body); letter-spacing: .06em; color: var(--card); background: var(--ink); border-radius: 999px; padding: 8px 14px; }
-.hero h1 { font: 800 clamp(34px, 6vw, 52px)/1.04 var(--f-head); letter-spacing: -0.03em; margin: 16px 0 10px; text-wrap: balance; }
-.hero p { margin: 0; color: var(--soft); font-size: 18px; }
-.pass { width: 168px; background: var(--card); border-radius: 22px; overflow: hidden; box-shadow: 0 18px 40px rgba(22,24,29,.12); transform: rotate(-3deg); }
-.pass-top { background: var(--lesson); color: #fff; font: 700 11px/1 var(--f-body); letter-spacing: .14em; padding: 10px 14px; display: flex; justify-content: space-between; }
-.pass-body { padding: 14px; display: grid; gap: 6px; }
-.pass-av { width: 52px; height: 52px; border-radius: 50%; background: var(--lesson); }
-.pass-name { font: 800 20px/1.1 var(--f-head); }
-.pass-role { font-size: 12px; color: var(--soft); line-height: 1.3; }
-nav.toc { background: var(--card); border-radius: 20px; padding: 20px 24px; margin-bottom: 40px; }
-nav.toc h2 { font: 800 15px/1 var(--f-head); letter-spacing: .04em; text-transform: uppercase; color: var(--soft); margin: 0 0 12px; padding: 0; border: 0; }
-nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
-nav.toc li { break-inside: avoid; margin: 2px 0; }
-a { color: var(--lesson-700); text-underline-offset: 3px; }
-h2 { font: 800 30px/1.15 var(--f-head); letter-spacing: -0.02em; margin: 56px 0 16px; padding-top: 24px; border-top: 2px solid var(--line); text-wrap: balance; }
-h3 { font: 800 21px/1.25 var(--f-head); margin: 32px 0 8px; text-wrap: balance; }
-p, ul, ol { margin: 0 0 14px; }
-li { margin: 4px 0; }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.i { width: 1em; height: 1em; flex: none; }
+:focus-visible { outline: 3px solid var(--lesson); outline-offset: 3px; border-radius: 6px; }
+a { color: var(--lesson-700); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* reading progress */
+.progress { position: fixed; inset: 0 0 auto 0; height: 4px; z-index: 10; background: transparent; pointer-events: none; }
+.progress span { display: block; height: 100%; background: var(--lesson); transform-origin: 0 50%; transform: scaleX(0); }
+
+/* ---------- cover ---------- */
+.top { max-width: 1048px; margin: 0 auto; padding-top: 32px; }
+.hero { position: relative; overflow: hidden; isolation: isolate; background: var(--lesson-strong); color: var(--on-lesson);
+  border-radius: 32px; padding: 48px 48px 40px; display: grid; grid-template-columns: minmax(0, 1fr) 248px; gap: 32px; align-items: center; }
+.hero-big { position: absolute; z-index: -1; right: -24px; bottom: -92px; font: 800 340px/1 var(--f-head); letter-spacing: -0.06em; color: currentColor; opacity: .08; user-select: none; }
+.brand { display: inline-block; font: 800 12.5px/1 var(--f-body); letter-spacing: .08em; color: #16181D; background: #FFFFFF; border-radius: 999px; padding: 9px 14px; }
+.hero h1 { font: 800 clamp(38px, 6.4vw, 64px)/1.02 var(--f-head); letter-spacing: -0.035em; margin: 20px 0 14px; text-wrap: balance; }
+.hero .lead { margin: 0; font-size: 19px; line-height: 1.55; max-width: 34em; }
+.facts { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.facts li { display: flex; align-items: center; gap: 10px; background: rgba(8, 16, 48, .22); border-radius: 14px; padding: 10px 14px 10px 12px; margin: 0; line-height: 1.2; }
+.facts .i { width: 20px; height: 20px; opacity: .95; }
+.facts b { display: block; font: 800 17px/1.15 var(--f-head); }
+.facts small { display: block; font-size: 13px; }
+.pass { position: relative; justify-self: end; width: 248px; color: #16181D; background: #FFFFFF; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 24px 48px -12px rgba(8, 16, 48, .45); transform: rotate(-4deg); }
+.pass-top { background: #16181D; color: #FFFFFF; font: 800 11px/1 var(--f-body); letter-spacing: .16em; padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; }
+.pass-top i { width: 8px; height: 8px; border-radius: 50%; background: var(--lesson); display: inline-block; margin-right: 8px; }
+.pass-body { padding: 18px 18px 16px; display: grid; gap: 4px; }
+.pass-av { width: 76px; height: 76px; border-radius: 22px; background: var(--lesson); color: #FFFFFF; display: grid; place-items: center; margin-bottom: 10px; }
+.pass-av .i { width: 40px; height: 40px; stroke-width: 1.75; }
+.pass-name { font: 800 26px/1.1 var(--f-head); letter-spacing: -0.02em; }
+.pass-role { font-size: 13px; color: #555A66; line-height: 1.35; }
+.pass-team { display: flex; gap: 6px; margin-top: 14px; }
+.ts { width: 22px; height: 8px; border-radius: 4px; opacity: .35; }
+.ts.on { opacity: 1; width: 40px; }
+.pass-code { height: 26px; margin: 14px 0 0; border-radius: 4px; background: repeating-linear-gradient(90deg, #16181D 0 2px, transparent 2px 5px, #16181D 5px 6px, transparent 6px 9px, #16181D 9px 12px, transparent 12px 14px); opacity: .85; }
+
+/* ---------- layout ---------- */
+.layout { max-width: 1048px; margin: 0 auto; padding: 40px 0 96px; }
+.content { max-width: 760px; margin: 0 auto; min-width: 0; }
+.side { display: none; }
+@media (min-width: 1120px) {
+  .layout { display: grid; grid-template-columns: 232px minmax(0, 760px); gap: 56px; }
+  .content { margin: 0; }
+  .side { display: block; }
+  .side nav { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; padding: 4px 6px 16px 0; scrollbar-width: thin; }
+  nav.toc { display: none; }
+}
+
+/* ---------- contents ---------- */
+.toc-h { font: 800 13px/1 var(--f-head); letter-spacing: .1em; text-transform: uppercase; color: var(--soft); margin: 0 0 14px; }
+.toc ul, .side ul { list-style: none; margin: 0; padding: 0; }
+.toc li, .side li { margin: 0; padding: 0; }
+.toc a, .side a { display: flex; align-items: flex-start; gap: 12px; color: var(--ink); text-decoration: none; border-radius: 12px; padding: 7px 8px; line-height: 1.35; }
+.toc a:hover, .side a:hover { background: var(--acc-50); }
+.toc-b { flex: none; min-width: 40px; height: 26px; padding: 0 7px; display: inline-grid; place-items: center; border-radius: 8px; background: var(--acc-50); color: var(--acc-700);
+  font: 800 13px/1 var(--f-head); font-variant-numeric: tabular-nums; }
+.toc-i .i { width: 15px; height: 15px; }
+.toc-t { padding-top: 3px; }
+nav.toc { background: var(--card); border-radius: 24px; padding: 24px; margin-bottom: 48px; box-shadow: var(--shadow); }
+nav.toc ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 2px; }
+nav.toc.many ul { grid-template-columns: 1fr; }
+.side .toc-h { padding-left: 8px; }
+.side a { font-size: 14.5px; padding: 6px 8px; gap: 10px; }
+.side .toc-b { min-width: 34px; height: 22px; font-size: 11.5px; border-radius: 7px; }
+.side .toc-t { padding-top: 2px; }
+.side .toc-l3 a { padding-left: 8px; }
+.side a[aria-current="true"] { background: var(--acc-50); font-weight: 600; }
+.side a[aria-current="true"] .toc-b { background: var(--acc); color: var(--acc-on); }
+
+/* ---------- chapters ---------- */
+.chapter { margin-top: 72px; }
+.chapter:first-child { margin-top: 0; }
+.ch-head { display: flex; align-items: center; gap: 20px; background: var(--acc-50); border-radius: 24px; padding: 20px 24px; margin: 0 0 28px; position: relative; overflow: hidden; }
+.ch-head::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: var(--acc); }
+.ch-tile { flex: none; min-width: 76px; height: 76px; padding: 0 12px; border-radius: 20px; background: var(--acc); color: var(--acc-on); display: grid; place-items: center; }
+.ch-num { font: 800 32px/1 var(--f-head); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.ch-tile .i { width: 36px; height: 36px; }
+h2 { font: 800 32px/1.12 var(--f-head); letter-spacing: -0.025em; margin: 0; text-wrap: balance; color: var(--ink); }
+h3 { font: 800 22px/1.25 var(--f-head); letter-spacing: -0.01em; margin: 40px 0 10px; text-wrap: balance; }
+h3::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--acc-mark); margin-right: 12px; vertical-align: 0.12em; }
+h3 + p, h3 + ul, h3 + ol { margin-top: 0; }
+p, ul, ol { margin: 0 0 16px; }
 strong { font-weight: 700; }
 hr { display: none; }
-.table-wrap { overflow-x: auto; margin: 16px 0 20px; background: var(--card); border-radius: 16px; }
-table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.45; }
-th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
-th { font-weight: 700; background: var(--lesson-50); color: var(--lesson-700); }
-tr:last-child td { border-bottom: 0; }
-.code { position: relative; margin: 0 0 14px; }
-pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border-radius: 16px; padding: 18px 20px; padding-top: 44px; overflow-x: auto; font: 14.5px/1.6 var(--f-mono); white-space: pre-wrap; word-break: break-word; }
-.copy { position: absolute; top: 10px; right: 10px; font: 600 13px/1 var(--f-body); color: var(--code-bg); background: var(--lesson-50); border: 0; border-radius: 999px; padding: 8px 12px; cursor: pointer; }
-.copy:focus-visible { outline: 3px solid var(--lesson); outline-offset: 2px; }
-.callout { border-radius: 16px; padding: 14px 18px; margin: 20px 0 14px; }
-.callout p:last-child { margin-bottom: 0; }
-.callout > p:first-child strong:first-child { display: block; font-family: var(--f-head); font-weight: 800; margin-bottom: 2px; }
-.c-prompt { background: var(--lesson); color: #fff; margin-bottom: 8px; padding: 10px 16px; }
-.c-prompt strong { color: #fff; }
-.c-warn { background: var(--warn-50); } .c-warn strong:first-child { color: var(--warn); }
-.c-mistake { background: var(--mistake-50); } .c-mistake strong:first-child { color: var(--mistake); }
-.c-try { background: var(--lesson-50); } .c-try strong:first-child { color: var(--lesson-700); }
-.c-practice { background: var(--ok-50); } .c-practice strong:first-child { color: var(--ok); }
-.c-date, .c-note { background: var(--date-50); } .c-date strong:first-child { color: var(--date); }
-footer { margin-top: 64px; color: var(--soft); font-size: 14px; }
-@media (max-width: 560px) { header.hero { grid-template-columns: 1fr; } .pass { display: none; } nav.toc ol { columns: 1; } h2 { font-size: 25px; } }
-@media print {
-  :root { --bg: #fff; --card: #fff; }
-  body { font-size: 11.5pt; padding: 0; }
-  .wrap { max-width: none; padding: 0; }
-  .copy { display: none; }
-  pre { padding-top: 14px; white-space: pre-wrap; }
-  h2 { break-before: page; border-top: 0; padding-top: 0; margin-top: 0; }
-  h3, .callout, .code, tr { break-inside: avoid; }
-  .c-prompt { break-after: avoid; }
-  nav.toc { border: 1px solid var(--line); }
-  .pass { box-shadow: none; border: 1px solid var(--line); }
+
+/* lists */
+main ul { list-style: none; padding-left: 0; }
+main ul > li { position: relative; padding-left: 26px; margin: 6px 0; }
+main ul > li::before { content: ''; position: absolute; left: 5px; top: 0.66em; width: 8px; height: 8px; border-radius: 3px; background: var(--acc-mark); }
+main ol { list-style: none; padding-left: 0; counter-reset: li; }
+main ol > li { position: relative; padding-left: 40px; margin: 8px 0; counter-increment: li; }
+main ol > li::before { content: counter(li); position: absolute; left: 0; top: 0.1em; width: 26px; height: 26px; border-radius: 9px; background: var(--acc-50); color: var(--acc-700);
+  font: 800 13.5px/26px var(--f-head); text-align: center; font-variant-numeric: tabular-nums; }
+
+/* tasks (check-list) */
+ul.tasks > li { padding-left: 0; }
+ul.tasks > li::before { display: none; }
+.task label { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; padding: 10px 12px; border-radius: 14px; }
+.task label:hover { background: var(--zebra); }
+.task input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.task .box { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--acc); display: grid; place-items: center; color: transparent; margin-top: 1px; background: var(--card); }
+.task .box .i { width: 16px; height: 16px; stroke-width: 3; }
+.task input:checked + .box { background: var(--acc); color: var(--acc-on); }
+.task input:checked ~ .task-t { color: var(--soft); text-decoration: line-through; text-decoration-thickness: 1px; }
+.task input:focus-visible + .box { outline: 3px solid var(--lesson); outline-offset: 2px; }
+
+/* tables */
+.table-wrap { overflow-x: auto; margin: 18px 0 22px; background: var(--card); border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; }
+th { font: 800 13px/1.3 var(--f-head); letter-spacing: .04em; text-transform: uppercase; background: var(--acc-50); color: var(--acc-700); border-bottom: 3px solid var(--acc); }
+tbody tr:nth-child(even) td { background: var(--zebra); }
+td + td, th + th { border-left: 1px solid var(--line); }
+.kv td:first-child { width: 32%; color: var(--soft); font-weight: 600; }
+.kv td + td { border-left: 0; }
+.tl { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -0.05em; box-shadow: 0 0 0 3px var(--card); }
+.tl-red { background: #E5484D; } .tl-yellow { background: #F5B400; } .tl-green { background: #12A35B; }
+
+/* code + copy */
+.code { position: relative; margin: 0 0 16px; }
+pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border: 1px solid var(--code-line); border-radius: 18px; padding: 54px 22px 20px; overflow-x: auto;
+  font: 14.5px/1.65 var(--f-mono); white-space: pre-wrap; word-break: break-word; }
+.copy { position: absolute; top: 12px; right: 12px; display: inline-flex; align-items: center; gap: 8px; font: 700 13.5px/1 var(--f-body); color: #16181D; background: #FFFFFF;
+  border: 0; border-radius: 999px; padding: 9px 14px 9px 12px; cursor: pointer; min-height: 34px; }
+.copy .i { width: 16px; height: 16px; }
+.copy:hover { background: #E3EBFF; }
+.copy.done { background: #C9F2DA; }
+.copy:focus-visible { outline: 3px solid #789FFF; outline-offset: 2px; }
+
+/* prompt card */
+.prompt-card { margin: 28px 0 22px; border-radius: 22px; overflow: hidden; background: var(--code-bg); box-shadow: var(--shadow); border: 1px solid var(--code-line); }
+.pc-head { display: flex; align-items: center; gap: 14px; background: var(--lesson-strong); color: var(--on-lesson); padding: 16px 20px; }
+.pc-ico { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(8, 16, 48, .22); }
+.pc-ico .i { width: 22px; height: 22px; }
+.pc-meta { display: grid; gap: 3px; min-width: 0; }
+.pc-kicker { font: 700 12.5px/1.3 var(--f-body); letter-spacing: .06em; text-transform: uppercase; }
+.pc-id { display: inline-block; font: 600 12px/1 var(--f-mono); letter-spacing: 0; text-transform: none; border: 1px solid currentColor; border-radius: 6px; padding: 3px 6px; margin-left: 4px; }
+.pc-title { font: 800 19px/1.25 var(--f-head); letter-spacing: -0.01em; }
+.pc-title::first-letter { text-transform: uppercase; }
+.pc-note { background: var(--lesson-strong); color: var(--on-lesson); padding: 0 20px 14px; font-size: 15px; }
+.pc-note p { margin: 0; }
+.prompt-card .code { margin: 0; }
+.prompt-card pre { border: 0; border-radius: 0; }
+.pc-foot { background: var(--card); padding: 16px 20px; font-size: 15.5px; line-height: 1.6; border-top: 1px solid var(--line); }
+.pc-foot p { margin: 0; }
+.pc-foot strong { color: var(--lesson-700); }
+
+/* callouts */
+.callout { --c: var(--lesson); --c-on: #FFFFFF; --c-50: var(--lesson-50); --c-700: var(--lesson-700); --acc-mark: var(--c);
+  background: var(--c-50); border-radius: 20px; padding: 18px 22px 18px; margin: 26px 0 20px; }
+.c-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.c-ico { flex: none; width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: var(--c); color: var(--c-on); }
+.c-ico .i { width: 19px; height: 19px; }
+.c-title { font: 800 17px/1.3 var(--f-head); color: var(--c-700); }
+.c-body > :last-child, .c-body > :last-child > :last-child { margin-bottom: 0; }
+.c-warn { --c: var(--warn); --c-50: var(--warn-50); --c-700: var(--warn-700); }
+.c-mistake { --c: var(--mistake); --c-on: #16181D; --c-50: var(--mistake-50); --c-700: var(--mistake-700); }
+.c-try { --c: var(--lesson); --c-on: #FFFFFF; }
+.c-practice { --c: var(--ok); --c-on: #FFFFFF; --c-50: var(--ok-50); --c-700: var(--ok-700); }
+.c-date, .c-note { --c: var(--date); --c-50: var(--date-50); --c-700: var(--date-700); }
+.m-rows { display: grid; gap: 8px; }
+.m-row { margin: 0; padding: 10px 14px; border-radius: 12px; background: var(--card); }
+.m-lbl { display: block; font: 800 12.5px/1.3 var(--f-head); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; color: var(--soft); }
+.m-bad .m-lbl { color: var(--mistake-700); }
+.m-ok { box-shadow: inset 4px 0 0 var(--ok); }
+.m-ok .m-lbl { color: var(--ok-700); }
+.c-note { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); }
+.c-note .c-ico { background: var(--date-50); color: var(--date-700); }
+.c-note .c-body { padding-top: 4px; }
+.c-before { border-left: 5px solid #E5484D; }
+.c-after { border-left: 5px solid var(--ok); }
+.ba-label { font: 800 13px/1 var(--f-head); letter-spacing: .08em; text-transform: uppercase; margin: 24px 0 -12px; color: var(--soft); }
+
+/* special sections */
+.sec-box { background: var(--card); border-radius: 24px; padding: 24px 28px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.sec-box > :last-child { margin-bottom: 0; }
+.sec-quiz .sec-box { background: var(--acc-50); border: 0; box-shadow: none; }
+.sec-quiz .sec-box ol > li { padding: 10px 14px 10px 52px; background: var(--card); border-radius: 14px; }
+.sec-quiz .sec-box ol > li::before { left: 14px; top: 11px; background: var(--acc); color: var(--acc-on); }
+.sec-cheat .sec-box { border: 2px solid var(--acc); columns: 2 300px; column-gap: 16px; padding: 18px; }
+.cs-item { break-inside: avoid; background: var(--acc-50); border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; font-size: 15.5px; line-height: 1.6; display: flow-root; }
+.cs-item p, .cs-item ul, .cs-item ol { margin: 0 0 6px; }
+.cs-item > :last-child { margin-bottom: 0; }
+.cs-item strong { color: var(--acc-700); }
+.cs-item ul > li, .cs-item ol > li { margin: 3px 0; }
+.cs-item ol > li::before { background: var(--card); }
+.sec-faq p { background: var(--card); border-radius: 16px; padding: 16px 20px; border: 1px solid var(--line); }
+.sec-faq p > strong:first-child { display: block; font-family: var(--f-head); font-weight: 800; color: var(--acc-700); margin-bottom: 4px; }
+.sec-hw .ch-head + p { background: var(--card); border-radius: 18px; padding: 16px 20px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.sec-answers .sec-box ol > li::before { background: var(--ok-50); color: var(--ok-700); }
+.sec-log table { font-size: 14px; }
+
+/* presenter script */
+.slide-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-top: 28px; border-top: 1px solid var(--line); }
+.slide-h::before { display: none; }
+.slide-no { font: 800 12.5px/1 var(--f-head); letter-spacing: .06em; text-transform: uppercase; background: var(--acc); color: var(--acc-on); border-radius: 8px; padding: 7px 10px; transform: translateY(-3px); }
+.p-time { max-width: 100%; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; background: var(--acc-50); color: var(--acc-700); border-radius: 999px; padding: 4px 14px 4px 10px; }
+.p-time .i { width: 16px; height: 16px; }
+.p-do { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--mistake); border-radius: 14px; padding: 12px 16px; }
+.p-say strong:first-child { color: var(--acc-700); }
+
+footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; gap: 14px; }
+.team-strip { display: flex; gap: 6px; }
+.team-strip span { height: 6px; flex: 1; border-radius: 3px; }
+
+@media (max-width: 760px) {
+  .top { padding-top: 16px; }
+  .hero { grid-template-columns: 1fr; padding: 28px 22px 26px; border-radius: 26px; gap: 24px; }
+  .hero-big { font-size: 220px; bottom: -60px; right: -12px; }
+  .hero .lead { font-size: 17px; }
+  .pass { justify-self: start; width: 100%; max-width: 300px; transform: rotate(-2deg); }
+  .pass-body { grid-template-columns: auto 1fr; column-gap: 14px; align-items: center; }
+  .pass-av { grid-row: span 2; width: 60px; height: 60px; border-radius: 18px; margin: 0; }
+  .pass-av .i { width: 32px; height: 32px; }
+  .pass-name { font-size: 22px; align-self: end; }
+  .pass-role { align-self: start; }
+  .pass-team, .pass-code { grid-column: 1 / -1; }
+  .facts { gap: 8px; }
+  .facts li { flex: 1 1 140px; }
+  .layout { padding-top: 28px; }
+  nav.toc { padding: 18px 14px; border-radius: 20px; }
+  nav.toc ul { grid-template-columns: 1fr; }
+  .chapter { margin-top: 56px; }
+  .ch-head { gap: 14px; padding: 16px; border-radius: 20px; }
+  .ch-tile { min-width: 56px; height: 56px; border-radius: 16px; padding: 0 8px; }
+  .ch-num { font-size: 22px; }
+  .ch-tile .i { width: 28px; height: 28px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  body { font-size: 16.5px; }
+  table { font-size: 14px; }
+  th, td { padding: 10px 12px; }
+  pre { padding: 54px 16px 16px; font-size: 13.5px; }
+  .pc-head { padding: 14px 16px; }
+  .pc-ico { width: 34px; height: 34px; }
+  .pc-title { font-size: 17px; }
+  .pc-foot { padding: 14px 16px; }
+  .callout { padding: 16px; }
+  .sec-box { padding: 16px; border-radius: 20px; }
+  .sec-cheat .sec-box { padding: 12px; }
 }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+@page { size: A4; margin: 20mm 17mm 17mm; }
+@page :first { margin: 0; }
+@media print {
+  :root:root:root:root {
+  --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: #16181D;
+  --lesson-50: #E3EBFF; --lesson-700: #1A3FA6;
+  --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
+  --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
+  --shadow: 0 1px 2px rgba(22,24,29,.05), 0 10px 30px -16px rgba(22,24,29,.25); }
+  :root:root:root:root .acc-0 { --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
+  :root:root:root:root .acc-1 { --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
+  :root:root:root:root .acc-2 { --acc-50: #FFEBDC; --acc-700: #A3460A; }
+  :root:root:root:root .acc-3 { --acc-50: #ECE5FF; --acc-700: #4F26C9; }
+  :root:root:root:root .acc-4 { --acc-50: #FDE4EF; --acc-700: #A3184F; }
+  :root:root:root:root .acc-5 { --acc-50: #FFF4CC; --acc-700: #7A5700; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10.5pt; line-height: 1.6; padding: 0; background: #FFFFFF; }
+  .progress, .side, .copy, .no-print { display: none !important; }
+  .top { max-width: none; padding: 0; }
+  .hero { height: 297mm; border-radius: 0; padding: 26mm 20mm 22mm; grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; align-items: start; gap: 0; break-after: page; }
+  .hero-main { display: contents; }
+  .hero .brand { grid-row: 1; justify-self: start; }
+  .hero .pass { grid-row: 1; justify-self: end; width: 64mm; margin-top: 6mm; transform: rotate(-4deg); box-shadow: 0 18px 40px -12px rgba(8,16,48,.5); }
+  .hero .titles { grid-row: 2; align-self: end; }
+  .hero h1 { font-size: 52pt; margin: 0 0 6mm; }
+  .hero .lead { font-size: 14pt; max-width: 150mm; }
+  .hero .facts { grid-row: 3; margin-top: 12mm; }
+  .hero-big { font-size: 150mm; right: -8mm; bottom: -40mm; }
+  .layout { display: block; max-width: none; padding: 0; }
+  .content { max-width: none; }
+  nav.toc { display: block; box-shadow: none; border: 1px solid var(--line); break-after: page; padding: 8mm; }
+  nav.toc ul { grid-template-columns: 1fr 1fr; }
+  nav.toc.many ul { grid-template-columns: 1fr 1fr; font-size: 9pt; }
+  .chapter { margin-top: 0; break-before: page; }
+  .chapter:first-child { break-before: auto; }
+  .ch-head { break-after: avoid; }
+  h3 { break-after: avoid; margin-top: 8mm; }
+  .callout, .prompt-card, .m-row, .cs-item, tr, .sec-faq p, .task, .sec-quiz li, .pc-head { break-inside: avoid; }
+  .pc-head { break-after: avoid; }
+  pre { background: #F3F5F9; color: #16181D; border: 0; border-left: 4px solid var(--lesson); padding: 12px 16px; font-size: 9.5pt; }
+  .prompt-card { background: #F3F5F9; box-shadow: none; border: 1px solid var(--line); }
+  .prompt-card pre { border-left: 0; }
+  .table-wrap, .sec-box, nav.toc, .sec-hw .ch-head + p { box-shadow: none; }
+  .table-wrap { overflow: visible; }
+  footer { margin-top: 12mm; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
-<div class="wrap">
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="top">
 <header class="hero">
-  <div>
+  <div class="hero-big" aria-hidden="true">01</div>
+  <div class="hero-main">
     <span class="brand">ИИ‑КОМАНДА · ДЛЯ ВЕДУЩЕГО</span>
-    <h1>Сценарий ведущего · Урок 1</h1>
-    <p>Что говорить и что делать на каждом слайде урока «Первый результат». Время указано от начала урока.</p>
+    <div class="titles"><h1>Сценарий ведущего · Урок 1</h1>
+    <p class="lead">Что говорить и что делать на каждом слайде урока «Первый результат». Время указано от начала урока.</p></div>
+    <ul class="facts" aria-label="Что внутри"><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><b>≈ 25 мин</b><small>чтения</small></span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg><span><b>46</b><small>слайдов</small></span></li></ul>
   </div>
-  <div class="pass" aria-hidden="true"><div class="pass-top"><span>ПРОПУСК</span><span>№ 01</span></div>
-    <div class="pass-body"><div class="pass-av"></div><div class="pass-name">Ассистент</div><div class="pass-role">Участник вашей ИИ‑команды с урока 1</div></div></div>
+  <div class="pass" aria-hidden="true"><div class="pass-top"><span><i></i>ПРОПУСК</span><span>№ 01</span></div>
+    <div class="pass-body"><div class="pass-av"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div><div class="pass-name">Ассистент</div><div class="pass-role">Участник вашей ИИ‑команды с урока 1</div>
+    <div class="pass-team"><span class="ts on" style="background:#2F6BFF"></span><span class="ts" style="background:#12A35B"></span><span class="ts" style="background:#FF7A1A"></span><span class="ts" style="background:#7B4DFF"></span><span class="ts" style="background:#EE3E86"></span><span class="ts" style="background:#F5B400"></span></div><div class="pass-code"></div></div></div>
 </header>
-<nav class="toc" aria-label="Содержание"><h2>Содержание</h2><ol><li><a href="#как-пользоваться-сценарием">Как пользоваться сценарием</a></li><li><a href="#слайд-1-обложка-курса">Слайд 1 · Обложка курса</a></li><li><a href="#слайд-2-урок-1-пропуск-ассистента">Слайд 2 · Урок 1. Пропуск Ассистента</a></li><li><a href="#слайд-3-ваша-команда-к-концу-курса">Слайд 3 · Ваша команда к концу курса</a></li><li><a href="#слайд-4-план-урока">Слайд 4 · План урока</a></li><li><a href="#слайд-5-установите-deepseek">Слайд 5 · Установите DeepSeek</a></li><li><a href="#слайд-6-вау-демо-1-закон-за-одну-минуту">Слайд 6 · Вау‑демо 1. Закон за одну минуту</a></li><li><a href="#слайд-7-вау-демо-2-фото-заметок-в-таблицу-задач">Слайд 7 · Вау‑демо 2. Фото заметок в таблицу задач</a></li><li><a href="#слайд-8-два-вау-за-пять-минут">Слайд 8 · Два вау за пять минут</a></li><li><a href="#слайд-9-блок-2-что-такое-ии">Слайд 9 · Блок 2. Что такое ИИ</a></li><li><a href="#слайд-10-ии-уже-вокруг-вас">Слайд 10 · ИИ уже вокруг вас</a></li><li><a href="#слайд-11-чем-ии-отличается-от-обычной-программы">Слайд 11 · Чем ИИ отличается от обычной программы</a></li><li><a href="#слайд-12-генеративный-ии-создаёт-новое">Слайд 12 · Генеративный ИИ создаёт новое</a></li><li><a href="#слайд-13-что-умеет-ваш-ассистент">Слайд 13 · Что умеет ваш Ассистент</a></li><li><a href="#слайд-14-блок-3-история-ии">Слайд 14 · Блок 3. История ИИ</a></li><li><a href="#слайд-15-1950-1997-идея-и-долгий-путь">Слайд 15 · 1950–1997: идея и долгий путь</a></li><li><a href="#слайд-16-2012-2026-взрыв">Слайд 16 · 2012–2026: взрыв</a></li><li><a href="#слайд-17-100-миллионов-за-два-месяца">Слайд 17 · 100 миллионов за два месяца</a></li><li><a href="#слайд-18-блок-4-зачем-и-почему-сейчас">Слайд 18 · Блок 4. Зачем и почему сейчас</a></li><li><a href="#слайд-19-четыре-выгоды-лично-для-вас">Слайд 19 · Четыре выгоды лично для вас</a></li><li><a href="#слайд-20-год-с-ии-в-работе-ваша-история">Слайд 20 · Год с ИИ в работе (ваша история)</a></li><li><a href="#слайд-21-что-говорят-исследования">Слайд 21 · Что говорят исследования</a></li><li><a href="#слайд-22-рутину-забирает-ии-экспертиза-остаётся-за-вами">Слайд 22 · Рутину забирает ИИ, экспертиза остаётся за вами</a></li><li><a href="#слайд-23-вашу-работу-быстрее-сделает-коллега-с-ии">Слайд 23 · Вашу работу быстрее сделает коллега с ИИ</a></li><li><a href="#слайд-24-опрос">Слайд 24 · Опрос</a></li><li><a href="#слайд-25-блок-5-как-он-работает-и-где-ошибается">Слайд 25 · Блок 5. Как он работает и где ошибается</a></li><li><a href="#слайд-26-как-модель-пишет-ответ">Слайд 26 · Как модель пишет ответ</a></li><li><a href="#слайд-27-три-причины-которые-стоит-помнить">Слайд 27 · Три причины, которые стоит помнить</a></li><li><a href="#слайд-28-найдите-ошибку">Слайд 28 · Найдите ошибку</a></li><li><a href="#слайд-29-ошибка-в-пункте-3-и-чек-лист">Слайд 29 · Ошибка в пункте 3 и чек‑лист</a></li><li><a href="#слайд-30-перерыв">Слайд 30 · Перерыв</a></li><li><a href="#слайд-31-блок-6-формула-запроса">Слайд 31 · Блок 6. Формула запроса</a></li><li><a href="#слайд-32-пять-частей-хорошего-промпта">Слайд 32 · Пять частей хорошего промпта</a></li><li><a href="#слайд-33-показываю-плохой-и-хороший-запрос">Слайд 33 · Показываю: плохой и хороший запрос</a></li><li><a href="#слайд-34-одна-задача-два-запроса">Слайд 34 · Одна задача, два запроса</a></li><li><a href="#слайд-35-ваш-ход-повторите-сами-подготовка-к-встрече">Слайд 35 · Ваш ход. Повторите сами: подготовка к встрече</a></li><li><a href="#слайд-36-блок-7-безопасность-данных">Слайд 36 · Блок 7. Безопасность данных</a></li><li><a href="#слайд-37-правило-светофора">Слайд 37 · Правило светофора</a></li><li><a href="#слайд-38-обезличивание">Слайд 38 · Обезличивание</a></li><li><a href="#слайд-39-блок-8-ии-в-жизни-и-сервисы">Слайд 39 · Блок 8. ИИ в жизни и сервисы</a></li><li><a href="#слайд-40-восемь-сценариев">Слайд 40 · Восемь сценариев</a></li><li><a href="#слайд-41-медицинские-анализы">Слайд 41 · Медицинские анализы</a></li><li><a href="#слайд-42-где-живёт-ваш-ассистент">Слайд 42 · Где живёт ваш Ассистент</a></li><li><a href="#слайд-43-почему-ии-забывает-начало">Слайд 43 · Почему ИИ «забывает» начало</a></li><li><a href="#слайд-44-домашнее-задание">Слайд 44 · Домашнее задание</a></li><li><a href="#слайд-45-что-вы-теперь-умеете">Слайд 45 · Что вы теперь умеете</a></li><li><a href="#слайд-46-следующий-урок-и-вопросы">Слайд 46 · Следующий урок и вопросы</a></li><li><a href="#готовые-ответы-на-частые-вопросы">Готовые ответы на частые вопросы</a></li></ol></nav>
+</div>
+<div class="layout">
+<aside class="side"><nav aria-label="Навигация по разделам"><p class="toc-h">Содержание</p><ul><li class="acc-0 toc-l2"><a href="#как-пользоваться-сценарием"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="toc-t">Как пользоваться сценарием</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-1-обложка-курса"><span class="toc-b" aria-hidden="true">1</span><span class="toc-t"><span class="vh">Слайд 1 · </span>Обложка курса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-2-урок-1-пропуск-ассистента"><span class="toc-b" aria-hidden="true">2</span><span class="toc-t"><span class="vh">Слайд 2 · </span>Урок 1. Пропуск Ассистента</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-3-ваша-команда-к-концу-курса"><span class="toc-b" aria-hidden="true">3</span><span class="toc-t"><span class="vh">Слайд 3 · </span>Ваша команда к концу курса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-4-план-урока"><span class="toc-b" aria-hidden="true">4</span><span class="toc-t"><span class="vh">Слайд 4 · </span>План урока</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-5-установите-deepseek"><span class="toc-b" aria-hidden="true">5</span><span class="toc-t"><span class="vh">Слайд 5 · </span>Установите DeepSeek</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-6-вау-демо-1-закон-за-одну-минуту"><span class="toc-b" aria-hidden="true">6</span><span class="toc-t"><span class="vh">Слайд 6 · </span>Вау‑демо 1. Закон за одну минуту</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-7-вау-демо-2-фото-заметок-в-таблицу-задач"><span class="toc-b" aria-hidden="true">7</span><span class="toc-t"><span class="vh">Слайд 7 · </span>Вау‑демо 2. Фото заметок в таблицу задач</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-8-два-вау-за-пять-минут"><span class="toc-b" aria-hidden="true">8</span><span class="toc-t"><span class="vh">Слайд 8 · </span>Два вау за пять минут</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-9-блок-2-что-такое-ии"><span class="toc-b" aria-hidden="true">9</span><span class="toc-t"><span class="vh">Слайд 9 · </span>Блок 2. Что такое ИИ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-10-ии-уже-вокруг-вас"><span class="toc-b" aria-hidden="true">10</span><span class="toc-t"><span class="vh">Слайд 10 · </span>ИИ уже вокруг вас</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-11-чем-ии-отличается-от-обычной-программы"><span class="toc-b" aria-hidden="true">11</span><span class="toc-t"><span class="vh">Слайд 11 · </span>Чем ИИ отличается от обычной программы</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-12-генеративный-ии-создаёт-новое"><span class="toc-b" aria-hidden="true">12</span><span class="toc-t"><span class="vh">Слайд 12 · </span>Генеративный ИИ создаёт новое</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-13-что-умеет-ваш-ассистент"><span class="toc-b" aria-hidden="true">13</span><span class="toc-t"><span class="vh">Слайд 13 · </span>Что умеет ваш Ассистент</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-14-блок-3-история-ии"><span class="toc-b" aria-hidden="true">14</span><span class="toc-t"><span class="vh">Слайд 14 · </span>Блок 3. История ИИ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-15-1950-1997-идея-и-долгий-путь"><span class="toc-b" aria-hidden="true">15</span><span class="toc-t"><span class="vh">Слайд 15 · </span>1950–1997: идея и долгий путь</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-16-2012-2026-взрыв"><span class="toc-b" aria-hidden="true">16</span><span class="toc-t"><span class="vh">Слайд 16 · </span>2012–2026: взрыв</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-17-100-миллионов-за-два-месяца"><span class="toc-b" aria-hidden="true">17</span><span class="toc-t"><span class="vh">Слайд 17 · </span>100 миллионов за два месяца</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-18-блок-4-зачем-и-почему-сейчас"><span class="toc-b" aria-hidden="true">18</span><span class="toc-t"><span class="vh">Слайд 18 · </span>Блок 4. Зачем и почему сейчас</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-19-четыре-выгоды-лично-для-вас"><span class="toc-b" aria-hidden="true">19</span><span class="toc-t"><span class="vh">Слайд 19 · </span>Четыре выгоды лично для вас</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-20-год-с-ии-в-работе-ваша-история"><span class="toc-b" aria-hidden="true">20</span><span class="toc-t"><span class="vh">Слайд 20 · </span>Год с ИИ в работе (ваша история)</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-21-что-говорят-исследования"><span class="toc-b" aria-hidden="true">21</span><span class="toc-t"><span class="vh">Слайд 21 · </span>Что говорят исследования</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-22-рутину-забирает-ии-экспертиза-остаётся-за-вами"><span class="toc-b" aria-hidden="true">22</span><span class="toc-t"><span class="vh">Слайд 22 · </span>Рутину забирает ИИ, экспертиза остаётся за вами</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-23-вашу-работу-быстрее-сделает-коллега-с-ии"><span class="toc-b" aria-hidden="true">23</span><span class="toc-t"><span class="vh">Слайд 23 · </span>Вашу работу быстрее сделает коллега с ИИ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-24-опрос"><span class="toc-b" aria-hidden="true">24</span><span class="toc-t"><span class="vh">Слайд 24 · </span>Опрос</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-25-блок-5-как-он-работает-и-где-ошибается"><span class="toc-b" aria-hidden="true">25</span><span class="toc-t"><span class="vh">Слайд 25 · </span>Блок 5. Как он работает и где ошибается</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-26-как-модель-пишет-ответ"><span class="toc-b" aria-hidden="true">26</span><span class="toc-t"><span class="vh">Слайд 26 · </span>Как модель пишет ответ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-27-три-причины-которые-стоит-помнить"><span class="toc-b" aria-hidden="true">27</span><span class="toc-t"><span class="vh">Слайд 27 · </span>Три причины, которые стоит помнить</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-28-найдите-ошибку"><span class="toc-b" aria-hidden="true">28</span><span class="toc-t"><span class="vh">Слайд 28 · </span>Найдите ошибку</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-29-ошибка-в-пункте-3-и-чек-лист"><span class="toc-b" aria-hidden="true">29</span><span class="toc-t"><span class="vh">Слайд 29 · </span>Ошибка в пункте 3 и чек‑лист</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-30-перерыв"><span class="toc-b" aria-hidden="true">30</span><span class="toc-t"><span class="vh">Слайд 30 · </span>Перерыв</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-31-блок-6-формула-запроса"><span class="toc-b" aria-hidden="true">31</span><span class="toc-t"><span class="vh">Слайд 31 · </span>Блок 6. Формула запроса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-32-пять-частей-хорошего-промпта"><span class="toc-b" aria-hidden="true">32</span><span class="toc-t"><span class="vh">Слайд 32 · </span>Пять частей хорошего промпта</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-33-показываю-плохой-и-хороший-запрос"><span class="toc-b" aria-hidden="true">33</span><span class="toc-t"><span class="vh">Слайд 33 · </span>Показываю: плохой и хороший запрос</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-34-одна-задача-два-запроса"><span class="toc-b" aria-hidden="true">34</span><span class="toc-t"><span class="vh">Слайд 34 · </span>Одна задача, два запроса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-35-ваш-ход-повторите-сами-подготовка-к-встрече"><span class="toc-b" aria-hidden="true">35</span><span class="toc-t"><span class="vh">Слайд 35 · </span>Ваш ход. Повторите сами: подготовка к встрече</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-36-блок-7-безопасность-данных"><span class="toc-b" aria-hidden="true">36</span><span class="toc-t"><span class="vh">Слайд 36 · </span>Блок 7. Безопасность данных</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-37-правило-светофора"><span class="toc-b" aria-hidden="true">37</span><span class="toc-t"><span class="vh">Слайд 37 · </span>Правило светофора</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-38-обезличивание"><span class="toc-b" aria-hidden="true">38</span><span class="toc-t"><span class="vh">Слайд 38 · </span>Обезличивание</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-39-блок-8-ии-в-жизни-и-сервисы"><span class="toc-b" aria-hidden="true">39</span><span class="toc-t"><span class="vh">Слайд 39 · </span>Блок 8. ИИ в жизни и сервисы</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-40-восемь-сценариев"><span class="toc-b" aria-hidden="true">40</span><span class="toc-t"><span class="vh">Слайд 40 · </span>Восемь сценариев</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-41-медицинские-анализы"><span class="toc-b" aria-hidden="true">41</span><span class="toc-t"><span class="vh">Слайд 41 · </span>Медицинские анализы</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-42-где-живёт-ваш-ассистент"><span class="toc-b" aria-hidden="true">42</span><span class="toc-t"><span class="vh">Слайд 42 · </span>Где живёт ваш Ассистент</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-43-почему-ии-забывает-начало"><span class="toc-b" aria-hidden="true">43</span><span class="toc-t"><span class="vh">Слайд 43 · </span>Почему ИИ «забывает» начало</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-44-домашнее-задание"><span class="toc-b" aria-hidden="true">44</span><span class="toc-t"><span class="vh">Слайд 44 · </span>Домашнее задание</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-45-что-вы-теперь-умеете"><span class="toc-b" aria-hidden="true">45</span><span class="toc-t"><span class="vh">Слайд 45 · </span>Что вы теперь умеете</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-46-следующий-урок-и-вопросы"><span class="toc-b" aria-hidden="true">46</span><span class="toc-t"><span class="vh">Слайд 46 · </span>Следующий урок и вопросы</span></a></li><li class="acc-0 toc-l2"><a href="#готовые-ответы-на-частые-вопросы"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="toc-t">Готовые ответы на частые вопросы</span></a></li></ul></nav></aside>
+<div class="content">
+<nav class="toc many" aria-label="Содержание"><h2 class="toc-h">Содержание</h2><ul><li class="acc-0 toc-l2"><a href="#как-пользоваться-сценарием"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="toc-t">Как пользоваться сценарием</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-1-обложка-курса"><span class="toc-b" aria-hidden="true">1</span><span class="toc-t"><span class="vh">Слайд 1 · </span>Обложка курса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-2-урок-1-пропуск-ассистента"><span class="toc-b" aria-hidden="true">2</span><span class="toc-t"><span class="vh">Слайд 2 · </span>Урок 1. Пропуск Ассистента</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-3-ваша-команда-к-концу-курса"><span class="toc-b" aria-hidden="true">3</span><span class="toc-t"><span class="vh">Слайд 3 · </span>Ваша команда к концу курса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-4-план-урока"><span class="toc-b" aria-hidden="true">4</span><span class="toc-t"><span class="vh">Слайд 4 · </span>План урока</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-5-установите-deepseek"><span class="toc-b" aria-hidden="true">5</span><span class="toc-t"><span class="vh">Слайд 5 · </span>Установите DeepSeek</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-6-вау-демо-1-закон-за-одну-минуту"><span class="toc-b" aria-hidden="true">6</span><span class="toc-t"><span class="vh">Слайд 6 · </span>Вау‑демо 1. Закон за одну минуту</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-7-вау-демо-2-фото-заметок-в-таблицу-задач"><span class="toc-b" aria-hidden="true">7</span><span class="toc-t"><span class="vh">Слайд 7 · </span>Вау‑демо 2. Фото заметок в таблицу задач</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-8-два-вау-за-пять-минут"><span class="toc-b" aria-hidden="true">8</span><span class="toc-t"><span class="vh">Слайд 8 · </span>Два вау за пять минут</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-9-блок-2-что-такое-ии"><span class="toc-b" aria-hidden="true">9</span><span class="toc-t"><span class="vh">Слайд 9 · </span>Блок 2. Что такое ИИ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-10-ии-уже-вокруг-вас"><span class="toc-b" aria-hidden="true">10</span><span class="toc-t"><span class="vh">Слайд 10 · </span>ИИ уже вокруг вас</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-11-чем-ии-отличается-от-обычной-программы"><span class="toc-b" aria-hidden="true">11</span><span class="toc-t"><span class="vh">Слайд 11 · </span>Чем ИИ отличается от обычной программы</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-12-генеративный-ии-создаёт-новое"><span class="toc-b" aria-hidden="true">12</span><span class="toc-t"><span class="vh">Слайд 12 · </span>Генеративный ИИ создаёт новое</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-13-что-умеет-ваш-ассистент"><span class="toc-b" aria-hidden="true">13</span><span class="toc-t"><span class="vh">Слайд 13 · </span>Что умеет ваш Ассистент</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-14-блок-3-история-ии"><span class="toc-b" aria-hidden="true">14</span><span class="toc-t"><span class="vh">Слайд 14 · </span>Блок 3. История ИИ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-15-1950-1997-идея-и-долгий-путь"><span class="toc-b" aria-hidden="true">15</span><span class="toc-t"><span class="vh">Слайд 15 · </span>1950–1997: идея и долгий путь</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-16-2012-2026-взрыв"><span class="toc-b" aria-hidden="true">16</span><span class="toc-t"><span class="vh">Слайд 16 · </span>2012–2026: взрыв</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-17-100-миллионов-за-два-месяца"><span class="toc-b" aria-hidden="true">17</span><span class="toc-t"><span class="vh">Слайд 17 · </span>100 миллионов за два месяца</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-18-блок-4-зачем-и-почему-сейчас"><span class="toc-b" aria-hidden="true">18</span><span class="toc-t"><span class="vh">Слайд 18 · </span>Блок 4. Зачем и почему сейчас</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-19-четыре-выгоды-лично-для-вас"><span class="toc-b" aria-hidden="true">19</span><span class="toc-t"><span class="vh">Слайд 19 · </span>Четыре выгоды лично для вас</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-20-год-с-ии-в-работе-ваша-история"><span class="toc-b" aria-hidden="true">20</span><span class="toc-t"><span class="vh">Слайд 20 · </span>Год с ИИ в работе (ваша история)</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-21-что-говорят-исследования"><span class="toc-b" aria-hidden="true">21</span><span class="toc-t"><span class="vh">Слайд 21 · </span>Что говорят исследования</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-22-рутину-забирает-ии-экспертиза-остаётся-за-вами"><span class="toc-b" aria-hidden="true">22</span><span class="toc-t"><span class="vh">Слайд 22 · </span>Рутину забирает ИИ, экспертиза остаётся за вами</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-23-вашу-работу-быстрее-сделает-коллега-с-ии"><span class="toc-b" aria-hidden="true">23</span><span class="toc-t"><span class="vh">Слайд 23 · </span>Вашу работу быстрее сделает коллега с ИИ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-24-опрос"><span class="toc-b" aria-hidden="true">24</span><span class="toc-t"><span class="vh">Слайд 24 · </span>Опрос</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-25-блок-5-как-он-работает-и-где-ошибается"><span class="toc-b" aria-hidden="true">25</span><span class="toc-t"><span class="vh">Слайд 25 · </span>Блок 5. Как он работает и где ошибается</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-26-как-модель-пишет-ответ"><span class="toc-b" aria-hidden="true">26</span><span class="toc-t"><span class="vh">Слайд 26 · </span>Как модель пишет ответ</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-27-три-причины-которые-стоит-помнить"><span class="toc-b" aria-hidden="true">27</span><span class="toc-t"><span class="vh">Слайд 27 · </span>Три причины, которые стоит помнить</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-28-найдите-ошибку"><span class="toc-b" aria-hidden="true">28</span><span class="toc-t"><span class="vh">Слайд 28 · </span>Найдите ошибку</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-29-ошибка-в-пункте-3-и-чек-лист"><span class="toc-b" aria-hidden="true">29</span><span class="toc-t"><span class="vh">Слайд 29 · </span>Ошибка в пункте 3 и чек‑лист</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-30-перерыв"><span class="toc-b" aria-hidden="true">30</span><span class="toc-t"><span class="vh">Слайд 30 · </span>Перерыв</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-31-блок-6-формула-запроса"><span class="toc-b" aria-hidden="true">31</span><span class="toc-t"><span class="vh">Слайд 31 · </span>Блок 6. Формула запроса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-32-пять-частей-хорошего-промпта"><span class="toc-b" aria-hidden="true">32</span><span class="toc-t"><span class="vh">Слайд 32 · </span>Пять частей хорошего промпта</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-33-показываю-плохой-и-хороший-запрос"><span class="toc-b" aria-hidden="true">33</span><span class="toc-t"><span class="vh">Слайд 33 · </span>Показываю: плохой и хороший запрос</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-34-одна-задача-два-запроса"><span class="toc-b" aria-hidden="true">34</span><span class="toc-t"><span class="vh">Слайд 34 · </span>Одна задача, два запроса</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-35-ваш-ход-повторите-сами-подготовка-к-встрече"><span class="toc-b" aria-hidden="true">35</span><span class="toc-t"><span class="vh">Слайд 35 · </span>Ваш ход. Повторите сами: подготовка к встрече</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-36-блок-7-безопасность-данных"><span class="toc-b" aria-hidden="true">36</span><span class="toc-t"><span class="vh">Слайд 36 · </span>Блок 7. Безопасность данных</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-37-правило-светофора"><span class="toc-b" aria-hidden="true">37</span><span class="toc-t"><span class="vh">Слайд 37 · </span>Правило светофора</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-38-обезличивание"><span class="toc-b" aria-hidden="true">38</span><span class="toc-t"><span class="vh">Слайд 38 · </span>Обезличивание</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-39-блок-8-ии-в-жизни-и-сервисы"><span class="toc-b" aria-hidden="true">39</span><span class="toc-t"><span class="vh">Слайд 39 · </span>Блок 8. ИИ в жизни и сервисы</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-40-восемь-сценариев"><span class="toc-b" aria-hidden="true">40</span><span class="toc-t"><span class="vh">Слайд 40 · </span>Восемь сценариев</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-41-медицинские-анализы"><span class="toc-b" aria-hidden="true">41</span><span class="toc-t"><span class="vh">Слайд 41 · </span>Медицинские анализы</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-42-где-живёт-ваш-ассистент"><span class="toc-b" aria-hidden="true">42</span><span class="toc-t"><span class="vh">Слайд 42 · </span>Где живёт ваш Ассистент</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-43-почему-ии-забывает-начало"><span class="toc-b" aria-hidden="true">43</span><span class="toc-t"><span class="vh">Слайд 43 · </span>Почему ИИ «забывает» начало</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-44-домашнее-задание"><span class="toc-b" aria-hidden="true">44</span><span class="toc-t"><span class="vh">Слайд 44 · </span>Домашнее задание</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-45-что-вы-теперь-умеете"><span class="toc-b" aria-hidden="true">45</span><span class="toc-t"><span class="vh">Слайд 45 · </span>Что вы теперь умеете</span></a></li><li class="acc-0 toc-l3"><a href="#слайд-46-следующий-урок-и-вопросы"><span class="toc-b" aria-hidden="true">46</span><span class="toc-t"><span class="vh">Слайд 46 · </span>Следующий урок и вопросы</span></a></li><li class="acc-0 toc-l2"><a href="#готовые-ответы-на-частые-вопросы"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="toc-t">Готовые ответы на частые вопросы</span></a></li></ul></nav>
 <main>
-<h2 id="как-пользоваться-сценарием">Как пользоваться сценарием</h2>
+<section class="chapter acc-0" aria-labelledby="как-пользоваться-сценарием">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><h2 id="как-пользоваться-сценарием">Как пользоваться сценарием</h2></header>
 <ul>
 <li>Ниже расписано, <strong>что говорить на каждом слайде</strong>, живым текстом. Читать дословно не нужно: перескажите своими словами, но держитесь смысла и порядка.</li>
 <li><strong>Делаете</strong>: действия руками. Переключиться в браузер, вставить промпт в чат Телемоста, запустить таймер.</li>
@@ -115,202 +387,204 @@ footer { margin-top: 64px; color: var(--soft); font-size: 14px; }
 <li>Включите запись урока.</li>
 </ol>
 <hr>
-<h3 id="слайд-1-обложка-курса">Слайд 1 · Обложка курса</h3>
-<p><strong>Время:</strong> 0:00–0:01 (заставка висит, пока все подключаются)</p>
-<p><strong>Говорите:</strong><br>Добрый вечер! Спасибо, что пришли после работы. Я понимаю, что это ваше личное время, и постараюсь, чтобы оно окупилось. Курс называется «ИИ‑команда». Идея простая: за шесть уроков вы соберёте себе команду помощников на основе искусственного интеллекта, и у каждого в ней своя роль. Справа на слайде их пропуска. Сегодня нанимаем первого.</p>
+<h3 id="слайд-1-обложка-курса" class="slide-h"><span class="slide-no">Слайд 1</span><span class="vh"> · </span><span class="slide-t">Обложка курса</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:00–0:01 (заставка висит, пока все подключаются)</p>
+<p class="p-say"><strong>Говорите:</strong><br>Добрый вечер! Спасибо, что пришли после работы. Я понимаю, что это ваше личное время, и постараюсь, чтобы оно окупилось. Курс называется «ИИ‑команда». Идея простая: за шесть уроков вы соберёте себе команду помощников на основе искусственного интеллекта, и у каждого в ней своя роль. Справа на слайде их пропуска. Сегодня нанимаем первого.</p>
 <hr>
-<h3 id="слайд-2-урок-1-пропуск-ассистента">Слайд 2 · Урок 1. Пропуск Ассистента</h3>
-<p><strong>Время:</strong> 0:01–0:02</p>
-<p><strong>Говорите:</strong><br>Первого сотрудника зовут Ассистент. Он работает в обычном чате: вы пишете, он отвечает. Звучит просто, но к концу урока у каждого из вас будет конкретный результат, который сэкономит время уже завтра.<br>Записывать ничего не нужно. После урока вы получите книжку: там весь урок подробно, все промпты с кнопкой «скопировать» и шпаргалка на одну страницу. И запись урока.</p>
+<h3 id="слайд-2-урок-1-пропуск-ассистента" class="slide-h"><span class="slide-no">Слайд 2</span><span class="vh"> · </span><span class="slide-t">Урок 1. Пропуск Ассистента</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:01–0:02</p>
+<p class="p-say"><strong>Говорите:</strong><br>Первого сотрудника зовут Ассистент. Он работает в обычном чате: вы пишете, он отвечает. Звучит просто, но к концу урока у каждого из вас будет конкретный результат, который сэкономит время уже завтра.<br>Записывать ничего не нужно. После урока вы получите книжку: там весь урок подробно, все промпты с кнопкой «скопировать» и шпаргалка на одну страницу. И запись урока.</p>
 <hr>
-<h3 id="слайд-3-ваша-команда-к-концу-курса">Слайд 3 · Ваша команда к концу курса</h3>
-<p><strong>Время:</strong> 0:02–0:03</p>
-<p><strong>Говорите:</strong><br>Вот вся команда, на каждом уроке приходит новый участник. Сегодня Ассистент, он работает в чате. На втором уроке Аналитик: он разбирает ваши документы, договоры, сметы, таблицы. На третьем Редактор, с ним учимся доводить результат до качества, которое не стыдно отдать руководителю. На четвёртом Агент. Он уже сам выполняет работу, и вместе с ним мы с нуля соберём сайт с регистрацией, чатом и админкой. Пятый и шестой уроки по желанию: свой проект и его защита.</p>
+<h3 id="слайд-3-ваша-команда-к-концу-курса" class="slide-h"><span class="slide-no">Слайд 3</span><span class="vh"> · </span><span class="slide-t">Ваша команда к концу курса</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:02–0:03</p>
+<p class="p-say"><strong>Говорите:</strong><br>Вот вся команда, на каждом уроке приходит новый участник. Сегодня Ассистент, он работает в чате. На втором уроке Аналитик: он разбирает ваши документы, договоры, сметы, таблицы. На третьем Редактор, с ним учимся доводить результат до качества, которое не стыдно отдать руководителю. На четвёртом Агент. Он уже сам выполняет работу, и вместе с ним мы с нуля соберём сайт с регистрацией, чатом и админкой. Пятый и шестой уроки по желанию: свой проект и его защита.</p>
 <hr>
-<h3 id="слайд-4-план-урока">Слайд 4 · План урока</h3>
-<p><strong>Время:</strong> 0:03–0:04</p>
-<p><strong>Говорите:</strong><br>План на сегодня. Сначала все ставим DeepSeek, это наш инструмент на весь курс. Пока вы ставите, я покажу два примера, ради которых всё это затевается. Потом разберёмся, что такое ИИ, откуда он взялся и зачем он лично вам. Посмотрим, где он ошибается. После перерыва самая полезная часть: учимся ставить задачу. Я показываю, вы повторяете. В конце поговорим о безопасности и домашнем задании.<br>Вопросы пишите в чат в любой момент. Я читаю чат в конце каждого блока.</p>
+<h3 id="слайд-4-план-урока" class="slide-h"><span class="slide-no">Слайд 4</span><span class="vh"> · </span><span class="slide-t">План урока</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:03–0:04</p>
+<p class="p-say"><strong>Говорите:</strong><br>План на сегодня. Сначала все ставим DeepSeek, это наш инструмент на весь курс. Пока вы ставите, я покажу два примера, ради которых всё это затевается. Потом разберёмся, что такое ИИ, откуда он взялся и зачем он лично вам. Посмотрим, где он ошибается. После перерыва самая полезная часть: учимся ставить задачу. Я показываю, вы повторяете. В конце поговорим о безопасности и домашнем задании.<br>Вопросы пишите в чат в любой момент. Я читаю чат в конце каждого блока.</p>
 <hr>
-<h3 id="слайд-5-установите-deepseek">Слайд 5 · Установите DeepSeek</h3>
-<p><strong>Время:</strong> 0:04–0:06</p>
-<p><strong>Делаете:</strong> скиньте в чат ссылку chat.deepseek.com. Слайд с QR‑кодом держите 1–2 минуты.</p>
-<p><strong>Говорите:</strong><br>Сейчас у вас три минуты на установку. Весь курс мы работаем в DeepSeek: он бесплатный, работает без VPN и хорошо справляется с нашими задачами.<br>Откройте сайт chat.deepseek.com, ссылка в чате. Или наведите камеру телефона на QR‑код. Можно скачать приложение DeepSeek, но только официальное: в магазинах есть подделки с похожими названиями.<br>Регистрируйтесь по почте. И напишите первое сообщение: «Привет! Расскажи в пяти пунктах, что ты умеешь».<br>Кто не успеет, доделает в перерыв. А пока смотрите на экран, покажу, ради чего всё это.</p>
+<h3 id="слайд-5-установите-deepseek" class="slide-h"><span class="slide-no">Слайд 5</span><span class="vh"> · </span><span class="slide-t">Установите DeepSeek</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:04–0:06</p>
+<p class="p-do"><strong>Делаете:</strong> скиньте в чат ссылку chat.deepseek.com. Слайд с QR‑кодом держите 1–2 минуты.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Сейчас у вас три минуты на установку. Весь курс мы работаем в DeepSeek: он бесплатный, работает без VPN и хорошо справляется с нашими задачами.<br>Откройте сайт chat.deepseek.com, ссылка в чате. Или наведите камеру телефона на QR‑код. Можно скачать приложение DeepSeek, но только официальное: в магазинах есть подделки с похожими названиями.<br>Регистрируйтесь по почте. И напишите первое сообщение: «Привет! Расскажи в пяти пунктах, что ты умеешь».<br>Кто не успеет, доделает в перерыв. А пока смотрите на экран, покажу, ради чего всё это.</p>
 <hr>
-<h3 id="слайд-6-вау-демо-1-закон-за-одну-минуту">Слайд 6 · Вау‑демо 1. Закон за одну минуту</h3>
-<p><strong>Время:</strong> 0:06–0:09</p>
-<p><strong>Делаете:</strong> переключитесь в браузер (Alt+Tab), в DeepSeek нажмите скрепку, прикрепите PDF закона 152‑ФЗ, вставьте промпт П‑1.0 и отправьте. Пока ИИ пишет — молчите, дайте увидеть скорость. Если завис — откройте вкладку с готовым ответом.</p>
+<h3 id="слайд-6-вау-демо-1-закон-за-одну-минуту" class="slide-h"><span class="slide-no">Слайд 6</span><span class="vh"> · </span><span class="slide-t">Вау‑демо 1. Закон за одну минуту</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:06–0:09</p>
+<p class="p-do"><strong>Делаете:</strong> переключитесь в браузер (Alt+Tab), в DeepSeek нажмите скрепку, прикрепите PDF закона 152‑ФЗ, вставьте промпт П‑1.0 и отправьте. Пока ИИ пишет — молчите, дайте увидеть скорость. Если завис — откройте вкладку с готовым ответом.</p>
 <p>Промпт П‑1.0:<br>«Ты — юрист‑практик. Объясни этот закон простым языком на одной странице для обычного сотрудника: 1) что такое персональные данные — с 3 примерами из офисной работы; 2) 5 главных правил для сотрудника; 3) таблица „можно / нельзя“; 4) три вопроса, которые стоит задать своему юристу. Не выдумывай статьи — если ссылаешься на статью, укажи номер, я проверю.»</p>
-<p><strong>Говорите:</strong><br>Начну с результата. Вот закон «О персональных данных», десятки страниц юридического текста. Документ публичный, скачать его может кто угодно. Кто из вас читал его целиком? Я раньше тоже не читал.<br>Прикрепляю файл, прошу объяснить его на одной странице для обычного сотрудника… отправляю… смотрите.<br><em>(пауза, пока идёт ответ)</em><br>Вот что такое персональные данные, с примерами из нашей работы. Вот пять правил. Вот таблица «можно / нельзя». И вопросы, которые стоит задать юристу. Документ, на который ушёл бы вечер, вы поняли за минуту. Этот закон нам ещё пригодится в блоке про безопасность.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Начну с результата. Вот закон «О персональных данных», десятки страниц юридического текста. Документ публичный, скачать его может кто угодно. Кто из вас читал его целиком? Я раньше тоже не читал.<br>Прикрепляю файл, прошу объяснить его на одной странице для обычного сотрудника… отправляю… смотрите.<br><em>(пауза, пока идёт ответ)</em><br>Вот что такое персональные данные, с примерами из нашей работы. Вот пять правил. Вот таблица «можно / нельзя». И вопросы, которые стоит задать юристу. Документ, на который ушёл бы вечер, вы поняли за минуту. Этот закон нам ещё пригодится в блоке про безопасность.</p>
 <hr>
-<h3 id="слайд-7-вау-демо-2-фото-заметок-в-таблицу-задач">Слайд 7 · Вау‑демо 2. Фото заметок в таблицу задач</h3>
-<p><strong>Время:</strong> 0:09–0:11</p>
-<p><strong>Делаете:</strong> в DeepSeek откройте новый чат, прикрепите фото рукописных заметок, вставьте промпт и отправьте.</p>
+<h3 id="слайд-7-вау-демо-2-фото-заметок-в-таблицу-задач" class="slide-h"><span class="slide-no">Слайд 7</span><span class="vh"> · </span><span class="slide-t">Вау‑демо 2. Фото заметок в таблицу задач</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:09–0:11</p>
+<p class="p-do"><strong>Делаете:</strong> в DeepSeek откройте новый чат, прикрепите фото рукописных заметок, вставьте промпт и отправьте.</p>
 <p>Промпт:<br>«На фото — мои заметки после встречи. Составь таблицу задач: Задача | Ответственный | Срок | Приоритет. Если на фото чего‑то нет — пиши „не указано“, не придумывай. Под таблицей — что на фото осталось непонятным.»</p>
-<p><strong>Говорите:</strong><br>Второй пример из нашей жизни. Встречи у нас идут под запись, но после встречи у всех остаются вот такие заметки: на листе, на доске, в блокноте. Стрелки, сокращения, половина без сроков.<br>Фотографирую… прикрепляю… прошу сделать таблицу задач.<br><em>(пауза)</em><br>Вот таблица: задача, ответственный, срок, приоритет. Где на фото срока не было, ИИ его не придумал и написал «не указано», потому что я так попросил. Позже на уроке станет ясно, зачем это нужно.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Второй пример из нашей жизни. Встречи у нас идут под запись, но после встречи у всех остаются вот такие заметки: на листе, на доске, в блокноте. Стрелки, сокращения, половина без сроков.<br>Фотографирую… прикрепляю… прошу сделать таблицу задач.<br><em>(пауза)</em><br>Вот таблица: задача, ответственный, срок, приоритет. Где на фото срока не было, ИИ его не придумал и написал «не указано», потому что я так попросил. Позже на уроке станет ясно, зачем это нужно.</p>
 <hr>
-<h3 id="слайд-8-два-вау-за-пять-минут">Слайд 8 · Два вау за пять минут</h3>
-<p><strong>Время:</strong> 0:11–0:12</p>
-<p><strong>Говорите:</strong><br>За пять минут закон на десятки страниц превратился в одну понятную страницу, а фото заметок стало таблицей поручений. Без программирования и специальных навыков, в бесплатном сервисе, который вы только что поставили.<br>Через час вы будете делать такие вещи сами. Чтобы получалось хорошо, сначала разберёмся, что это за технология.</p>
+<h3 id="слайд-8-два-вау-за-пять-минут" class="slide-h"><span class="slide-no">Слайд 8</span><span class="vh"> · </span><span class="slide-t">Два вау за пять минут</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:11–0:12</p>
+<p class="p-say"><strong>Говорите:</strong><br>За пять минут закон на десятки страниц превратился в одну понятную страницу, а фото заметок стало таблицей поручений. Без программирования и специальных навыков, в бесплатном сервисе, который вы только что поставили.<br>Через час вы будете делать такие вещи сами. Чтобы получалось хорошо, сначала разберёмся, что это за технология.</p>
 <hr>
-<h3 id="слайд-9-блок-2-что-такое-ии">Слайд 9 · Блок 2. Что такое ИИ</h3>
-<p><strong>Время:</strong> 0:12</p>
-<p><strong>Говорите:</strong><br>Про искусственный интеллект сейчас говорят из каждого утюга, а объяснить его простыми словами могут немногие. Разберёмся за семь минут, без формул.</p>
+<h3 id="слайд-9-блок-2-что-такое-ии" class="slide-h"><span class="slide-no">Слайд 9</span><span class="vh"> · </span><span class="slide-t">Блок 2. Что такое ИИ</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:12</p>
+<p class="p-say"><strong>Говорите:</strong><br>Про искусственный интеллект сейчас говорят из каждого утюга, а объяснить его простыми словами могут немногие. Разберёмся за семь минут, без формул.</p>
 <hr>
-<h3 id="слайд-10-ии-уже-вокруг-вас">Слайд 10 · ИИ уже вокруг вас</h3>
-<p><strong>Время:</strong> 0:12–0:14</p>
-<p><strong>Говорите:</strong><br>Вы пользуетесь ИИ каждый день, просто не называете его так.<br>Навигатор прогнозирует пробки и перестраивает маршрут. Лента в соцсетях и онлайн‑кинотеатр подбирают то, что вам может понравиться. Банк блокирует подозрительную операцию по вашей карте раньше, чем вы о ней узнали. Телефон узнаёт вас по лицу, голосовой помощник отвечает на «Алиса, какая погода?», а переводчик переводит текст прямо с фотографии.<br>Всё это искусственный интеллект, только так называемый «узкий»: каждый умеет одно дело. Навигатор не напишет письмо, переводчик не построит маршрут. Через пару минут покажу, что изменилось.</p>
+<h3 id="слайд-10-ии-уже-вокруг-вас" class="slide-h"><span class="slide-no">Слайд 10</span><span class="vh"> · </span><span class="slide-t">ИИ уже вокруг вас</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:12–0:14</p>
+<p class="p-say"><strong>Говорите:</strong><br>Вы пользуетесь ИИ каждый день, просто не называете его так.<br>Навигатор прогнозирует пробки и перестраивает маршрут. Лента в соцсетях и онлайн‑кинотеатр подбирают то, что вам может понравиться. Банк блокирует подозрительную операцию по вашей карте раньше, чем вы о ней узнали. Телефон узнаёт вас по лицу, голосовой помощник отвечает на «Алиса, какая погода?», а переводчик переводит текст прямо с фотографии.<br>Всё это искусственный интеллект, только так называемый «узкий»: каждый умеет одно дело. Навигатор не напишет письмо, переводчик не построит маршрут. Через пару минут покажу, что изменилось.</p>
 <hr>
-<h3 id="слайд-11-чем-ии-отличается-от-обычной-программы">Слайд 11 · Чем ИИ отличается от обычной программы</h3>
-<p><strong>Время:</strong> 0:14–0:16</p>
-<p><strong>Говорите:</strong><br>Теперь определение. Обычная программа работает по правилам, которые заранее прописал программист. Калькулятор, бухгалтерская программа, SAP устроены так: нажали это, программа делает то. Сверх заложенного она ничего не сделает. Если правила не предусмотрели ситуацию, программа выдаст ошибку.<br>Искусственному интеллекту правил не пишут. Ему показывают миллионы примеров. По миллионам фотографий кошек он сам находит признаки, по которым кошку можно отличить от собаки. По миллионам банковских операций сам учится замечать те, что похожи на мошенничество. Человек учится похоже: на опыте, без инструкции.<br>Отсюда простое определение: искусственный интеллект учится на примерах, а обычная программа исполняет заданные правила. Отсюда же его сила: он справляется с ситуациями, которые никто заранее не описал. И слабость: он может ошибиться там, где человек с правилами не ошибся бы.</p>
+<h3 id="слайд-11-чем-ии-отличается-от-обычной-программы" class="slide-h"><span class="slide-no">Слайд 11</span><span class="vh"> · </span><span class="slide-t">Чем ИИ отличается от обычной программы</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:14–0:16</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь определение. Обычная программа работает по правилам, которые заранее прописал программист. Калькулятор, бухгалтерская программа, SAP устроены так: нажали это, программа делает то. Сверх заложенного она ничего не сделает. Если правила не предусмотрели ситуацию, программа выдаст ошибку.<br>Искусственному интеллекту правил не пишут. Ему показывают миллионы примеров. По миллионам фотографий кошек он сам находит признаки, по которым кошку можно отличить от собаки. По миллионам банковских операций сам учится замечать те, что похожи на мошенничество. Человек учится похоже: на опыте, без инструкции.<br>Отсюда простое определение: искусственный интеллект учится на примерах, а обычная программа исполняет заданные правила. Отсюда же его сила: он справляется с ситуациями, которые никто заранее не описал. И слабость: он может ошибиться там, где человек с правилами не ошибся бы.</p>
 <hr>
-<h3 id="слайд-12-генеративный-ии-создаёт-новое">Слайд 12 · Генеративный ИИ создаёт новое</h3>
-<p><strong>Время:</strong> 0:16–0:18</p>
-<p><strong>Говорите:</strong><br>Теперь о том, что изменилось за последние годы. ИИ, о котором я говорил минуту назад, умел распознавать и предсказывать: это кошка, это мошенник, тут будет пробка.<br>Новый вид ИИ, генеративный, умеет создавать. Он пишет новые тексты, рисует картинки, говорит голосом и пишет программный код.<br>В основе чатов ChatGPT, DeepSeek, Gemini, GigaChat и Алисы лежат так называемые большие языковые модели. Эти программы прочитали огромную часть написанного человечеством: книги, статьи, сайты, документы. На этих текстах они научились писать как человек и понимать, что человек от них хочет.<br>От «узкого» ИИ такая модель отличается тем, что умеет многое сразу. Одна и та же модель пишет письмо, объясняет закон, считает смету и пишет код. Поэтому мы и называем её Ассистентом.</p>
+<h3 id="слайд-12-генеративный-ии-создаёт-новое" class="slide-h"><span class="slide-no">Слайд 12</span><span class="vh"> · </span><span class="slide-t">Генеративный ИИ создаёт новое</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:16–0:18</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь о том, что изменилось за последние годы. ИИ, о котором я говорил минуту назад, умел распознавать и предсказывать: это кошка, это мошенник, тут будет пробка.<br>Новый вид ИИ, генеративный, умеет создавать. Он пишет новые тексты, рисует картинки, говорит голосом и пишет программный код.<br>В основе чатов ChatGPT, DeepSeek, Gemini, GigaChat и Алисы лежат так называемые большие языковые модели. Эти программы прочитали огромную часть написанного человечеством: книги, статьи, сайты, документы. На этих текстах они научились писать как человек и понимать, что человек от них хочет.<br>От «узкого» ИИ такая модель отличается тем, что умеет многое сразу. Одна и та же модель пишет письмо, объясняет закон, считает смету и пишет код. Поэтому мы и называем её Ассистентом.</p>
 <hr>
-<h3 id="слайд-13-что-умеет-ваш-ассистент">Слайд 13 · Что умеет ваш Ассистент</h3>
-<p><strong>Время:</strong> 0:18–0:19</p>
-<p><strong>Говорите:</strong><br>Вот что ваш Ассистент умеет уже сегодня. Пишет письма, отчёты, технические задания, доклады. Объясняет незнакомую тему простыми словами. Переводит с сохранением стиля. Читает документы в PDF, Word и таблицах, вы это видели на примере закона. Разбирает фото: чеки, схемы, рукописные заметки. В части сервисов понимает голос, так что мысль можно надиктовать. Ищет в интернете и даёт ссылки на источники. Пишет формулы для Excel, а при желании и программный код.<br>И всё это в одном окне чата. Дальше расскажу, откуда это взялось и почему появилось сейчас.</p>
+<h3 id="слайд-13-что-умеет-ваш-ассистент" class="slide-h"><span class="slide-no">Слайд 13</span><span class="vh"> · </span><span class="slide-t">Что умеет ваш Ассистент</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:18–0:19</p>
+<p class="p-say"><strong>Говорите:</strong><br>Вот что ваш Ассистент умеет уже сегодня. Пишет письма, отчёты, технические задания, доклады. Объясняет незнакомую тему простыми словами. Переводит с сохранением стиля. Читает документы в PDF, Word и таблицах, вы это видели на примере закона. Разбирает фото: чеки, схемы, рукописные заметки. В части сервисов понимает голос, так что мысль можно надиктовать. Ищет в интернете и даёт ссылки на источники. Пишет формулы для Excel, а при желании и программный код.<br>И всё это в одном окне чата. Дальше расскажу, откуда это взялось и почему появилось сейчас.</p>
 <hr>
-<h3 id="слайд-14-блок-3-история-ии">Слайд 14 · Блок 3. История ИИ</h3>
-<p><strong>Время:</strong> 0:19</p>
-<p><strong>Говорите:</strong><br>ИИ кажется изобретением последних трёх лет, хотя идее больше семидесяти лет. Пять минут истории, и станет понятно, почему всё изменилось сейчас.</p>
+<h3 id="слайд-14-блок-3-история-ии" class="slide-h"><span class="slide-no">Слайд 14</span><span class="vh"> · </span><span class="slide-t">Блок 3. История ИИ</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:19</p>
+<p class="p-say"><strong>Говорите:</strong><br>ИИ кажется изобретением последних трёх лет, хотя идее больше семидесяти лет. Пять минут истории, и станет понятно, почему всё изменилось сейчас.</p>
 <hr>
-<h3 id="слайд-15-1950-1997-идея-и-долгий-путь">Слайд 15 · 1950–1997: идея и долгий путь</h3>
-<p><strong>Время:</strong> 0:19–0:21</p>
-<p><strong>Говорите:</strong><br>1950 год. Английский математик Алан Тьюринг, тот самый, что во время войны помог взломать немецкую шифровальную машину «Энигма», пишет статью с вопросом: может ли машина мыслить? Он предлагает тест: если в переписке вы не можете отличить машину от человека, значит, машина «мыслит». Это знаменитый тест Тьюринга.<br>1956 год. На летнем семинаре в Дартмутском колледже в США впервые звучит термин «искусственный интеллект». Учёные тогда были уверены, что за одно поколение создадут машину умнее человека.<br>Этого не случилось. В 1970‑х и в конце 1980‑х наступали так называемые «зимы ИИ»: громкие обещания не сбывались, деньги урезали, тему почти забросили. Компьютеры были слишком слабыми, а данных было слишком мало.<br>1997 год. Компьютер Deep Blue от IBM обыгрывает в шахматы чемпиона мира Гарри Каспарова. Это была сенсация, хотя программа умела только играть в шахматы.</p>
+<h3 id="слайд-15-1950-1997-идея-и-долгий-путь" class="slide-h"><span class="slide-no">Слайд 15</span><span class="vh"> · </span><span class="slide-t">1950–1997: идея и долгий путь</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:19–0:21</p>
+<p class="p-say"><strong>Говорите:</strong><br>1950 год. Английский математик Алан Тьюринг, тот самый, что во время войны помог взломать немецкую шифровальную машину «Энигма», пишет статью с вопросом: может ли машина мыслить? Он предлагает тест: если в переписке вы не можете отличить машину от человека, значит, машина «мыслит». Это знаменитый тест Тьюринга.<br>1956 год. На летнем семинаре в Дартмутском колледже в США впервые звучит термин «искусственный интеллект». Учёные тогда были уверены, что за одно поколение создадут машину умнее человека.<br>Этого не случилось. В 1970‑х и в конце 1980‑х наступали так называемые «зимы ИИ»: громкие обещания не сбывались, деньги урезали, тему почти забросили. Компьютеры были слишком слабыми, а данных было слишком мало.<br>1997 год. Компьютер Deep Blue от IBM обыгрывает в шахматы чемпиона мира Гарри Каспарова. Это была сенсация, хотя программа умела только играть в шахматы.</p>
 <hr>
-<h3 id="слайд-16-2012-2026-взрыв">Слайд 16 · 2012–2026: взрыв</h3>
-<p><strong>Время:</strong> 0:21–0:24</p>
-<p><strong>Говорите:</strong><br>Дальше начинается взрыв. К этому времени сошлись три вещи: появились мощные компьютеры, интернет накопил гигантское количество данных, и учёные придумали, как на этих данных учить нейросети.<br>2012 год. Нейросети, обученные на огромных массивах фотографий, резко научились распознавать изображения, лучше всех прежних подходов. Началась эпоха глубокого обучения.<br>2016 год. Программа AlphaGo обыгрывает чемпиона мира в го. Эту древнюю игру считали слишком сложной для машин: вариантов ходов в ней больше, чем атомов во Вселенной.<br>2017 год. Инженеры Google публикуют архитектуру под названием «трансформер». На ней работают современные чаты, включая DeepSeek, который вы сегодня поставили.<br>30 ноября 2022 года выходит ChatGPT. Впервые мощная языковая модель стала доступна каждому через простой чат, без программирования.<br>Сейчас, в 2025–2026 годах, наступает эпоха агентов. ИИ уже сам выполняет работу: открывает файлы, пишет и запускает программы, проверяет себя. До агентов мы дойдём на четвёртом уроке.</p>
+<h3 id="слайд-16-2012-2026-взрыв" class="slide-h"><span class="slide-no">Слайд 16</span><span class="vh"> · </span><span class="slide-t">2012–2026: взрыв</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:21–0:24</p>
+<p class="p-say"><strong>Говорите:</strong><br>Дальше начинается взрыв. К этому времени сошлись три вещи: появились мощные компьютеры, интернет накопил гигантское количество данных, и учёные придумали, как на этих данных учить нейросети.<br>2012 год. Нейросети, обученные на огромных массивах фотографий, резко научились распознавать изображения, лучше всех прежних подходов. Началась эпоха глубокого обучения.<br>2016 год. Программа AlphaGo обыгрывает чемпиона мира в го. Эту древнюю игру считали слишком сложной для машин: вариантов ходов в ней больше, чем атомов во Вселенной.<br>2017 год. Инженеры Google публикуют архитектуру под названием «трансформер». На ней работают современные чаты, включая DeepSeek, который вы сегодня поставили.<br>30 ноября 2022 года выходит ChatGPT. Впервые мощная языковая модель стала доступна каждому через простой чат, без программирования.<br>Сейчас, в 2025–2026 годах, наступает эпоха агентов. ИИ уже сам выполняет работу: открывает файлы, пишет и запускает программы, проверяет себя. До агентов мы дойдём на четвёртом уроке.</p>
 <hr>
-<h3 id="слайд-17-100-миллионов-за-два-месяца">Слайд 17 · 100 миллионов за два месяца</h3>
-<p><strong>Время:</strong> 0:24–0:25</p>
-<p><strong>Говорите:</strong><br>Немного о масштабе. По оценке банка UBS, за два месяца после выхода ChatGPT им начали пользоваться сто миллионов человек. Так быстро не росло ни одно приложение в истории, включая соцсети и мессенджеры. В 2023 году появились российские GigaChat и YandexGPT. В 2024 году Нобелевские премии и по физике, и по химии получили учёные за работы, связанные с ИИ.<br>Технологии семьдесят лет, а доступной каждому она стала три года назад. Так что мы все начинаем примерно с одной точки, и отставших пока нет. Через пару лет разрыв между теми, кто начал, и остальными станет заметнее.</p>
+<h3 id="слайд-17-100-миллионов-за-два-месяца" class="slide-h"><span class="slide-no">Слайд 17</span><span class="vh"> · </span><span class="slide-t">100 миллионов за два месяца</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:24–0:25</p>
+<p class="p-say"><strong>Говорите:</strong><br>Немного о масштабе. По оценке банка UBS, за два месяца после выхода ChatGPT им начали пользоваться сто миллионов человек. Так быстро не росло ни одно приложение в истории, включая соцсети и мессенджеры. В 2023 году появились российские GigaChat и YandexGPT. В 2024 году Нобелевские премии и по физике, и по химии получили учёные за работы, связанные с ИИ.<br>Технологии семьдесят лет, а доступной каждому она стала три года назад. Так что мы все начинаем примерно с одной точки, и отставших пока нет. Через пару лет разрыв между теми, кто начал, и остальными станет заметнее.</p>
 <hr>
-<h3 id="слайд-18-блок-4-зачем-и-почему-сейчас">Слайд 18 · Блок 4. Зачем и почему сейчас</h3>
-<p><strong>Время:</strong> 0:25</p>
-<p><strong>Говорите:</strong><br>Технология впечатляющая. Теперь о том, зачем она лично вам и почему браться за неё стоит сейчас, не дожидаясь, пока всё устаканится.</p>
+<h3 id="слайд-18-блок-4-зачем-и-почему-сейчас" class="slide-h"><span class="slide-no">Слайд 18</span><span class="vh"> · </span><span class="slide-t">Блок 4. Зачем и почему сейчас</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:25</p>
+<p class="p-say"><strong>Говорите:</strong><br>Технология впечатляющая. Теперь о том, зачем она лично вам и почему браться за неё стоит сейчас, не дожидаясь, пока всё устаканится.</p>
 <hr>
-<h3 id="слайд-19-четыре-выгоды-лично-для-вас">Слайд 19 · Четыре выгоды лично для вас</h3>
-<p><strong>Время:</strong> 0:25–0:27</p>
-<p><strong>Говорите:</strong><br>Четыре выгоды, которые я вижу на себе каждый день.<br>Первая выгода: время. Черновик письма, отчёта, ТЗ или протокола получается за минуты. Дальше вы его редактируете, с нуля писать не нужно.<br>Вторая: качество. ИИ даёт второе мнение, и оно у вас под рукой. Он находит в документе противоречия, пропущенные пункты, слабые места в аргументах. То есть то, что вы сами пропустили бы от усталости.<br>Третья: обучение. У вас появляется личный репетитор, доступный круглосуточно. Он не устаёт от ваших вопросов и не считает их глупыми. С новым законом, новой системой или термином из соседнего отдела можно разобраться за пятнадцать минут.<br>Четвёртая: уверенность. Перед сложной встречей или переговорами ИИ подскажет вопросы, возражения собеседника и ответы на них, и вы придёте подготовленным.</p>
+<h3 id="слайд-19-четыре-выгоды-лично-для-вас" class="slide-h"><span class="slide-no">Слайд 19</span><span class="vh"> · </span><span class="slide-t">Четыре выгоды лично для вас</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:25–0:27</p>
+<p class="p-say"><strong>Говорите:</strong><br>Четыре выгоды, которые я вижу на себе каждый день.<br>Первая выгода: время. Черновик письма, отчёта, ТЗ или протокола получается за минуты. Дальше вы его редактируете, с нуля писать не нужно.<br>Вторая: качество. ИИ даёт второе мнение, и оно у вас под рукой. Он находит в документе противоречия, пропущенные пункты, слабые места в аргументах. То есть то, что вы сами пропустили бы от усталости.<br>Третья: обучение. У вас появляется личный репетитор, доступный круглосуточно. Он не устаёт от ваших вопросов и не считает их глупыми. С новым законом, новой системой или термином из соседнего отдела можно разобраться за пятнадцать минут.<br>Четвёртая: уверенность. Перед сложной встречей или переговорами ИИ подскажет вопросы, возражения собеседника и ответы на них, и вы придёте подготовленным.</p>
 <hr>
-<h3 id="слайд-20-год-с-ии-в-работе-ваша-история">Слайд 20 · Год с ИИ в работе (ваша история)</h3>
-<p><strong>Время:</strong> 0:27–0:29</p>
-<p><strong>Говорите (заполните своими фактами):</strong><br>Расскажу на своём примере. Я пользуюсь ИИ уже год, каждый день и плотно. Вот одна история. Год назад [ЗАДАЧА] занимала у меня [N] часов. Сейчас на неё уходит [M] минут. ИИ делает черновик, а я проверяю и дописываю то, что знаю только я.<br>Меня при этом не заменили. Освободившееся время ушло на [ЧТО ВЫ ТЕПЕРЬ ДЕЛАЕТЕ], на то, до чего раньше не доходили руки. Хочу, чтобы у вас получилось так же.</p>
+<h3 id="слайд-20-год-с-ии-в-работе-ваша-история" class="slide-h"><span class="slide-no">Слайд 20</span><span class="vh"> · </span><span class="slide-t">Год с ИИ в работе (ваша история)</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:27–0:29</p>
+<p class="p-say"><strong>Говорите (заполните своими фактами):</strong><br>Расскажу на своём примере. Я пользуюсь ИИ уже год, каждый день и плотно. Вот одна история. Год назад [ЗАДАЧА] занимала у меня [N] часов. Сейчас на неё уходит [M] минут. ИИ делает черновик, а я проверяю и дописываю то, что знаю только я.<br>Меня при этом не заменили. Освободившееся время ушло на [ЧТО ВЫ ТЕПЕРЬ ДЕЛАЕТЕ], на то, до чего раньше не доходили руки. Хочу, чтобы у вас получилось так же.</p>
 <hr>
-<h3 id="слайд-21-что-говорят-исследования">Слайд 21 · Что говорят исследования</h3>
-<p><strong>Время:</strong> 0:29–0:31</p>
-<p><strong>Говорите:</strong><br>Теперь о страхе, который есть у многих: «ИИ всех заменит». Давайте посмотрим на цифры.<br>Международный валютный фонд в начале 2024 года посчитал: около сорока процентов рабочих мест в мире подвержены влиянию ИИ, а в развитых странах около шестидесяти. «Подвержены» здесь означает, что работа изменится и часть задач уйдёт к машине.<br>Всемирный экономический форум в докладе о будущем профессий 2025 года даёт прогноз до 2030 года: исчезнет около 92 миллионов рабочих мест, появится около 170 миллионов новых. В сумме получается плюс 78 миллионов. Работы в целом прибавится, но задачи в ней поменяются.</p>
+<h3 id="слайд-21-что-говорят-исследования" class="slide-h"><span class="slide-no">Слайд 21</span><span class="vh"> · </span><span class="slide-t">Что говорят исследования</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:29–0:31</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь о страхе, который есть у многих: «ИИ всех заменит». Давайте посмотрим на цифры.<br>Международный валютный фонд в начале 2024 года посчитал: около сорока процентов рабочих мест в мире подвержены влиянию ИИ, а в развитых странах около шестидесяти. «Подвержены» здесь означает, что работа изменится и часть задач уйдёт к машине.<br>Всемирный экономический форум в докладе о будущем профессий 2025 года даёт прогноз до 2030 года: исчезнет около 92 миллионов рабочих мест, появится около 170 миллионов новых. В сумме получается плюс 78 миллионов. Работы в целом прибавится, но задачи в ней поменяются.</p>
 <hr>
-<h3 id="слайд-22-рутину-забирает-ии-экспертиза-остаётся-за-вами">Слайд 22 · Рутину забирает ИИ, экспертиза остаётся за вами</h3>
-<p><strong>Время:</strong> 0:31–0:33</p>
-<p><strong>Говорите:</strong><br>Посмотрим, как это выглядит в наших профессиях. Работа каждого из нас состоит из задач: одни рутинные, другие требуют экспертизы.<br>Аналитик отдаёт ИИ черновик спецификации и протокол, а понимание бизнеса заказчика и решения оставляет себе. Закупщик поручает ИИ ТЗ, сравнение предложений и письма поставщикам; выбор поставщика и переговоры остаются за ним. Юрист отдаёт первый проход по договору, правовую позицию и подпись берёт на себя. Сметчик получает от ИИ декомпозицию работ и структуру расчёта, а нормативы и итоговые цифры держит в своих руках. У менеджера к ИИ уходят повестка и статус‑отчёт, за ним остаются люди, приоритеты и решения.<br>В правой колонке на слайде то, за что вам платят. В левой собраны задачи, на которые у вас вечно не хватает времени.</p>
+<h3 id="слайд-22-рутину-забирает-ии-экспертиза-остаётся-за-вами" class="slide-h"><span class="slide-no">Слайд 22</span><span class="vh"> · </span><span class="slide-t">Рутину забирает ИИ, экспертиза остаётся за вами</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:31–0:33</p>
+<p class="p-say"><strong>Говорите:</strong><br>Посмотрим, как это выглядит в наших профессиях. Работа каждого из нас состоит из задач: одни рутинные, другие требуют экспертизы.<br>Аналитик отдаёт ИИ черновик спецификации и протокол, а понимание бизнеса заказчика и решения оставляет себе. Закупщик поручает ИИ ТЗ, сравнение предложений и письма поставщикам; выбор поставщика и переговоры остаются за ним. Юрист отдаёт первый проход по договору, правовую позицию и подпись берёт на себя. Сметчик получает от ИИ декомпозицию работ и структуру расчёта, а нормативы и итоговые цифры держит в своих руках. У менеджера к ИИ уходят повестка и статус‑отчёт, за ним остаются люди, приоритеты и решения.<br>В правой колонке на слайде то, за что вам платят. В левой собраны задачи, на которые у вас вечно не хватает времени.</p>
 <hr>
-<h3 id="слайд-23-вашу-работу-быстрее-сделает-коллега-с-ии">Слайд 23 · Вашу работу быстрее сделает коллега с ИИ</h3>
-<p><strong>Время:</strong> 0:33–0:34</p>
-<p><strong>Говорите:</strong><br>Из этих цифр следует ключевая мысль урока: вашу работу быстрее сделает коллега, который умеет работать с ИИ.<br>Возьмём двух специалистов одного уровня с одинаковой задачей. Один тратит три часа. Другой укладывается в сорок минут: черновик за него сделал ИИ, а сам он занимался проверкой и тем, что требует головы. Через год эту разницу видит руководитель, через два её видит рынок.<br>Начинать лучше сейчас, пока разрыв небольшой. На этом курсе я хочу, чтобы этим коллегой с ИИ стали вы.</p>
+<h3 id="слайд-23-вашу-работу-быстрее-сделает-коллега-с-ии" class="slide-h"><span class="slide-no">Слайд 23</span><span class="vh"> · </span><span class="slide-t">Вашу работу быстрее сделает коллега с ИИ</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:33–0:34</p>
+<p class="p-say"><strong>Говорите:</strong><br>Из этих цифр следует ключевая мысль урока: вашу работу быстрее сделает коллега, который умеет работать с ИИ.<br>Возьмём двух специалистов одного уровня с одинаковой задачей. Один тратит три часа. Другой укладывается в сорок минут: черновик за него сделал ИИ, а сам он занимался проверкой и тем, что требует головы. Через год эту разницу видит руководитель, через два её видит рынок.<br>Начинать лучше сейчас, пока разрыв небольшой. На этом курсе я хочу, чтобы этим коллегой с ИИ стали вы.</p>
 <hr>
-<h3 id="слайд-24-опрос">Слайд 24 · Опрос</h3>
-<p><strong>Время:</strong> 0:34–0:35</p>
-<p><strong>Делаете:</strong> дайте 30 секунд, затем зачитайте распределение ответов.</p>
-<p><strong>Говорите:</strong><br>Короткий опрос, ответ одной буквой в чат. Как часто вы пользуетесь ИИ? A: ни разу не пробовал. B: пару раз из любопытства. C: раз в неделю или чаще. D: каждый день в работе.<br><em>(после ответов)</em> Вижу, у нас много [B]. Хорошо: кто уже пользуется, поможет остальным. А тем, кто ни разу не пробовал, курс подойдёт лучше всего. Этот же вопрос я задам на последнем уроке, и сравним.</p>
+<h3 id="слайд-24-опрос" class="slide-h"><span class="slide-no">Слайд 24</span><span class="vh"> · </span><span class="slide-t">Опрос</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:34–0:35</p>
+<p class="p-do"><strong>Делаете:</strong> дайте 30 секунд, затем зачитайте распределение ответов.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Короткий опрос, ответ одной буквой в чат. Как часто вы пользуетесь ИИ? A: ни разу не пробовал. B: пару раз из любопытства. C: раз в неделю или чаще. D: каждый день в работе.<br><em>(после ответов)</em> Вижу, у нас много [B]. Хорошо: кто уже пользуется, поможет остальным. А тем, кто ни разу не пробовал, курс подойдёт лучше всего. Этот же вопрос я задам на последнем уроке, и сравним.</p>
 <hr>
-<h3 id="слайд-25-блок-5-как-он-работает-и-где-ошибается">Слайд 25 · Блок 5. Как он работает и где ошибается</h3>
-<p><strong>Время:</strong> 0:35</p>
-<p><strong>Говорите:</strong><br>Последний блок перед перерывом. Чтобы доверять ИИ, нужно понимать, как он устроен и где ошибается. Без этого легко принять его ошибку за правду.</p>
+<h3 id="слайд-25-блок-5-как-он-работает-и-где-ошибается" class="slide-h"><span class="slide-no">Слайд 25</span><span class="vh"> · </span><span class="slide-t">Блок 5. Как он работает и где ошибается</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:35</p>
+<p class="p-say"><strong>Говорите:</strong><br>Последний блок перед перерывом. Чтобы доверять ИИ, нужно понимать, как он устроен и где ошибается. Без этого легко принять его ошибку за правду.</p>
 <hr>
-<h3 id="слайд-26-как-модель-пишет-ответ">Слайд 26 · Как модель пишет ответ</h3>
-<p><strong>Время:</strong> 0:35–0:37</p>
-<p><strong>Говорите:</strong><br>Языковая модель пишет ответ так же, как автодополнение в телефоне подсказывает следующее слово, пока вы набираете сообщение. Только модель обучена на огромном объёме текстов, поэтому подсказывает намного точнее.<br>На слайде фраза «Протокол совещания — это документ, в котором…», и модель выбирает, какое слово вероятнее всего идёт дальше. Чаще всего это «фиксируются». Цифры здесь условные, для иллюстрации. Выбрав слово, модель переходит к следующему, потом ещё к одному и так пишет весь ответ слово за словом.<br>Из этого следует важное: модель выбирает правдоподобное слово и ничего при этом не проверяет. Обычно правдоподобное совпадает с правдой. Иногда нет, и тогда получается уверенная выдумка, её называют галлюцинацией.</p>
+<h3 id="слайд-26-как-модель-пишет-ответ" class="slide-h"><span class="slide-no">Слайд 26</span><span class="vh"> · </span><span class="slide-t">Как модель пишет ответ</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:35–0:37</p>
+<p class="p-say"><strong>Говорите:</strong><br>Языковая модель пишет ответ так же, как автодополнение в телефоне подсказывает следующее слово, пока вы набираете сообщение. Только модель обучена на огромном объёме текстов, поэтому подсказывает намного точнее.<br>На слайде фраза «Протокол совещания — это документ, в котором…», и модель выбирает, какое слово вероятнее всего идёт дальше. Чаще всего это «фиксируются». Цифры здесь условные, для иллюстрации. Выбрав слово, модель переходит к следующему, потом ещё к одному и так пишет весь ответ слово за словом.<br>Из этого следует важное: модель выбирает правдоподобное слово и ничего при этом не проверяет. Обычно правдоподобное совпадает с правдой. Иногда нет, и тогда получается уверенная выдумка, её называют галлюцинацией.</p>
 <hr>
-<h3 id="слайд-27-три-причины-которые-стоит-помнить">Слайд 27 · Три причины, которые стоит помнить</h3>
-<p><strong>Время:</strong> 0:37–0:39</p>
-<p><strong>Говорите:</strong><br>Отсюда три причины, по которым ИИ ошибается.<br>Первая: он продолжает текст и не проверяет факты. Это мы только что разобрали.<br>Вторая: он ничего не знает о вашей компании, клиентах, регламентах и договорённостях. Пока вы ему не расскажете, он отвечает «в среднем по больнице».<br>Третья: его знания заканчиваются на какой‑то дате. Без режима поиска в интернете он не видит свежих новостей и изменений в законах.<br>Современные модели ошибаются реже, чем пару лет назад, тем более с включённым поиском. Но ошибки остаются, чаще всего в цифрах, номерах статей законов, ссылках и свежих событиях. Поэтому относитесь к ИИ как к начитанному стажёру: работает быстро, пишет хорошо, а подпись под документом ставите вы.</p>
+<h3 id="слайд-27-три-причины-которые-стоит-помнить" class="slide-h"><span class="slide-no">Слайд 27</span><span class="vh"> · </span><span class="slide-t">Три причины, которые стоит помнить</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:37–0:39</p>
+<p class="p-say"><strong>Говорите:</strong><br>Отсюда три причины, по которым ИИ ошибается.<br>Первая: он продолжает текст и не проверяет факты. Это мы только что разобрали.<br>Вторая: он ничего не знает о вашей компании, клиентах, регламентах и договорённостях. Пока вы ему не расскажете, он отвечает «в среднем по больнице».<br>Третья: его знания заканчиваются на какой‑то дате. Без режима поиска в интернете он не видит свежих новостей и изменений в законах.<br>Современные модели ошибаются реже, чем пару лет назад, тем более с включённым поиском. Но ошибки остаются, чаще всего в цифрах, номерах статей законов, ссылках и свежих событиях. Поэтому относитесь к ИИ как к начитанному стажёру: работает быстро, пишет хорошо, а подпись под документом ставите вы.</p>
 <hr>
-<h3 id="слайд-28-найдите-ошибку">Слайд 28 · Найдите ошибку</h3>
-<p><strong>Время:</strong> 0:39–0:41</p>
-<p><strong>Делаете:</strong> дайте 30–40 секунд, не подсказывайте.</p>
-<p><strong>Говорите:</strong><br>Небольшая игра. Вот ответ ИИ на обычный юридический вопрос: какой статьёй регулируется неустойка и какой по ней срок исковой давности. Звучит уверенно и по делу, со ссылками на статьи. Одно из трёх утверждений неверное. Напишите в чат его номер.<br><em>(после ответов)</em> Юристы, наверное, ответили первыми. Здесь и видно, зачем нужна экспертиза человека.</p>
+<h3 id="слайд-28-найдите-ошибку" class="slide-h"><span class="slide-no">Слайд 28</span><span class="vh"> · </span><span class="slide-t">Найдите ошибку</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:39–0:41</p>
+<p class="p-do"><strong>Делаете:</strong> дайте 30–40 секунд, не подсказывайте.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Небольшая игра. Вот ответ ИИ на обычный юридический вопрос: какой статьёй регулируется неустойка и какой по ней срок исковой давности. Звучит уверенно и по делу, со ссылками на статьи. Одно из трёх утверждений неверное. Напишите в чат его номер.<br><em>(после ответов)</em> Юристы, наверное, ответили первыми. Здесь и видно, зачем нужна экспертиза человека.</p>
 <hr>
-<h3 id="слайд-29-ошибка-в-пункте-3-и-чек-лист">Слайд 29 · Ошибка в пункте 3 и чек‑лист</h3>
-<p><strong>Время:</strong> 0:41–0:44</p>
-<p><strong>Говорите:</strong><br>Правильный ответ: третий. Общий срок исковой давности по статье 196 Гражданского кодекса составляет три года, а ИИ написал пять. Первые два утверждения верны: неустойку регулирует статья 330, снижение неустойки судом статья 333. Из‑за них третьему и хочется поверить. Так ИИ ошибается чаще всего: неверный факт стоит рядом с верными.<br>Отсюда чек‑лист из четырёх шагов. Первый: откройте источники. Если ИИ ссылается на документ или сайт, загляните туда сами. Второй: пересчитайте цифры, итоговые суммы проверяйте в Excel. Третий: сверьте нормы в КонсультантПлюс или Гаранте. Четвёртый: задайте вопрос заново в новом чате с включённым поиском. Если ответы разошлись, это сигнал проверить.<br>Чем важнее документ, тем тщательнее проверка. Сейчас перерыв, после него практика.</p>
+<h3 id="слайд-29-ошибка-в-пункте-3-и-чек-лист" class="slide-h"><span class="slide-no">Слайд 29</span><span class="vh"> · </span><span class="slide-t">Ошибка в пункте 3 и чек‑лист</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:41–0:44</p>
+<p class="p-say"><strong>Говорите:</strong><br>Правильный ответ: третий. Общий срок исковой давности по статье 196 Гражданского кодекса составляет три года, а ИИ написал пять. Первые два утверждения верны: неустойку регулирует статья 330, снижение неустойки судом статья 333. Из‑за них третьему и хочется поверить. Так ИИ ошибается чаще всего: неверный факт стоит рядом с верными.<br>Отсюда чек‑лист из четырёх шагов. Первый: откройте источники. Если ИИ ссылается на документ или сайт, загляните туда сами. Второй: пересчитайте цифры, итоговые суммы проверяйте в Excel. Третий: сверьте нормы в КонсультантПлюс или Гаранте. Четвёртый: задайте вопрос заново в новом чате с включённым поиском. Если ответы разошлись, это сигнал проверить.<br>Чем важнее документ, тем тщательнее проверка. Сейчас перерыв, после него практика.</p>
 <hr>
-<h3 id="слайд-30-перерыв">Слайд 30 · Перерыв</h3>
-<p><strong>Время:</strong> 0:44–0:49</p>
-<p><strong>Делаете:</strong> запустите таймер 5 минут. Демонстрацию не выключайте.</p>
-<p><strong>Говорите:</strong><br>Перерыв пять минут, вернёмся в [ВРЕМЯ]. Кто не успел поставить DeepSeek, сделайте это сейчас, ссылка в чате. И напишите в чат: какую задачу из своей работы вы отдали бы Ассистенту первой?<br><em>(после перерыва зачитайте 3–4 ответа из чата, это подводка к домашнему заданию)</em></p>
+<h3 id="слайд-30-перерыв" class="slide-h"><span class="slide-no">Слайд 30</span><span class="vh"> · </span><span class="slide-t">Перерыв</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:44–0:49</p>
+<p class="p-do"><strong>Делаете:</strong> запустите таймер 5 минут. Демонстрацию не выключайте.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Перерыв пять минут, вернёмся в [ВРЕМЯ]. Кто не успел поставить DeepSeek, сделайте это сейчас, ссылка в чате. И напишите в чат: какую задачу из своей работы вы отдали бы Ассистенту первой?<br><em>(после перерыва зачитайте 3–4 ответа из чата, это подводка к домашнему заданию)</em></p>
 <hr>
-<h3 id="слайд-31-блок-6-формула-запроса">Слайд 31 · Блок 6. Формула запроса</h3>
-<p><strong>Время:</strong> 0:49–0:50</p>
-<p><strong>Говорите:</strong><br>Продолжаем. Это самый важный блок урока, и устроен он так: сначала показываю я, потом повторяете вы. Откройте DeepSeek в соседней вкладке или на телефоне, он сейчас понадобится.</p>
+<h3 id="слайд-31-блок-6-формула-запроса" class="slide-h"><span class="slide-no">Слайд 31</span><span class="vh"> · </span><span class="slide-t">Блок 6. Формула запроса</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:49–0:50</p>
+<p class="p-say"><strong>Говорите:</strong><br>Продолжаем. Это самый важный блок урока, и устроен он так: сначала показываю я, потом повторяете вы. Откройте DeepSeek в соседней вкладке или на телефоне, он сейчас понадобится.</p>
 <hr>
-<h3 id="слайд-32-пять-частей-хорошего-промпта">Слайд 32 · Пять частей хорошего промпта</h3>
-<p><strong>Время:</strong> 0:50–0:53</p>
-<p><strong>Говорите:</strong><br>Запрос к ИИ называют промптом. Помните вау‑демо? Там я расписал задачу в несколько строк. Хороший промпт состоит из пяти частей: роль, контекст, задача, формат, ограничения.<br>Роль задаёт, кем ИИ должен быть: «ты — опытный бизнес‑аналитик», «ты — юрист по договорной работе». От неё зависят словарь и глубина ответа.<br>Контекст описывает, что происходит у вас: «завтра встреча с заказчиком по автоматизации склада». Без контекста ответ будет общим.<br>Задача говорит, что сделать: «составь вопросы к встрече».<br>Формат определяет вид ответа: таблица, список, письмо, не больше одной страницы.<br>В ограничениях пишем, чего делать не надо: «не больше десяти вопросов, без общих фраз», «не выдумывай, если не знаешь». «Не указано» в таблице задач из второго демо было как раз ограничением.<br>Внизу на слайде всё вместе: обычная фраза в три строки.</p>
+<h3 id="слайд-32-пять-частей-хорошего-промпта" class="slide-h"><span class="slide-no">Слайд 32</span><span class="vh"> · </span><span class="slide-t">Пять частей хорошего промпта</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:50–0:53</p>
+<p class="p-say"><strong>Говорите:</strong><br>Запрос к ИИ называют промптом. Помните вау‑демо? Там я расписал задачу в несколько строк. Хороший промпт состоит из пяти частей: роль, контекст, задача, формат, ограничения.<br>Роль задаёт, кем ИИ должен быть: «ты — опытный бизнес‑аналитик», «ты — юрист по договорной работе». От неё зависят словарь и глубина ответа.<br>Контекст описывает, что происходит у вас: «завтра встреча с заказчиком по автоматизации склада». Без контекста ответ будет общим.<br>Задача говорит, что сделать: «составь вопросы к встрече».<br>Формат определяет вид ответа: таблица, список, письмо, не больше одной страницы.<br>В ограничениях пишем, чего делать не надо: «не больше десяти вопросов, без общих фраз», «не выдумывай, если не знаешь». «Не указано» в таблице задач из второго демо было как раз ограничением.<br>Внизу на слайде всё вместе: обычная фраза в три строки.</p>
 <hr>
-<h3 id="слайд-33-показываю-плохой-и-хороший-запрос">Слайд 33 · Показываю: плохой и хороший запрос</h3>
-<p><strong>Время:</strong> 0:53–0:57</p>
-<p><strong>Делаете:</strong> в DeepSeek новый чат. Сначала отправьте плохой промпт: «Напиши вопросы к встрече». Покажите ответ. Затем новый чат и хороший промпт: «Ты — опытный бизнес‑аналитик. Завтра встреча с заказчиком по автоматизации склада. Составь вопросы к встрече таблицей „вопрос · зачем“. Не больше 10, без общих фраз.» Положите ответы рядом.</p>
-<p><strong>Говорите:</strong><br>Смотрите. Сначала пишу так, как почти все пишут в первый раз: «Напиши вопросы к встрече».<br><em>(ответ)</em> Каковы ваши цели? Какой бюджет? Какие сроки? Такие вопросы можно задать на любой встрече, про склад здесь ничего нет.<br>Теперь та же задача по формуле: роль, контекст, задача, формат, ограничения.<br><em>(ответ)</em> Какие операции на складе сейчас ведутся на бумаге? Кто согласует изменения в приёмке товара? Как сейчас считаются остатки? Эти вопросы уже про конкретный склад и конкретного заказчика. Чтобы дописать две строки, мне понадобилось секунд пятнадцать.</p>
+<h3 id="слайд-33-показываю-плохой-и-хороший-запрос" class="slide-h"><span class="slide-no">Слайд 33</span><span class="vh"> · </span><span class="slide-t">Показываю: плохой и хороший запрос</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:53–0:57</p>
+<p class="p-do"><strong>Делаете:</strong> в DeepSeek новый чат. Сначала отправьте плохой промпт: «Напиши вопросы к встрече». Покажите ответ. Затем новый чат и хороший промпт: «Ты — опытный бизнес‑аналитик. Завтра встреча с заказчиком по автоматизации склада. Составь вопросы к встрече таблицей „вопрос · зачем“. Не больше 10, без общих фраз.» Положите ответы рядом.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Смотрите. Сначала пишу так, как почти все пишут в первый раз: «Напиши вопросы к встрече».<br><em>(ответ)</em> Каковы ваши цели? Какой бюджет? Какие сроки? Такие вопросы можно задать на любой встрече, про склад здесь ничего нет.<br>Теперь та же задача по формуле: роль, контекст, задача, формат, ограничения.<br><em>(ответ)</em> Какие операции на складе сейчас ведутся на бумаге? Кто согласует изменения в приёмке товара? Как сейчас считаются остатки? Эти вопросы уже про конкретный склад и конкретного заказчика. Чтобы дописать две строки, мне понадобилось секунд пятнадцать.</p>
 <hr>
-<h3 id="слайд-34-одна-задача-два-запроса">Слайд 34 · Одна задача, два запроса</h3>
-<p><strong>Время:</strong> 0:57–0:58</p>
-<p><strong>Говорите:</strong><br>На слайде то, что вы сейчас видели. Слева общие слова, справа вопросы про вашу ситуацию. Если ИИ отвечает «водой», первым делом проверьте, хватило ли ему контекста.<br>Теперь ваша очередь.</p>
+<h3 id="слайд-34-одна-задача-два-запроса" class="slide-h"><span class="slide-no">Слайд 34</span><span class="vh"> · </span><span class="slide-t">Одна задача, два запроса</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:57–0:58</p>
+<p class="p-say"><strong>Говорите:</strong><br>На слайде то, что вы сейчас видели. Слева общие слова, справа вопросы про вашу ситуацию. Если ИИ отвечает «водой», первым делом проверьте, хватило ли ему контекста.<br>Теперь ваша очередь.</p>
 <hr>
-<h3 id="слайд-35-ваш-ход-повторите-сами-подготовка-к-встрече">Слайд 35 · Ваш ход. Повторите сами: подготовка к встрече</h3>
-<p><strong>Время:</strong> 0:58–1:06</p>
-<p><strong>Делаете:</strong> скопируйте промпт П‑1.2 в чат. Таймер на 5 минут. Пока группа работает, читайте чат.</p>
-<p><strong>Говорите:</strong><br>Теперь вы. Тот же приём, только для вашей встречи. Возьмите встречу, которая у вас правда будет на этой неделе. Никаких имён клиентов и названий компаний: пишите «заказчик», «поставщик», «финансовый директор». Почему так, объясню через пару минут.<br>Промпт в чате, он собран по той же формуле. Подставьте роль, с кем встреча, тему и вашу цель. Пять минут.<br><em>(после таймера)</em> Кому ИИ подсказал вопрос или возражение, о котором вы сами не подумали? Плюс в чат. Кто готов рассказать в двух словах?</p>
+<h3 id="слайд-35-ваш-ход-повторите-сами-подготовка-к-встрече" class="slide-h"><span class="slide-no">Слайд 35</span><span class="vh"> · </span><span class="slide-t">Ваш ход. Повторите сами: подготовка к встрече</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:58–1:06</p>
+<p class="p-do"><strong>Делаете:</strong> скопируйте промпт П‑1.2 в чат. Таймер на 5 минут. Пока группа работает, читайте чат.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь вы. Тот же приём, только для вашей встречи. Возьмите встречу, которая у вас правда будет на этой неделе. Никаких имён клиентов и названий компаний: пишите «заказчик», «поставщик», «финансовый директор». Почему так, объясню через пару минут.<br>Промпт в чате, он собран по той же формуле. Подставьте роль, с кем встреча, тему и вашу цель. Пять минут.<br><em>(после таймера)</em> Кому ИИ подсказал вопрос или возражение, о котором вы сами не подумали? Плюс в чат. Кто готов рассказать в двух словах?</p>
 <hr>
-<h3 id="слайд-36-блок-7-безопасность-данных">Слайд 36 · Блок 7. Безопасность данных</h3>
-<p><strong>Время:</strong> 1:06</p>
-<p><strong>Говорите:</strong><br>Теперь безопасность. Это всего пять минут, и их я прошу не пропускать. Всё, что вы вставляете в чат, уходит на сервер чужой компании, иногда в другой стране. Здесь нам и пригодится закон о персональных данных из первого демо.</p>
+<h3 id="слайд-36-блок-7-безопасность-данных" class="slide-h"><span class="slide-no">Слайд 36</span><span class="vh"> · </span><span class="slide-t">Блок 7. Безопасность данных</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:06</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь безопасность. Это всего пять минут, и их я прошу не пропускать. Всё, что вы вставляете в чат, уходит на сервер чужой компании, иногда в другой стране. Здесь нам и пригодится закон о персональных данных из первого демо.</p>
 <hr>
-<h3 id="слайд-37-правило-светофора">Слайд 37 · Правило светофора</h3>
-<p><strong>Время:</strong> 1:06–1:09</p>
-<p><strong>Говорите:</strong><br>Правило простое, как светофор.<br>Красное никогда не вставляем в публичный ИИ. Сюда относятся персональные данные: ФИО вместе с паспортом, телефоном, адресом. Договоры с реквизитами. Пароли и ключи доступа. Всё, что под соглашением о конфиденциальности, и коммерческая тайна.<br>Жёлтое вставляем только после обезличивания: договоры, сметы, коммерческие предложения, протоколы, переписку.<br>Зелёное можно спокойно: законы и публичные документы вроде нашего 152‑ФЗ, шаблоны, учебные примеры, ваши собственные черновики без чужих данных.<br>Правило касается всех сервисов, и DeepSeek тоже, он такой же внешний сервис. Если не уверены, какого цвета документ, считайте его красным.</p>
+<h3 id="слайд-37-правило-светофора" class="slide-h"><span class="slide-no">Слайд 37</span><span class="vh"> · </span><span class="slide-t">Правило светофора</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:06–1:09</p>
+<p class="p-say"><strong>Говорите:</strong><br>Правило простое, как светофор.<br>Красное никогда не вставляем в публичный ИИ. Сюда относятся персональные данные: ФИО вместе с паспортом, телефоном, адресом. Договоры с реквизитами. Пароли и ключи доступа. Всё, что под соглашением о конфиденциальности, и коммерческая тайна.<br>Жёлтое вставляем только после обезличивания: договоры, сметы, коммерческие предложения, протоколы, переписку.<br>Зелёное можно спокойно: законы и публичные документы вроде нашего 152‑ФЗ, шаблоны, учебные примеры, ваши собственные черновики без чужих данных.<br>Правило касается всех сервисов, и DeepSeek тоже, он такой же внешний сервис. Если не уверены, какого цвета документ, считайте его красным.</p>
 <hr>
-<h3 id="слайд-38-обезличивание">Слайд 38 · Обезличивание</h3>
-<p><strong>Время:</strong> 1:09–1:11</p>
-<p><strong>Говорите:</strong><br>Как превратить жёлтое в зелёное. Слева исходный вариант: договор с ООО «Ромашка», подписант Иванов, сумма один миллион двести пятьдесят тысяч. Справа обезличенный: Компания А, Сотрудник 1, примерно 1,2 миллиона.<br>Названия компаний меняем на «Компания А, Б», имена на «Сотрудник 1, 2», реквизиты убираем, суммы округляем. Это тридцать секунд работы.<br>Качество ответа от этого не падает: ИИ неважно, как зовут подписанта, он работает со структурой и логикой. И ещё: во многих сервисах можно отключить в настройках использование ваших переписок для обучения модели. Проверьте это в DeepSeek сразу после урока, в книжке написано, где искать.</p>
+<h3 id="слайд-38-обезличивание" class="slide-h"><span class="slide-no">Слайд 38</span><span class="vh"> · </span><span class="slide-t">Обезличивание</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:09–1:11</p>
+<p class="p-say"><strong>Говорите:</strong><br>Как превратить жёлтое в зелёное. Слева исходный вариант: договор с ООО «Ромашка», подписант Иванов, сумма один миллион двести пятьдесят тысяч. Справа обезличенный: Компания А, Сотрудник 1, примерно 1,2 миллиона.<br>Названия компаний меняем на «Компания А, Б», имена на «Сотрудник 1, 2», реквизиты убираем, суммы округляем. Это тридцать секунд работы.<br>Качество ответа от этого не падает: ИИ неважно, как зовут подписанта, он работает со структурой и логикой. И ещё: во многих сервисах можно отключить в настройках использование ваших переписок для обучения модели. Проверьте это в DeepSeek сразу после урока, в книжке написано, где искать.</p>
 <hr>
-<h3 id="слайд-39-блок-8-ии-в-жизни-и-сервисы">Слайд 39 · Блок 8. ИИ в жизни и сервисы</h3>
-<p><strong>Время:</strong> 1:11</p>
-<p><strong>Говорите:</strong><br>Последний блок про повседневные задачи. Привычка складывается быстрее, когда ИИ помогает и на работе, и дома.</p>
+<h3 id="слайд-39-блок-8-ии-в-жизни-и-сервисы" class="slide-h"><span class="slide-no">Слайд 39</span><span class="vh"> · </span><span class="slide-t">Блок 8. ИИ в жизни и сервисы</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:11</p>
+<p class="p-say"><strong>Говорите:</strong><br>Последний блок про повседневные задачи. Привычка складывается быстрее, когда ИИ помогает и на работе, и дома.</p>
 <hr>
-<h3 id="слайд-40-восемь-сценариев">Слайд 40 · Восемь сценариев</h3>
-<p><strong>Время:</strong> 1:11–1:13</p>
-<p><strong>Говорите:</strong><br>Восемь сценариев, к каждому в книжке есть готовый промпт. Интерьер: загружаете фото комнаты и размеры и получаете варианты расстановки. Задачи детям. Доклад или выступление. Поездка: маршрут и бюджет по дням. Письмо в управляющую компанию или госорган, вежливое и по делу. Голосовой ввод: надиктовать мысль и получить текст, это умеют Gemini и ChatGPT. И фото в таблицу, как в начале урока.<br>Про детей совет: пусть ИИ объясняет и задаёт наводящие вопросы. Если он будет решать за ребёнка, пользы ноль. Про анализы расскажу на следующем слайде.</p>
+<h3 id="слайд-40-восемь-сценариев" class="slide-h"><span class="slide-no">Слайд 40</span><span class="vh"> · </span><span class="slide-t">Восемь сценариев</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:11–1:13</p>
+<p class="p-say"><strong>Говорите:</strong><br>Восемь сценариев, к каждому в книжке есть готовый промпт. Интерьер: загружаете фото комнаты и размеры и получаете варианты расстановки. Задачи детям. Доклад или выступление. Поездка: маршрут и бюджет по дням. Письмо в управляющую компанию или госорган, вежливое и по делу. Голосовой ввод: надиктовать мысль и получить текст, это умеют Gemini и ChatGPT. И фото в таблицу, как в начале урока.<br>Про детей совет: пусть ИИ объясняет и задаёт наводящие вопросы. Если он будет решать за ребёнка, пользы ноль. Про анализы расскажу на следующем слайде.</p>
 <hr>
-<h3 id="слайд-41-медицинские-анализы">Слайд 41 · Медицинские анализы</h3>
-<p><strong>Время:</strong> 1:13–1:14</p>
-<p><strong>Говорите:</strong><br>Многие уже загружают свои анализы в ИИ. Пользу это приносит, если понимать границы.<br>Можно: попросить объяснить термины простыми словами, рассказать, что значат референсные значения, подготовить вопросы к врачу.<br>Нельзя: ставить диагноз и назначать себе лечение по ответу ИИ или решать по нему, идти ли к врачу. ИИ не врач и вас не видит.<br>И помните светофор: анализы относятся к данным о здоровье, это красная зона. Перед загрузкой уберите ФИО, номер полиса и дату рождения.</p>
+<h3 id="слайд-41-медицинские-анализы" class="slide-h"><span class="slide-no">Слайд 41</span><span class="vh"> · </span><span class="slide-t">Медицинские анализы</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:13–1:14</p>
+<p class="p-say"><strong>Говорите:</strong><br>Многие уже загружают свои анализы в ИИ. Пользу это приносит, если понимать границы.<br>Можно: попросить объяснить термины простыми словами, рассказать, что значат референсные значения, подготовить вопросы к врачу.<br>Нельзя: ставить диагноз и назначать себе лечение по ответу ИИ или решать по нему, идти ли к врачу. ИИ не врач и вас не видит.<br>И помните светофор: анализы относятся к данным о здоровье, это красная зона. Перед загрузкой уберите ФИО, номер полиса и дату рождения.</p>
 <hr>
-<h3 id="слайд-42-где-живёт-ваш-ассистент">Слайд 42 · Где живёт ваш Ассистент</h3>
-<p><strong>Время:</strong> 1:14–1:16</p>
-<p><strong>Говорите:</strong><br>Несколько слов о сервисах. На курсе мы работаем в DeepSeek: бесплатно, без VPN, умеет читать файлы, искать в интернете и рассуждать. На первые три урока этого хватит.<br>Для общего понимания: ChatGPT, Gemini и Claude из России открываются только через VPN. Я на уроках иногда показываю Gemini, а на четвёртом уроке мы будем делать сайт в Claude. GigaChat от Сбера и Алиса от Яндекса российские и работают без VPN.<br>У бесплатных версий есть лимиты, а сами сервисы меняются почти каждый месяц. Актуальная таблица лежит в справочнике курса.</p>
+<h3 id="слайд-42-где-живёт-ваш-ассистент" class="slide-h"><span class="slide-no">Слайд 42</span><span class="vh"> · </span><span class="slide-t">Где живёт ваш Ассистент</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:14–1:16</p>
+<p class="p-say"><strong>Говорите:</strong><br>Несколько слов о сервисах. На курсе мы работаем в DeepSeek: бесплатно, без VPN, умеет читать файлы, искать в интернете и рассуждать. На первые три урока этого хватит.<br>Для общего понимания: ChatGPT, Gemini и Claude из России открываются только через VPN. Я на уроках иногда показываю Gemini, а на четвёртом уроке мы будем делать сайт в Claude. GigaChat от Сбера и Алиса от Яндекса российские и работают без VPN.<br>У бесплатных версий есть лимиты, а сами сервисы меняются почти каждый месяц. Актуальная таблица лежит в справочнике курса.</p>
 <hr>
-<h3 id="слайд-43-почему-ии-забывает-начало">Слайд 43 · Почему ИИ «забывает» начало</h3>
-<p><strong>Время:</strong> 1:16–1:18</p>
-<p><strong>Говорите:</strong><br>И последнее, про лимиты: с ними вы точно столкнётесь.<br>ИИ читает текст кусочками, их называют токенами. Одно слово занимает один‑два токена. В токенах считаются и лимиты бесплатных версий, и «память» разговора.<br>Представьте рабочий стол. На нём помещается ограниченное число листов, это и есть контекстное окно. Когда разговор становится длинным, первые листы падают со стола, и ИИ их больше не видит. Поэтому в длинном чате он начинает «забывать» ваши первые инструкции.<br>Что делать: начните новый чат, сократите запрос или документ, а если кончился лимит, подождите несколько часов. И правило на каждый день: одна задача — один чат.</p>
+<h3 id="слайд-43-почему-ии-забывает-начало" class="slide-h"><span class="slide-no">Слайд 43</span><span class="vh"> · </span><span class="slide-t">Почему ИИ «забывает» начало</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:16–1:18</p>
+<p class="p-say"><strong>Говорите:</strong><br>И последнее, про лимиты: с ними вы точно столкнётесь.<br>ИИ читает текст кусочками, их называют токенами. Одно слово занимает один‑два токена. В токенах считаются и лимиты бесплатных версий, и «память» разговора.<br>Представьте рабочий стол. На нём помещается ограниченное число листов, это и есть контекстное окно. Когда разговор становится длинным, первые листы падают со стола, и ИИ их больше не видит. Поэтому в длинном чате он начинает «забывать» ваши первые инструкции.<br>Что делать: начните новый чат, сократите запрос или документ, а если кончился лимит, подождите несколько часов. И правило на каждый день: одна задача — один чат.</p>
 <hr>
-<h3 id="слайд-44-домашнее-задание">Слайд 44 · Домашнее задание</h3>
-<p><strong>Время:</strong> 1:18–1:21</p>
-<p><strong>Делаете:</strong> скиньте в чат ссылку на Яндекс Форму.</p>
-<p><strong>Говорите:</strong><br>Домашнее задание: два задания, примерно на полчаса, только в DeepSeek.<br>Первое, личное: любая задача из жизни. Можно взять один из восьми сценариев урока или свою.<br>Второе, рабочее: реальная задача из вашей работы, обязательно на обезличенных данных. Помните светофор.<br>В каждом задании нужны промпт по формуле, хотя бы одно уточнение и проверка ответа по чек‑листу. Уточнение значит, что вы не согласились с первым ответом и попросили его улучшить. И отдельно найдите хотя бы одну ошибку или неточность ИИ. Если не нашли, опишите, как проверяли.<br>Если захотите больше практики, в книжке есть ещё два приёма: изучить новую тему и поиск с источниками. Сдать в Яндекс Форму до [ДАТА], ссылка в чате. Три‑четыре самые интересные работы разберём на следующем уроке, без имён, если не захотите.</p>
+<h3 id="слайд-44-домашнее-задание" class="slide-h"><span class="slide-no">Слайд 44</span><span class="vh"> · </span><span class="slide-t">Домашнее задание</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:18–1:21</p>
+<p class="p-do"><strong>Делаете:</strong> скиньте в чат ссылку на Яндекс Форму.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Домашнее задание: два задания, примерно на полчаса, только в DeepSeek.<br>Первое, личное: любая задача из жизни. Можно взять один из восьми сценариев урока или свою.<br>Второе, рабочее: реальная задача из вашей работы, обязательно на обезличенных данных. Помните светофор.<br>В каждом задании нужны промпт по формуле, хотя бы одно уточнение и проверка ответа по чек‑листу. Уточнение значит, что вы не согласились с первым ответом и попросили его улучшить. И отдельно найдите хотя бы одну ошибку или неточность ИИ. Если не нашли, опишите, как проверяли.<br>Если захотите больше практики, в книжке есть ещё два приёма: изучить новую тему и поиск с источниками. Сдать в Яндекс Форму до [ДАТА], ссылка в чате. Три‑четыре самые интересные работы разберём на следующем уроке, без имён, если не захотите.</p>
 <hr>
-<h3 id="слайд-45-что-вы-теперь-умеете">Слайд 45 · Что вы теперь умеете</h3>
-<p><strong>Время:</strong> 1:21–1:22</p>
-<p><strong>Говорите:</strong><br>Подведём итог. Сегодня вы разобрались, что такое ИИ и где он ошибается, научились ставить задачу по формуле и сами подготовились с ним к своей встрече. Теперь у вас есть чек‑лист проверки ответа и правило светофора для данных.<br>Всё это есть в книжке, она придёт сегодня вечером вместе с записью урока. Там же шпаргалка на одну страницу, её удобно распечатать и держать рядом.</p>
+<h3 id="слайд-45-что-вы-теперь-умеете" class="slide-h"><span class="slide-no">Слайд 45</span><span class="vh"> · </span><span class="slide-t">Что вы теперь умеете</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:21–1:22</p>
+<p class="p-say"><strong>Говорите:</strong><br>Подведём итог. Сегодня вы разобрались, что такое ИИ и где он ошибается, научились ставить задачу по формуле и сами подготовились с ним к своей встрече. Теперь у вас есть чек‑лист проверки ответа и правило светофора для данных.<br>Всё это есть в книжке, она придёт сегодня вечером вместе с записью урока. Там же шпаргалка на одну страницу, её удобно распечатать и держать рядом.</p>
 <hr>
-<h3 id="слайд-46-следующий-урок-и-вопросы">Слайд 46 · Следующий урок и вопросы</h3>
-<p><strong>Время:</strong> 1:22–1:30</p>
-<p><strong>Говорите:</strong><br>На следующем уроке нанимаем Аналитика. Будем работать с настоящими рабочими документами: договорами, сметами, коммерческими предложениями, таблицами. Обезличенными, как договорились.<br>А сейчас ваши вопросы. Пишите в чат или включайте микрофон.<br><em>(отвечаете 8 минут; самые частые вопросы запишите, они пойдут в книжку следующего урока)</em><br>Спасибо всем! Увидимся через неделю.</p>
+<h3 id="слайд-46-следующий-урок-и-вопросы" class="slide-h"><span class="slide-no">Слайд 46</span><span class="vh"> · </span><span class="slide-t">Следующий урок и вопросы</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:22–1:30</p>
+<p class="p-say"><strong>Говорите:</strong><br>На следующем уроке нанимаем Аналитика. Будем работать с настоящими рабочими документами: договорами, сметами, коммерческими предложениями, таблицами. Обезличенными, как договорились.<br>А сейчас ваши вопросы. Пишите в чат или включайте микрофон.<br><em>(отвечаете 8 минут; самые частые вопросы запишите, они пойдут в книжку следующего урока)</em><br>Спасибо всем! Увидимся через неделю.</p>
 <hr>
-<h2 id="готовые-ответы-на-частые-вопросы">Готовые ответы на частые вопросы</h2>
+</section>
+<section class="chapter acc-0 sec-faq" aria-labelledby="готовые-ответы-на-частые-вопросы">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><h2 id="готовые-ответы-на-частые-вопросы">Готовые ответы на частые вопросы</h2></header>
 <p><strong>«Можно ли пользоваться ИИ на работе?»</strong> Можно, если соблюдать светофор: никаких персональных данных, реквизитов и коммерческой тайны. Руководитель в курсе, что мы проходим этот курс.</p>
 <p><strong>«Меня заменят?»</strong> Вашу работу быстрее сделает коллега, который умеет работать с ИИ. Рутина уходит к машине, а экспертиза и ответственность остаются у вас и ценятся выше.</p>
 <p><strong>«DeepSeek китайский — это безопасно?»</strong> Это внешний сервис, как и другие. Правила те же: светофор и только обезличенные данные. К российским GigaChat и Алисе применяется та же логика.</p>
@@ -319,17 +593,59 @@ footer { margin-top: 64px; color: var(--soft); font-size: 14px; }
 <p><strong>«Обучается ли ИИ на моих переписках?»</strong> Зависит от сервиса и настроек, во многих это можно отключить. Светофор действует в любом случае.</p>
 <p><strong>«Как получить доступ к ChatGPT, Gemini, Claude?»</strong> Из России они работают только через VPN. Это ваше решение. Для курса достаточно DeepSeek.</p>
 <p><strong>«Он может прочитать видеозапись встречи?»</strong> Некоторые сервисы умеют работать с видео и аудио. Об этом поговорим на уроке 2, вместе с другими рабочими файлами.</p>
+</section>
 
 </main>
-<footer>ИИ‑команда · авторский курс · Книжка 1. Цены, лимиты и доступность сервисов — в Справочнике курса.</footer>
+<footer><div class="team-strip" aria-hidden="true"><span style="background:#2F6BFF"></span><span style="background:#12A35B"></span><span style="background:#FF7A1A"></span><span style="background:#7B4DFF"></span><span style="background:#EE3E86"></span><span style="background:#F5B400"></span></div>ИИ‑команда · авторский курс · Книжка 1. Цены, лимиты и доступность сервисов — в Справочнике курса.</footer>
+</div>
 </div>
 <script>
-document.querySelectorAll('.copy').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const text = btn.nextElementSibling.innerText;
-    const done = () => { btn.textContent = 'Скопировано'; setTimeout(() => { btn.textContent = 'Скопировать'; }, 1600); };
-    const fallback = () => { const r = document.createRange(); r.selectNodeContents(btn.nextElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Выделено — нажмите Ctrl+C'; };
-    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+(function () {
+  // copy buttons
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    var label = btn.querySelector('.copy-l');
+    btn.addEventListener('click', function () {
+      var pre = btn.nextElementSibling, text = pre.innerText;
+      var done = function () { label.textContent = 'Скопировано'; btn.classList.add('done'); setTimeout(function () { label.textContent = 'Скопировать'; btn.classList.remove('done'); }, 1600); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); label.textContent = 'Выделено — нажмите Ctrl+C'; };
+      try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+    });
   });
-});
+  // check-list: remember ticks in this browser only
+  var key = 'ai-team-book-1-' + location.pathname + '-tasks';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.task input'));
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    b.checked = !!saved[i];
+    b.addEventListener('change', function () { try { localStorage.setItem(key, JSON.stringify(boxes.map(function (x) { return x.checked; }))); } catch (e) {} });
+  });
+  // reading progress + current section in the side contents
+  var bar = document.querySelector('.progress span');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side a'));
+  var side = document.querySelector('.side nav');
+  var heads = links.map(function (a) { return document.getElementById(decodeURIComponent(a.hash.slice(1))); });
+  var current = -1, ticking = false;
+  function update() {
+    ticking = false;
+    var h = document.documentElement, max = h.scrollHeight - innerHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+    var idx = -1;
+    for (var i = 0; i < heads.length; i++) { if (heads[i] && heads[i].getBoundingClientRect().top < 140) idx = i; else if (heads[i]) break; }
+    if (idx !== current) {
+      if (current >= 0) links[current].removeAttribute('aria-current');
+      current = idx;
+      if (idx >= 0) {
+        var a = links[idx]; a.setAttribute('aria-current', 'true');
+        if (side && side.scrollHeight > side.clientHeight) {
+          var top = a.offsetTop;
+          if (top < side.scrollTop + 40 || top > side.scrollTop + side.clientHeight - 80) side.scrollTop = top - side.clientHeight / 2;
+        }
+      }
+    }
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();
 </script>
