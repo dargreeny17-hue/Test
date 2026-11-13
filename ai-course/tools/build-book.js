@@ -576,6 +576,8 @@ ${TEAM.map((t, i) => `  :root:root:root:root .acc-${i} { --acc-50: ${t.l}; --acc
   .sec-cheat .ch-head { margin-bottom: 12px; }
   .sec-cheat .sec-box { padding: 10px; column-gap: 10px; }
   .cs-item { font-size: 9.3pt; line-height: 1.45; padding: 9px 12px; margin-bottom: 10px; }
+  .cs-item ol > li { padding-left: 28px; margin: 4px 0; }
+  .cs-item ol > li::before { width: 18px; height: 18px; line-height: 18px; font-size: 8pt; border-radius: 6px; top: 0; }
   .hero-big { top: 92mm; bottom: auto; right: 14mm; font-size: 80mm; line-height: 1; opacity: .12; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
