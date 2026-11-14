@@ -1,11 +1,17 @@
 """Generate full-canvas decor SVG (circles pre-clipped to 1920x1080) and inject it as the
-first child of <section>. Usage: python3 decor.py <slides_dir> <preset> <id> [<id> ...]
-Preset 'none' removes the decor layer."""
+first child of <section>. Usage: python3 decor.py [--lesson=l1|l2] <slides_dir> <preset> <id> [<id> ...]
+Preset 'none' removes the decor layer. --lesson picks the fallback colours (default l1, blue);
+the classes f-50 / f-l / f-900 follow the lesson colour in deck.css anyway."""
 import math, re, sys
 
 W, H = 1920, 1080
-LESSON = {'l': '#2F6BFF', '50': '#E3EBFF', '600': '#2456E8', '900': '#1D2A55', 'w': '#FFFFFF',
-          'y': '#F5B400', 'g': '#12A35B', 'g50': '#DCF4E6', 'dk': '#1E2129'}
+COMMON = {'w': '#FFFFFF', 'y': '#F5B400', 'dk': '#1E2129'}
+# per lesson: its own colour + the next lesson's colour ('g'/'g50' = next member on the "next lesson" slide)
+PALETTES = {
+    'l1': {'l': '#2F6BFF', '50': '#E3EBFF', '600': '#2456E8', '900': '#1D2A55', 'g': '#12A35B', 'g50': '#DCF4E6'},
+    'l2': {'l': '#12A35B', '50': '#DCF4E6', '600': '#0B7843', '900': '#143A2B', 'g': '#FF7A1A', 'g50': '#FFE9D8'},
+}
+LESSON = dict(COMMON, **PALETTES['l1'])
 
 
 def clip(poly):
@@ -106,7 +112,10 @@ def inject(path, preset):
 
 
 if __name__ == '__main__':
-    d, preset, ids = sys.argv[1], sys.argv[2], sys.argv[3:]
+    args = sys.argv[1:]
+    if args and args[0].startswith('--lesson='):
+        LESSON.update(PALETTES[args.pop(0).split('=', 1)[1]])
+    d, preset, ids = args[0], args[1], args[2:]
     for i in ids:
         inject(f'{d}/{i}.html', preset)
     print(preset, len(layer(preset)) if preset != 'none' else 0, 'bytes x', len(ids))

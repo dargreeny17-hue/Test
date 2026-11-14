@@ -1,0 +1,1471 @@
+<title>ИИ‑команда · Книжка 2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600..800&family=Golos+Text:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap">
+<style>
+/* Course colours: the lesson colour leads (cover, prompts, links); every chapter gets one
+   team colour for its opener, bullets and table head. Callouts are coloured by type. */
+:root {
+  --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: transparent;
+  --lesson-50: #DCF4E6; --lesson-700: #0A6A3A;
+  --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
+  --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
+  --shadow: 0 1px 2px rgba(22,24,29,.05), 0 10px 30px -16px rgba(22,24,29,.25);
+  --lesson: #12A35B; --lesson-strong: #10844A; --on-lesson: #FFFFFF;
+  --warn: #D93036; --mistake: #FF7A1A; --ok: #12A35B; --date: #6B7080;
+  --f-head: 'Manrope', Verdana, sans-serif; --f-body: 'Golos Text', Arial, sans-serif; --f-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+.acc-0 { --acc: #2F6BFF; --acc-mark: #2F6BFF; --acc-on: #FFFFFF; --acc-s: #2E68F7; --acc-s-on: #FFFFFF; --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
+.acc-1 { --acc: #12A35B; --acc-mark: #12A35B; --acc-on: #FFFFFF; --acc-s: #10844A; --acc-s-on: #FFFFFF; --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
+.acc-2 { --acc: #FF7A1A; --acc-mark: #FF7A1A; --acc-on: #16181D; --acc-s: #FF7A1A; --acc-s-on: #16181D; --acc-50: #FFEBDC; --acc-700: #A3460A; }
+.acc-3 { --acc: #7B4DFF; --acc-mark: #7B4DFF; --acc-on: #FFFFFF; --acc-s: #7B4DFF; --acc-s-on: #FFFFFF; --acc-50: #ECE5FF; --acc-700: #4F26C9; }
+.acc-4 { --acc: #EE3E86; --acc-mark: #EE3E86; --acc-on: #FFFFFF; --acc-s: #D23676; --acc-s-on: #FFFFFF; --acc-50: #FDE4EF; --acc-700: #A3184F; }
+.acc-5 { --acc: #F5B400; --acc-mark: #DDA200; --acc-on: #16181D; --acc-s: #F5B400; --acc-s-on: #16181D; --acc-50: #FFF4CC; --acc-700: #7A5700; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038; --zebra: #20242B;
+  --code-bg: #0B0C0F; --code-fg: #E6E8EE; --code-line: #2C3038;
+  --lesson-50: #19392F; --lesson-700: #94D6B5;
+  --warn-50: #3A1E20; --warn-700: #FF9A9E; --mistake-50: #3A2617; --mistake-700: #FFB37A;
+  --ok-50: #16301F; --ok-700: #7FDDA8; --date-50: #22262D; --date-700: #AEB3BF;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6); color-scheme: dark; }
+:root:not([data-theme="light"]) .acc-0 { --acc-50: #1F2D50; --acc-700: #A1BCFF; }
+:root:not([data-theme="light"]) .acc-1 { --acc-50: #19392F; --acc-700: #94D6B5; }
+:root:not([data-theme="light"]) .acc-2 { --acc-50: #493022; --acc-700: #FFC398; }
+:root:not([data-theme="light"]) .acc-3 { --acc-50: #2E2750; --acc-700: #C4AFFF; }
+:root:not([data-theme="light"]) .acc-4 { --acc-50: #452438; --acc-700: #F7A8C9; }
+:root:not([data-theme="light"]) .acc-5 { --acc-50: #473C1D; --acc-700: #FBDD8C; } }
+:root[data-theme="dark"] {
+  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038; --zebra: #20242B;
+  --code-bg: #0B0C0F; --code-fg: #E6E8EE; --code-line: #2C3038;
+  --lesson-50: #19392F; --lesson-700: #94D6B5;
+  --warn-50: #3A1E20; --warn-700: #FF9A9E; --mistake-50: #3A2617; --mistake-700: #FFB37A;
+  --ok-50: #16301F; --ok-700: #7FDDA8; --date-50: #22262D; --date-700: #AEB3BF;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6); color-scheme: dark; }
+:root[data-theme="dark"] .acc-0 { --acc-50: #1F2D50; --acc-700: #A1BCFF; }
+:root[data-theme="dark"] .acc-1 { --acc-50: #19392F; --acc-700: #94D6B5; }
+:root[data-theme="dark"] .acc-2 { --acc-50: #493022; --acc-700: #FFC398; }
+:root[data-theme="dark"] .acc-3 { --acc-50: #2E2750; --acc-700: #C4AFFF; }
+:root[data-theme="dark"] .acc-4 { --acc-50: #452438; --acc-700: #F7A8C9; }
+:root[data-theme="dark"] .acc-5 { --acc-50: #473C1D; --acc-700: #FBDD8C; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.7 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.i { width: 1em; height: 1em; flex: none; }
+:focus-visible { outline: 3px solid var(--lesson); outline-offset: 3px; border-radius: 6px; }
+a { color: var(--lesson-700); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* reading progress */
+.progress { position: fixed; inset: 0 0 auto 0; height: 4px; z-index: 10; background: transparent; pointer-events: none; }
+.progress span { display: block; height: 100%; background: var(--lesson); transform-origin: 0 50%; transform: scaleX(0); }
+
+/* ---------- cover ---------- */
+.top { max-width: 1048px; margin: 0 auto; padding-top: 32px; }
+.hero { position: relative; overflow: hidden; isolation: isolate; background: var(--lesson-strong); color: var(--on-lesson);
+  border-radius: 32px; padding: 48px 48px 40px; display: grid; grid-template-columns: minmax(0, 1fr) 248px; gap: 32px; align-items: center; }
+.hero-big { position: absolute; z-index: -1; right: -24px; bottom: -92px; font: 800 340px/1 var(--f-head); letter-spacing: -0.06em; color: currentColor; opacity: .08; user-select: none; }
+.brand { display: inline-block; font: 800 12.5px/1 var(--f-body); letter-spacing: .08em; color: #16181D; background: #FFFFFF; border-radius: 999px; padding: 9px 14px; }
+.hero h1 { font: 800 clamp(38px, 6.4vw, 64px)/1.02 var(--f-head); letter-spacing: -0.035em; margin: 20px 0 14px; text-wrap: balance; }
+.hero .lead { margin: 0; font-size: 19px; line-height: 1.55; max-width: 34em; }
+.facts { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.facts li { display: flex; align-items: center; gap: 10px; background: rgba(8, 16, 48, .22); border-radius: 14px; padding: 10px 14px 10px 12px; margin: 0; line-height: 1.2; }
+.facts .i { width: 20px; height: 20px; opacity: .95; }
+.facts b { display: block; font: 800 17px/1.15 var(--f-head); }
+.facts small { display: block; font-size: 13px; }
+.pass { position: relative; justify-self: end; width: 248px; color: #16181D; background: #FFFFFF; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 24px 48px -12px rgba(8, 16, 48, .45); transform: rotate(-4deg); }
+.pass-top { background: #16181D; color: #FFFFFF; font: 800 11px/1 var(--f-body); letter-spacing: .16em; padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; }
+.pass-top i { width: 8px; height: 8px; border-radius: 50%; background: var(--lesson); display: inline-block; margin-right: 8px; }
+.pass-body { padding: 18px 18px 16px; display: grid; gap: 4px; }
+.pass-av { width: 76px; height: 76px; border-radius: 22px; background: var(--lesson); color: #FFFFFF; display: grid; place-items: center; margin-bottom: 10px; }
+.pass-av .i { width: 40px; height: 40px; stroke-width: 1.75; }
+.pass-name { font: 800 26px/1.1 var(--f-head); letter-spacing: -0.02em; }
+.pass-role { font-size: 13px; color: #555A66; line-height: 1.35; }
+.pass-team { display: flex; gap: 6px; margin-top: 14px; }
+.ts { width: 22px; height: 8px; border-radius: 4px; opacity: .35; }
+.ts.on { opacity: 1; width: 40px; }
+.pass-code { height: 26px; margin: 14px 0 0; border-radius: 4px; background: repeating-linear-gradient(90deg, #16181D 0 2px, transparent 2px 5px, #16181D 5px 6px, transparent 6px 9px, #16181D 9px 12px, transparent 12px 14px); opacity: .85; }
+
+/* ---------- layout ---------- */
+.layout { max-width: 1048px; margin: 0 auto; padding: 40px 0 96px; }
+.content { max-width: 760px; margin: 0 auto; min-width: 0; }
+.side { display: none; }
+@media (min-width: 1120px) {
+  .layout { display: grid; grid-template-columns: 232px minmax(0, 760px); gap: 56px; }
+  .content { margin: 0; }
+  .side { display: block; }
+  .side nav { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; padding: 4px 6px 16px 0; scrollbar-width: thin; }
+  nav.toc { display: none; }
+}
+
+/* ---------- contents ---------- */
+.toc-h { font: 800 13px/1 var(--f-head); letter-spacing: .1em; text-transform: uppercase; color: var(--soft); margin: 0 0 14px; }
+.toc ul, .side ul { list-style: none; margin: 0; padding: 0; }
+.toc li, .side li { margin: 0; padding: 0; }
+.toc a, .side a { display: flex; align-items: flex-start; gap: 12px; color: var(--ink); text-decoration: none; border-radius: 12px; padding: 7px 8px; line-height: 1.35; }
+.toc a:hover, .side a:hover { background: var(--acc-50); }
+.toc-b { flex: none; min-width: 44px; height: 26px; padding: 0 7px; display: inline-grid; place-items: center; border-radius: 8px; background: var(--acc-50); color: var(--acc-700);
+  font: 800 13px/1 var(--f-head); font-variant-numeric: tabular-nums; }
+.toc-i .i { width: 15px; height: 15px; }
+.toc-t { padding-top: 3px; }
+nav.toc { background: var(--card); border-radius: 24px; padding: 24px; margin-bottom: 48px; box-shadow: var(--shadow); }
+nav.toc ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 2px; }
+nav.toc.many ul { grid-template-columns: 1fr; }
+.side .toc-h { padding-left: 8px; }
+.side a { font-size: 14.5px; padding: 6px 8px; gap: 10px; }
+.side .toc-b { min-width: 38px; height: 22px; font-size: 11.5px; border-radius: 7px; }
+.side .toc-t { padding-top: 2px; }
+.side .toc-l3 a { padding-left: 8px; }
+.side a[aria-current="true"] { background: var(--acc-50); font-weight: 600; }
+.side a[aria-current="true"] .toc-b { background: var(--acc-s); color: var(--acc-s-on); }
+
+/* ---------- chapters ---------- */
+.chapter { margin-top: 72px; }
+.chapter:first-child { margin-top: 0; }
+.ch-head { display: flex; align-items: center; gap: 20px; background: var(--acc-50); border-radius: 24px; padding: 20px 24px; margin: 0 0 28px; position: relative; overflow: hidden; }
+.ch-head::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: var(--acc); }
+.ch-tile { flex: none; min-width: 76px; height: 76px; padding: 0 12px; border-radius: 20px; background: var(--acc); color: var(--acc-on); display: grid; place-items: center; }
+.ch-num { font: 800 32px/1 var(--f-head); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.ch-tile .i { width: 36px; height: 36px; }
+h2 { font: 800 32px/1.12 var(--f-head); letter-spacing: -0.025em; margin: 0; text-wrap: balance; color: var(--ink); }
+h3 { font: 800 22px/1.25 var(--f-head); letter-spacing: -0.01em; margin: 40px 0 10px; text-wrap: balance; }
+h3::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--acc-mark); margin-right: 12px; vertical-align: 0.12em; }
+h3 + p, h3 + ul, h3 + ol { margin-top: 0; }
+p, ul, ol { margin: 0 0 16px; }
+strong { font-weight: 700; }
+:not(pre) > code { font: 0.88em/1 var(--f-mono); background: var(--zebra); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }
+hr { display: none; }
+
+/* lists */
+main ul { list-style: none; padding-left: 0; }
+main ul > li { position: relative; padding-left: 26px; margin: 6px 0; }
+main ul > li::before { content: ''; position: absolute; left: 5px; top: 0.66em; width: 8px; height: 8px; border-radius: 3px; background: var(--acc-mark); }
+main ol { list-style: none; padding-left: 0; counter-reset: li; }
+main ol > li { position: relative; padding-left: 40px; margin: 8px 0; counter-increment: li; }
+main ol > li::before { content: counter(li); position: absolute; left: 0; top: 0.1em; width: 26px; height: 26px; border-radius: 9px; background: var(--acc-50); color: var(--acc-700);
+  font: 800 13.5px/26px var(--f-head); text-align: center; font-variant-numeric: tabular-nums; }
+
+/* tasks (check-list) */
+ul.tasks > li { padding-left: 0; margin: 2px 0; }
+ul.tasks > li::before { display: none; }
+.task label { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; padding: 8px 12px; border-radius: 14px; }
+.task p { margin: 0; }
+.task label:hover { background: var(--zebra); }
+.task input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.task .box { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--acc); display: grid; place-items: center; color: transparent; margin-top: 1px; background: var(--card); }
+.task .box .i { width: 16px; height: 16px; stroke-width: 3; }
+.task input:checked + .box { background: var(--acc-s); border-color: var(--acc-s); color: var(--acc-s-on); }
+.task input:checked ~ .task-t { color: var(--soft); text-decoration: line-through; text-decoration-thickness: 1px; }
+.task input:focus-visible + .box { outline: 3px solid var(--lesson); outline-offset: 2px; }
+
+/* tables */
+.table-wrap { overflow-x: auto; margin: 18px 0 22px; background: var(--card); border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; }
+th { font: 800 13px/1.3 var(--f-head); letter-spacing: .04em; text-transform: uppercase; background: var(--acc-50); color: var(--acc-700); border-bottom: 3px solid var(--acc); }
+tbody tr:nth-child(even) td { background: var(--zebra); }
+td + td, th + th { border-left: 1px solid var(--line); }
+.kv td:first-child { width: 32%; color: var(--soft); font-weight: 600; }
+.kv td + td { border-left: 0; }
+.tl { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -0.05em; box-shadow: 0 0 0 3px var(--card); }
+.tm-dot { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 10px; vertical-align: -0.05em; }
+.tl-red { background: #E5484D; } .tl-yellow { background: #F5B400; } .tl-green { background: #12A35B; }
+
+/* code + copy */
+.code { position: relative; margin: 0 0 16px; }
+pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border: 1px solid var(--code-line); border-radius: 18px; padding: 54px 22px 20px; overflow-x: auto;
+  font: 14.5px/1.65 var(--f-mono); white-space: pre-wrap; word-break: break-word; }
+.copy { position: absolute; top: 12px; right: 12px; display: inline-flex; align-items: center; gap: 8px; font: 700 13.5px/1 var(--f-body); color: #16181D; background: #FFFFFF;
+  border: 0; border-radius: 999px; padding: 9px 14px 9px 12px; cursor: pointer; min-height: 34px; }
+.copy .i { width: 16px; height: 16px; }
+.copy:hover { background: #DCF4E6; }
+.copy.done { background: #C9F2DA; }
+.copy:focus-visible { outline: 3px solid #65C394; outline-offset: 2px; }
+
+/* prompt card */
+.prompt-card { margin: 28px 0 22px; border-radius: 22px; overflow: hidden; background: var(--code-bg); box-shadow: var(--shadow); border: 1px solid var(--code-line); }
+.pc-head { display: flex; align-items: center; gap: 14px; background: var(--lesson-strong); color: var(--on-lesson); padding: 16px 20px; }
+.pc-ico { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(8, 16, 48, .22); }
+.pc-ico .i { width: 22px; height: 22px; }
+.pc-meta { display: grid; gap: 3px; min-width: 0; }
+.pc-kicker { font: 700 12.5px/1.3 var(--f-body); letter-spacing: .06em; text-transform: uppercase; }
+.pc-id { display: inline-block; font: 600 12px/1 var(--f-mono); letter-spacing: 0; text-transform: none; border: 1px solid currentColor; border-radius: 6px; padding: 3px 6px; margin-left: 4px; }
+.pc-title { font: 800 19px/1.25 var(--f-head); letter-spacing: -0.01em; }
+.pc-title::first-letter { text-transform: uppercase; }
+.pc-note { background: var(--lesson-strong); color: var(--on-lesson); padding: 0 20px 14px; font-size: 15px; }
+.pc-note p { margin: 0; }
+.prompt-card .code { margin: 0; }
+.prompt-card pre { border: 0; border-radius: 0; }
+.pc-foot { background: var(--card); padding: 16px 20px; font-size: 15.5px; line-height: 1.6; border-top: 1px solid var(--line); }
+.pc-foot p { margin: 0; }
+.pc-foot strong { color: var(--lesson-700); }
+
+/* callouts */
+.callout { --c: var(--lesson); --c-on: #FFFFFF; --c-50: var(--lesson-50); --c-700: var(--lesson-700); --acc-mark: var(--c);
+  background: var(--c-50); border-radius: 20px; padding: 18px 22px 18px; margin: 26px 0 20px; }
+.c-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.c-ico { flex: none; width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: var(--c); color: var(--c-on); }
+.c-ico .i { width: 19px; height: 19px; }
+.c-title { font: 800 17px/1.3 var(--f-head); color: var(--c-700); }
+.c-body > :last-child, .c-body > :last-child > :last-child { margin-bottom: 0; }
+.c-warn { --c: var(--warn); --c-50: var(--warn-50); --c-700: var(--warn-700); }
+.c-mistake { --c: var(--mistake); --c-on: #16181D; --c-50: var(--mistake-50); --c-700: var(--mistake-700); }
+.c-try { --c: var(--lesson); --c-on: #FFFFFF; }
+.c-practice { --c: var(--ok); --c-on: #FFFFFF; --c-50: var(--ok-50); --c-700: var(--ok-700); }
+.c-date, .c-note { --c: var(--date); --c-50: var(--date-50); --c-700: var(--date-700); }
+.m-rows { display: grid; gap: 8px; }
+.m-row { margin: 0; padding: 10px 14px; border-radius: 12px; background: var(--card); }
+.m-lbl { display: block; font: 800 12.5px/1.3 var(--f-head); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; color: var(--soft); }
+.m-bad .m-lbl { color: var(--mistake-700); }
+.m-ok { box-shadow: inset 4px 0 0 var(--ok); }
+.m-ok .m-lbl { color: var(--ok-700); }
+.c-note { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); }
+.c-note .c-ico { background: var(--date-50); color: var(--date-700); }
+.c-note .c-body { padding-top: 4px; }
+.c-before { border-left: 5px solid #E5484D; }
+.c-after { border-left: 5px solid var(--ok); }
+.ba-label { font: 800 13px/1 var(--f-head); letter-spacing: .08em; text-transform: uppercase; margin: 24px 0 -12px; color: var(--soft); }
+
+/* special sections */
+.sec-box { background: var(--card); border-radius: 24px; padding: 24px 28px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.sec-box > :last-child { margin-bottom: 0; }
+.sec-quiz .sec-box { border: 2px solid var(--acc); box-shadow: none; }
+.sec-quiz .sec-box ol > li { padding: 10px 14px 10px 52px; background: var(--zebra); border-radius: 14px; }
+.sec-quiz .sec-box ol > li::before { left: 14px; top: 11px; background: var(--acc-s); color: var(--acc-s-on); }
+.sec-cheat .sec-box { border: 2px solid var(--acc); columns: 2 300px; column-gap: 16px; padding: 18px; }
+.cs-item { break-inside: avoid; background: var(--acc-50); border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; font-size: 15.5px; line-height: 1.6; display: flow-root; }
+.cs-item p, .cs-item ul, .cs-item ol { margin: 0 0 6px; }
+.cs-item > :last-child { margin-bottom: 0; }
+.cs-item strong { color: var(--acc-700); }
+.cs-item ul > li, .cs-item ol > li { margin: 3px 0; }
+.cs-item ol > li::before { background: var(--card); }
+.sec-faq p { background: var(--card); border-radius: 16px; padding: 16px 20px; border: 1px solid var(--line); }
+.sec-faq p > strong:first-child { display: block; font-family: var(--f-head); font-weight: 800; color: var(--acc-700); margin-bottom: 4px; }
+.sec-hw .ch-head + p { background: var(--card); border-radius: 18px; padding: 16px 20px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.sec-answers .sec-box ol > li::before { background: var(--ok-50); color: var(--ok-700); }
+.sec-log table { font-size: 14px; }
+
+/* presenter script */
+.slide-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-top: 28px; border-top: 1px solid var(--line); }
+.slide-h::before { display: none; }
+.slide-no { font: 800 12.5px/1 var(--f-head); letter-spacing: .06em; text-transform: uppercase; background: var(--acc-s); color: var(--acc-s-on); border-radius: 8px; padding: 7px 10px; transform: translateY(-3px); }
+.p-time { max-width: 100%; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; background: var(--acc-50); color: var(--acc-700); border-radius: 999px; padding: 4px 14px 4px 10px; }
+.p-time .i { width: 16px; height: 16px; }
+.p-do { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--mistake); border-radius: 14px; padding: 12px 16px; }
+.p-say strong:first-child { color: var(--acc-700); }
+
+footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; gap: 14px; }
+.team-strip { display: flex; gap: 6px; }
+.team-strip span { height: 6px; flex: 1; border-radius: 3px; }
+
+@media (max-width: 760px) {
+  .top { padding-top: 16px; }
+  .hero { grid-template-columns: 1fr; padding: 28px 22px 26px; border-radius: 26px; gap: 24px; }
+  .hero-big { font-size: 220px; bottom: -60px; right: -12px; }
+  .hero .lead { font-size: 17px; }
+  .pass { justify-self: start; width: 100%; max-width: 300px; transform: rotate(-2deg); }
+  .pass-body { grid-template-columns: auto 1fr; column-gap: 14px; align-items: center; }
+  .pass-av { grid-row: span 2; width: 60px; height: 60px; border-radius: 18px; margin: 0; }
+  .pass-av .i { width: 32px; height: 32px; }
+  .pass-name { font-size: 22px; align-self: end; }
+  .pass-role { align-self: start; }
+  .pass-team { grid-column: 1 / -1; }
+  .pass-code { display: none; }
+  .facts { gap: 8px; }
+  .facts li { flex: 1 1 140px; }
+  .layout { padding-top: 28px; }
+  nav.toc { padding: 18px 14px; border-radius: 20px; }
+  nav.toc ul { grid-template-columns: 1fr; }
+  .chapter { margin-top: 56px; }
+  .ch-head { gap: 14px; padding: 16px; border-radius: 20px; }
+  .ch-tile { min-width: 56px; height: 56px; border-radius: 16px; padding: 0 8px; }
+  .ch-num { font-size: 22px; }
+  .ch-tile .i { width: 28px; height: 28px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  body { font-size: 16.5px; }
+  table { font-size: 14px; }
+  th, td { padding: 10px 12px; }
+  pre { padding: 54px 16px 16px; font-size: 13.5px; }
+  .pc-head { padding: 14px 16px; }
+  .pc-ico { width: 34px; height: 34px; }
+  .pc-title { font-size: 17px; }
+  .pc-foot { padding: 14px 16px; }
+  .callout { padding: 16px; }
+  .sec-box { padding: 16px; border-radius: 20px; }
+  .sec-cheat .sec-box { padding: 12px; }
+}
+
+@page { size: A4; margin: 20mm 17mm 17mm; }
+@page :first { margin: 0; }
+@media print {
+  :root:root:root:root {
+  --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: transparent;
+  --lesson-50: #DCF4E6; --lesson-700: #0A6A3A;
+  --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
+  --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
+  --shadow: 0 1px 2px rgba(22,24,29,.05), 0 10px 30px -16px rgba(22,24,29,.25); }
+  :root:root:root:root .acc-0 { --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
+  :root:root:root:root .acc-1 { --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
+  :root:root:root:root .acc-2 { --acc-50: #FFEBDC; --acc-700: #A3460A; }
+  :root:root:root:root .acc-3 { --acc-50: #ECE5FF; --acc-700: #4F26C9; }
+  :root:root:root:root .acc-4 { --acc-50: #FDE4EF; --acc-700: #A3184F; }
+  :root:root:root:root .acc-5 { --acc-50: #FFF4CC; --acc-700: #7A5700; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10.5pt; line-height: 1.6; padding: 0; background: #FFFFFF; }
+  .progress, .side, .copy, .no-print { display: none !important; }
+  .top { max-width: none; padding: 0; }
+  .hero { height: 297mm; border-radius: 0; padding: 26mm 20mm 22mm; grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; align-items: start; gap: 0; break-after: page; }
+  .hero-main { display: contents; }
+  .hero .brand { grid-row: 1; justify-self: start; }
+  .hero .pass { grid-row: 1; justify-self: end; width: 64mm; margin-top: 6mm; transform: rotate(-4deg); box-shadow: 0 18px 40px -12px rgba(8,16,48,.5); }
+  .hero .titles { grid-row: 2; align-self: end; }
+  .hero h1 { font-size: 52pt; margin: 0 0 6mm; }
+  .hero .lead { font-size: 14pt; max-width: 150mm; }
+  .hero .facts { grid-row: 3; margin-top: 12mm; }
+  .layout { display: block; max-width: none; padding: 0; }
+  .content { max-width: none; }
+  nav.toc { display: block; box-shadow: none; border: 1px solid var(--line); break-after: page; padding: 8mm; }
+  nav.toc ul { grid-template-columns: 1fr 1fr; }
+  nav.toc.many ul { grid-template-columns: 1fr 1fr 1fr; column-gap: 8px; font-size: 8.5pt; }
+  nav.toc.many a { padding: 3px 4px; gap: 8px; }
+  nav.toc.many .toc-b { min-width: 30px; height: 18px; font-size: 8pt; border-radius: 5px; }
+  nav.toc.many .toc-t { padding-top: 1px; }
+  .chapter { margin-top: 0; break-before: page; }
+  .chapter:first-child { break-before: auto; }
+  .ch-head { break-after: avoid; }
+  h3 { break-after: avoid; margin-top: 8mm; }
+  .callout, .prompt-card, .m-row, .cs-item, tr, .sec-faq p, .task, .sec-quiz li, .pc-head { break-inside: avoid; }
+  .pc-head { break-after: avoid; }
+  pre { background: #F3F5F9; color: #16181D; border: 0; border-left: 4px solid var(--lesson); padding: 12px 16px; font-size: 9.5pt; }
+  .prompt-card { background: #F3F5F9; box-shadow: none; border: 1px solid var(--line); }
+  .prompt-card pre { border-left: 0; }
+  .table-wrap, .sec-box, nav.toc, .sec-hw .ch-head + p { box-shadow: none; }
+  .table-wrap { overflow: visible; }
+  footer { margin-top: 12mm; }
+  table { font-size: 9.5pt; }
+  .pc-foot, .callout { font-size: 10pt; }
+  .pc-foot { padding: 10px 16px; }
+  .sec-cheat .ch-head { margin-bottom: 12px; }
+  .sec-cheat .sec-box { padding: 10px; column-gap: 10px; }
+  .cs-item { font-size: 9.3pt; line-height: 1.45; padding: 9px 12px; margin-bottom: 10px; }
+  .cs-item ol > li { padding-left: 28px; margin: 4px 0; }
+  .cs-item ol > li::before { width: 18px; height: 18px; line-height: 18px; font-size: 8pt; border-radius: 6px; top: 0; }
+  .hero-big { top: 92mm; bottom: auto; right: 14mm; font-size: 80mm; line-height: 1; opacity: .12; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="top">
+<header class="hero">
+  <div class="hero-big" aria-hidden="true">02</div>
+  <div class="hero-main">
+    <span class="brand">ИИ‑КОМАНДА · КНИЖКА 2</span>
+    <div class="titles"><h1>ИИ на моей работе</h1>
+    <p class="lead">Всё, что было на уроке, — подробно, с готовыми промптами и шпаргалкой. Промпты копируются одной кнопкой.</p></div>
+    <ul class="facts" aria-label="Что внутри"><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><b>≈ 40 мин</b><small>чтения</small></span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg><span><b>10</b><small>готовых промптов</small></span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span><b>10</b><small>разделов</small></span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg><span><b>Шпаргалка</b><small>на одну страницу</small></span></li></ul>
+  </div>
+  <div class="pass" aria-hidden="true"><div class="pass-top"><span><i></i>ПРОПУСК</span><span>№ 02</span></div>
+    <div class="pass-body"><div class="pass-av"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div><div class="pass-name">Аналитик</div><div class="pass-role">Участник вашей ИИ‑команды с урока 2</div>
+    <div class="pass-team"><span class="ts" style="background:#2F6BFF"></span><span class="ts on" style="background:#12A35B"></span><span class="ts" style="background:#FF7A1A"></span><span class="ts" style="background:#7B4DFF"></span><span class="ts" style="background:#EE3E86"></span><span class="ts" style="background:#F5B400"></span></div><div class="pass-code"></div></div></div>
+</header>
+</div>
+<div class="layout">
+<aside class="side"><nav aria-label="Навигация по разделам"><p class="toc-h">Содержание</p><ul><li class="acc-1 toc-l2"><a href="#паспорт"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg></span><span class="toc-t">Паспорт</span></a></li><li class="acc-1 toc-l2"><a href="#0-перед-уроком-подготовьте-и-обезличьте-свой-документ"><span class="toc-b" aria-hidden="true">0</span><span class="toc-t"><span class="vh">0. </span>Перед уроком: подготовьте и обезличьте свой документ</span></a></li><li class="acc-0 toc-l2"><a href="#2-1-что-получилось-в-домашнем-задании-1"><span class="toc-b" aria-hidden="true">2.1</span><span class="toc-t"><span class="vh">2.1. </span>Что получилось в домашнем задании 1</span></a></li><li class="acc-2 toc-l2"><a href="#2-2-два-показа-договор-и-три-кп"><span class="toc-b" aria-hidden="true">2.2</span><span class="toc-t"><span class="vh">2.2. </span>Два показа: договор и три КП</span></a></li><li class="acc-3 toc-l2"><a href="#2-3-как-ии-читает-файлы"><span class="toc-b" aria-hidden="true">2.3</span><span class="toc-t"><span class="vh">2.3. </span>Как ИИ читает файлы</span></a></li><li class="acc-1 toc-l2"><a href="#2-4-три-правила-аналитика"><span class="toc-b" aria-hidden="true">2.4</span><span class="toc-t"><span class="vh">2.4. </span>Три правила Аналитика</span></a></li><li class="acc-4 toc-l2"><a href="#2-5-формула-для-документа"><span class="toc-b" aria-hidden="true">2.5</span><span class="toc-t"><span class="vh">2.5. </span>Формула для документа</span></a></li><li class="acc-5 toc-l2"><a href="#2-6-задание-урока-ваш-ход"><span class="toc-b" aria-hidden="true">2.6</span><span class="toc-t"><span class="vh">2.6. </span>Задание урока «Ваш ход»</span></a></li><li class="acc-0 toc-l2"><a href="#2-7-цифры-ии-переносит-excel-считает"><span class="toc-b" aria-hidden="true">2.7</span><span class="toc-t"><span class="vh">2.7. </span>Цифры: ИИ переносит, Excel считает</span></a></li><li class="acc-2 toc-l2"><a href="#2-8-карточки-по-ролям"><span class="toc-b" aria-hidden="true">2.8</span><span class="toc-t"><span class="vh">2.8. </span>Карточки по ролям</span></a></li><li class="acc-1 toc-l2"><a href="#частые-вопросы"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="toc-t">Частые вопросы</span></a></li><li class="acc-3 toc-l2"><a href="#2-9-проверьте-себя"><span class="toc-b" aria-hidden="true">2.9</span><span class="toc-t"><span class="vh">2.9. </span>Проверьте себя</span></a></li><li class="acc-1 toc-l2"><a href="#чек-лист-урока"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span><span class="toc-t">Чек‑лист урока</span></a></li><li class="acc-1 toc-l2"><a href="#домашнее-задание-2-аналитик-на-вашей-работе"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></span><span class="toc-t">Домашнее задание 2. Аналитик на вашей работе</span></a></li><li class="acc-1 toc-l2"><a href="#что-почитать"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="toc-t">Что почитать</span></a></li><li class="acc-1 toc-l2"><a href="#шпаргалка"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span><span class="toc-t">Шпаргалка</span></a></li><li class="acc-1 toc-l2"><a href="#ответы-на-проверьте-себя"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span><span class="toc-t">Ответы на «Проверьте себя»</span></a></li><li class="acc-1 toc-l2"><a href="#журнал-изменений"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></span><span class="toc-t">Журнал изменений</span></a></li></ul></nav></aside>
+<div class="content">
+<nav class="toc" aria-label="Содержание"><h2 class="toc-h">Содержание</h2><ul><li class="acc-1 toc-l2"><a href="#паспорт"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg></span><span class="toc-t">Паспорт</span></a></li><li class="acc-1 toc-l2"><a href="#0-перед-уроком-подготовьте-и-обезличьте-свой-документ"><span class="toc-b" aria-hidden="true">0</span><span class="toc-t"><span class="vh">0. </span>Перед уроком: подготовьте и обезличьте свой документ</span></a></li><li class="acc-0 toc-l2"><a href="#2-1-что-получилось-в-домашнем-задании-1"><span class="toc-b" aria-hidden="true">2.1</span><span class="toc-t"><span class="vh">2.1. </span>Что получилось в домашнем задании 1</span></a></li><li class="acc-2 toc-l2"><a href="#2-2-два-показа-договор-и-три-кп"><span class="toc-b" aria-hidden="true">2.2</span><span class="toc-t"><span class="vh">2.2. </span>Два показа: договор и три КП</span></a></li><li class="acc-3 toc-l2"><a href="#2-3-как-ии-читает-файлы"><span class="toc-b" aria-hidden="true">2.3</span><span class="toc-t"><span class="vh">2.3. </span>Как ИИ читает файлы</span></a></li><li class="acc-1 toc-l2"><a href="#2-4-три-правила-аналитика"><span class="toc-b" aria-hidden="true">2.4</span><span class="toc-t"><span class="vh">2.4. </span>Три правила Аналитика</span></a></li><li class="acc-4 toc-l2"><a href="#2-5-формула-для-документа"><span class="toc-b" aria-hidden="true">2.5</span><span class="toc-t"><span class="vh">2.5. </span>Формула для документа</span></a></li><li class="acc-5 toc-l2"><a href="#2-6-задание-урока-ваш-ход"><span class="toc-b" aria-hidden="true">2.6</span><span class="toc-t"><span class="vh">2.6. </span>Задание урока «Ваш ход»</span></a></li><li class="acc-0 toc-l2"><a href="#2-7-цифры-ии-переносит-excel-считает"><span class="toc-b" aria-hidden="true">2.7</span><span class="toc-t"><span class="vh">2.7. </span>Цифры: ИИ переносит, Excel считает</span></a></li><li class="acc-2 toc-l2"><a href="#2-8-карточки-по-ролям"><span class="toc-b" aria-hidden="true">2.8</span><span class="toc-t"><span class="vh">2.8. </span>Карточки по ролям</span></a></li><li class="acc-1 toc-l2"><a href="#частые-вопросы"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="toc-t">Частые вопросы</span></a></li><li class="acc-3 toc-l2"><a href="#2-9-проверьте-себя"><span class="toc-b" aria-hidden="true">2.9</span><span class="toc-t"><span class="vh">2.9. </span>Проверьте себя</span></a></li><li class="acc-1 toc-l2"><a href="#чек-лист-урока"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span><span class="toc-t">Чек‑лист урока</span></a></li><li class="acc-1 toc-l2"><a href="#домашнее-задание-2-аналитик-на-вашей-работе"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></span><span class="toc-t">Домашнее задание 2. Аналитик на вашей работе</span></a></li><li class="acc-1 toc-l2"><a href="#что-почитать"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="toc-t">Что почитать</span></a></li><li class="acc-1 toc-l2"><a href="#шпаргалка"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span><span class="toc-t">Шпаргалка</span></a></li><li class="acc-1 toc-l2"><a href="#ответы-на-проверьте-себя"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span><span class="toc-t">Ответы на «Проверьте себя»</span></a></li><li class="acc-1 toc-l2"><a href="#журнал-изменений"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></span><span class="toc-t">Журнал изменений</span></a></li></ul></nav>
+<main>
+<section class="chapter acc-1 sec-passport" aria-labelledby="паспорт">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg></span><h2 id="паспорт">Паспорт</h2></header>
+<div class="table-wrap kv"><table><tbody><tr>
+<td>Курс</td>
+<td>«ИИ‑команда». Три вечера до своей ИИ‑команды: 3 урока и модуль «Агенты» для желающих</td>
+</tr>
+<tr>
+<td>Урок</td>
+<td>2 из 3 · «ИИ на моей работе» · участник команды: <strong>Аналитик</strong></td>
+</tr>
+<tr>
+<td>Редакция</td>
+<td>1.0 от 14.11.2026</td>
+</tr>
+<tr>
+<td>Время чтения</td>
+<td>около 40 минут; разделы можно читать по отдельности</td>
+</tr>
+<tr>
+<td>Что понадобится</td>
+<td>DeepSeek на компьютере (chat.deepseek.com); свой обезличенный документ или учебный из папки урока; Excel; около 45 минут на домашнее задание</td>
+</tr>
+</tbody></table></div>
+<p>Книжка идёт по порядку урока. На слайдах были тезисы, а здесь подробности, оба показа с разбором и готовые промпты, которые можно копировать. Все задания мы делаем в DeepSeek. Допустимый размер файлов и лимиты сообщений меняются, поэтому цифр в книжке нет. Как проверить, что ИИ прочитал документ целиком, я рассказываю в разделе 2.3.</p>
+<p>Учебные документы урока лежат в папке, ссылку на которую я присылал в письме: договор поставки № 47/11 и три коммерческих предложения на погрузчик. Компании, люди и цифры в них вымышлены, их можно загружать и показывать коллегам.</p>
+<h3 id="аналитик-в-вашей-команде">Аналитик в вашей команде</h3>
+<div class="table-wrap team-table"><table><thead><tr>
+<th>Урок</th>
+<th>Участник</th>
+<th>Что делает</th>
+</tr>
+</thead><tbody><tr>
+<td>1</td>
+<td><span class="tm-dot" style="background:#2F6BFF" aria-hidden="true"></span>Ассистент</td>
+<td>Отвечает, объясняет, готовит черновики по вашему запросу</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="tm-dot" style="background:#12A35B" aria-hidden="true"></span><strong>Аналитик</strong></td>
+<td>Читает ваши файлы: договоры, ТЗ, КП, сметы, регламенты, таблицы. Отвечает со ссылкой на пункт</td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="tm-dot" style="background:#FF7A1A" aria-hidden="true"></span>Редактор</td>
+<td>Доводит результат до качества, которое можно отдать руководителю</td>
+</tr>
+</tbody></table></div>
+<p>Всё, чему мы научились на первом уроке, остаётся: формула запроса, уточнение, проверка, светофор. Меняется контекст. Раньше вы описывали ситуацию словами, теперь прикладываете документ.</p>
+<h3 id="что-вы-узнаете">Что вы узнаете</h3>
+<ul>
+<li>Как за 10–15 минут подготовить рабочий документ к загрузке и что в нём легко пропустить.</li>
+<li>Как получить из договора таблицу рисков, а из трёх КП сравнение и вопросы поставщикам.</li>
+<li>Какие файлы ИИ читает хорошо, какие хуже и что теряется по дороге.</li>
+<li>Три правила Аналитика, после которых ответ можно проверить по пунктам.</li>
+<li>Как пересчитать цифры в Excel за минуту и не доверять итогам ИИ.</li>
+<li>Какой документ и какой промпт подходят вашей роли.</li>
+</ul>
+<h3 id="коротко">Коротко</h3>
+<ol>
+<li>Аналитик работает с вашими файлами. Формула запроса та же, что в уроке 1, контекстом теперь служит документ.</li>
+<li>Документ обезличивают целиком: текст, колонтитулы, подписи, лист согласования, приложения, свойства файла и его имя.</li>
+<li>Word и PDF с текстом ИИ читает лучше всего, сканы с печатями и правками ручкой хуже всего. Приложения картинкой, сноски и мелкий шрифт могут пропасть без предупреждения.</li>
+<li>Правило 1: отвечать только по документу и у каждого вывода указывать пункт. Нет номера, значит, нет вывода.</li>
+<li>Правило 2: чего в документе нет, ИИ пишет «в документе нет». Отсутствующее условие часто оказывается главной находкой.</li>
+<li>Правило 3: цифры считает Excel. ИИ переносит строки в таблицу и пишет формулы.</li>
+<li>После ответа выберите три вывода и найдите их пункты в документе. На это уходит пара минут.</li>
+<li>Самое дешёвое КП нельзя выбрать, пока цены не приведены к одному виду: с НДС и с одинаковым комплектом.</li>
+</ol>
+<hr>
+</section>
+<section class="chapter acc-1" aria-labelledby="0-перед-уроком-подготовьте-и-обезличьте-свой-документ">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">0</span></span><h2 id="0-перед-уроком-подготовьте-и-обезличьте-свой-документ"><span class="vh">0. </span>Перед уроком: подготовьте и обезличьте свой документ</h2></header>
+<p>На уроке вы 15 минут работаете на своём документе. Чтобы не тратить это время на поиск и чистку, подготовьте файл заранее. В первый раз это займёт 10–15 минут, потом пойдёт быстрее.</p>
+<h3 id="шаг-1-выберите-документ">Шаг 1. Выберите документ</h3>
+<p>Возьмите документ, с которым работаете сейчас или работали недавно: договор, ТЗ, КП, смету, регламент, протокол, таблицу. Удобнее всего файл на 2–10 страниц в Word или PDF с текстом. Отличить такой PDF от скана просто: попробуйте выделить мышью одно слово. Если выделяется слово, в файле текст. Если выделяется вся страница как картинка, перед вами скан, и работы с ним будет больше (раздел 2.3).</p>
+<p>Если подходящего документа нет или его не получается обезличить, работайте на учебном договоре или КП. Приём вы освоите так же.</p>
+<h3 id="шаг-2-сделайте-копию">Шаг 2. Сделайте копию</h3>
+<p>Обезличивайте копию, оригинал не трогайте. Положите копию в отдельную папку, например «Для ИИ», чтобы потом не перепутать файлы.</p>
+<h3 id="шаг-3-замените-названия-и-имена-в-тексте">Шаг 3. Замените названия и имена в тексте</h3>
+<p>Пройдите по тексту по правилам светофора из урока 1.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Было</th>
+<th>Стало</th>
+</tr>
+</thead><tbody><tr>
+<td>Название контрагента, бренд, адрес сайта</td>
+<td>Компания А, Компания Б</td>
+</tr>
+<tr>
+<td>ФИО, должность с фамилией</td>
+<td>Сотрудник 1, главный инженер</td>
+</tr>
+<tr>
+<td>ИНН, ОГРН, КПП, расчётный счёт, БИК</td>
+<td>удалить</td>
+</tr>
+<tr>
+<td>Адрес объекта или склада</td>
+<td>[АДРЕС] или «в регионе»</td>
+</tr>
+<tr>
+<td>Телефон, почта, мессенджер</td>
+<td>удалить</td>
+</tr>
+<tr>
+<td>Номер договора, заявки, закупки</td>
+<td>[НОМЕР]</td>
+</tr>
+<tr>
+<td>Сумма, по которой узнают сделку</td>
+<td>округлить или умножить на коэффициент</td>
+</tr>
+</tbody></table></div>
+<p>В Word удобнее всего «Найти и заменить» (Ctrl+H): вписываете название компании и заменяете все вхождения сразу. Потом поищите короткие формы, которые замена пропустила: аббревиатуру, название без «ООО», фамилию без инициалов, название в родительном падеже.</p>
+<p>С суммами есть тонкость. Если вы собираетесь проверять арифметику, округление её сломает: итог перестанет сходиться со строками. В таком случае умножьте все суммы документа на одно и то же число. Соотношения сохранятся, итоги сойдутся так же, как в оригинале, а настоящую сделку по цифрам уже не узнать.</p>
+<h3 id="шаг-4-проверьте-места-вокруг-текста">Шаг 4. Проверьте места вокруг текста</h3>
+<p>Основной текст вы почистили. Компанию чаще выдают места вокруг него, поэтому пройдите по списку.</p>
+<ul>
+<li><strong>Колонтитулы.</strong> Логотип, название компании, номер документа, адрес. В Word дважды щёлкните по верхнему или нижнему краю страницы, чтобы открыть колонтитул. Первую страницу проверьте отдельно, у неё бывает свой колонтитул.</li>
+<li><strong>Подписи и расшифровки.</strong> «Генеральный директор ____ / Иванов И. И.» в конце договора. Картинки подписей и печатей удалите целиком.</li>
+<li><strong>Лист согласования.</strong> Фамилии, должности, даты визирования. Обычно это последняя страница или отдельный лист после подписей.</li>
+<li><strong>Приложения.</strong> Спецификация с адресом доставки, схема с названием объекта, доверенность, реквизиты отдельной таблицей. Пролистайте документ до последней страницы.</li>
+<li><strong>Примечания и исправления.</strong> В режиме рецензирования у каждого примечания видно имя автора. Примите или отклоните исправления и удалите примечания.</li>
+<li><strong>Картинки.</strong> Логотипы, печати, фото объекта, QR‑коды. ИИ читает и их.</li>
+<li><strong>Свойства файла.</strong> В Word откройте «Файл → Сведения»: там бывают автор, организация, руководитель. Там же есть «Проверить наличие проблем → Проверить документ». Эта проверка находит свойства, примечания и скрытый текст и удаляет их кнопкой.</li>
+<li><strong>Таблицы Excel.</strong> Скрытые листы, столбцы и строки, примечания к ячейкам, названия листов вроде «Ромашка_октябрь», ссылки на другие файлы.</li>
+<li><strong>Имя файла.</strong> «Договор_Ромашка_Иванов_финал2.docx» выдаёт всё сразу. Назовите файл по содержанию: <code>dogovor-postavki-obezlichen.docx</code>.</li>
+</ul>
+<h3 id="шаг-5-прочитайте-копию-глазами-постороннего">Шаг 5. Прочитайте копию глазами постороннего</h3>
+<p>Откройте копию и пролистайте её от первой до последней страницы. Проверьте, можно ли по ней понять, о какой компании, человеке или объекте речь. Если можно, дочистите. Если без названий документ теряет смысл, например вся его суть в истории отношений с одним поставщиком, возьмите учебный.</p>
+<aside class="callout c-warn"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><span class="c-title">Внимание: данные</span></div><div class="c-body"><p>Некоторые документы не загружают даже после чистки: с паспортными данными, медицинскими сведениями, зарплатами конкретных людей, под соглашением о конфиденциальности, с коммерческой тайной. Это красная зона светофора. Сверяйтесь и с правилами своей компании: у неё может быть свой список разрешённых сервисов и запретов.</p>
+</div></aside>
+<aside class="callout c-mistake"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span><span class="c-title">Типичная ошибка</span></div><div class="c-body"><div class="m-rows"><p class="m-row m-how"><span class="m-lbl">Как делают:</span> заменяют названия в тексте и сразу загружают файл.</p><p class="m-row m-bad"><span class="m-lbl">Чем плохо:</span> название остаётся в колонтитуле, в листе согласования и в свойствах файла. ИИ его прочитает, а сервис сохранит.</p><p class="m-row m-ok"><span class="m-lbl">Как правильно:</span> после замены в тексте пройдите список из шага 4 и пролистайте документ до конца.</p></div>
+</div></aside>
+<hr>
+</section>
+<section class="chapter acc-0" aria-labelledby="2-1-что-получилось-в-домашнем-задании-1">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.1</span></span><h2 id="2-1-что-получилось-в-домашнем-задании-1"><span class="vh">2.1. </span>Что получилось в домашнем задании 1</h2></header>
+<p>Спасибо всем, кто сдал первое домашнее задание. Каждому я отправил отзыв, а на уроке мы с согласия авторов разобрали несколько работ без имён. По вашим замерам «без ИИ → с ИИ» мы начали копить сэкономленное время группы. Замеры из домашнего задания 2 добавятся к ним, итог подведём на уроке 3.</p>
+<p>Три ошибки встречались чаще других. Это нормальные ошибки первой недели. На документах их легче избежать, потому что в документе есть и контекст, и источник для проверки.</p>
+<h3 id="ошибка-1-промпт-без-контекста">Ошибка 1. Промпт без контекста</h3>
+<p>«Напиши письмо поставщику», и больше ничего. ИИ не знает, кто поставщик, что случилось и чего вы хотите, поэтому пишет общие слова.</p>
+<p><strong>Как исправить.</strong> Пройдитесь по формуле: роль, контекст, задача, формат, ограничения. Чаще всего не хватает контекста. Ответьте в промпте на три вопроса: что произошло, кто прочитает результат, что вы хотите получить.</p>
+<p class="ba-label ba-before">Было:</p>
+<aside class="callout c-note c-before"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg></span><div class="c-body"><p>«Напиши письмо поставщику».</p>
+</div></aside>
+<p class="ba-label ba-after">Стало:</p>
+<aside class="callout c-note c-after"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg></span><div class="c-body"><p>«Ты менеджер по закупкам. Поставщик сорвал срок поставки стеллажей на неделю, из‑за этого сдвигается монтаж. Напиши письмо: попроси письменно подтвердить новую дату и предложить меры. Тон деловой, до 150 слов».</p>
+</div></aside>
+<h3 id="ошибка-2-приняли-первый-ответ">Ошибка 2. Приняли первый ответ</h3>
+<p>Уточнение было формальным: «сделай лучше», «переделай». ИИ не понимает, что ему исправлять, и меняет случайные места.</p>
+<p><strong>Как исправить.</strong> Назовите в уточнении, что не так и как надо. Для документов чаще всего нужны три вида уточнений:</p>
+<ul>
+<li><strong>Пропуск.</strong> «Ты не разобрал раздел 7. Разбери его так же, как остальные».</li>
+<li><strong>Формат.</strong> «Добавь колонку „Что предложить“, а „Что написано“ сократи до цитаты в одну строку».</li>
+<li><strong>Глубина.</strong> «Слишком общо. По каждому риску напиши, что конкретно может случиться с покупателем».</li>
+</ul>
+<h3 id="ошибка-3-проверка-на-глаз">Ошибка 3. Проверка «на глаз»</h3>
+<p>«Вроде всё правильно». Проверить значит открыть источник и сверить конкретную цифру или факт.</p>
+<p><strong>Как исправить.</strong> С документом проверка становится механической. У каждого вывода есть номер пункта: вы открываете пункт и сравниваете. На уроке я так проверил пункты 4.1 и 6.2 учебного договора за двадцать секунд. Пошагово проверка разобрана в разделе 2.6.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Ошибка</th>
+<th>Как выглядит</th>
+<th>Что делаем на документах</th>
+</tr>
+</thead><tbody><tr>
+<td>Нет контекста</td>
+<td>«Напиши письмо поставщику»</td>
+<td>Прикрепляем документ: он и есть контекст</td>
+</tr>
+<tr>
+<td>Первый ответ принят</td>
+<td>«Сделай лучше»</td>
+<td>Уточняем по схеме «что не так и как надо»</td>
+</tr>
+<tr>
+<td>Проверка на глаз</td>
+<td>«Вроде правильно»</td>
+<td>Открываем три пункта, на которые ссылается ИИ, и сверяем</td>
+</tr>
+</tbody></table></div>
+<hr>
+</section>
+<section class="chapter acc-2" aria-labelledby="2-2-два-показа-договор-и-три-кп">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.2</span></span><h2 id="2-2-два-показа-договор-и-три-кп"><span class="vh">2.2. </span>Два показа: договор и три КП</h2></header>
+<h3 id="показ-1-договор-за-минуту">Показ 1. Договор за минуту</h3>
+<p>Представьте: договор поставки складского оборудования пришёл от поставщика вечером, подписать его надо завтра. Три страницы и спецификация. Документ учебный и уже обезличен: вместо названий «Компания А» и «Компания Б», реквизиты удалены. Так выглядит жёлтый документ после обезличивания.</p>
+<p>Я открыл в DeepSeek новый чат, нажал скрепку, прикрепил файл договора и отправил промпт.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.1</span></span><span class="vh"> — </span><span class="pc-title">риски договора для покупателя</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Ты — юрист со стороны покупателя. Найди в договоре условия, невыгодные
+для покупателя. Ответ — таблица: пункт · что написано · чем рискует
+покупатель · что предложить поставщику.
+Ссылайся только на пункты этого договора.
+Чего в договоре нет — пиши «в договоре нет».</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> свою сторону договора: «со стороны заказчика», «со стороны арендатора», «со стороны подрядчика». Для длинного или запутанного договора включите DeepThink.<br><strong>Что проверить в ответе:</strong> откройте два‑три пункта из таблицы и сверьте формулировки. Если ИИ ссылается на статью закона, её проверяет юрист.</p>
+</div></figure>
+<p>Две последние строки промпта важнее остальных. Они превращаются в первые два правила Аналитика (раздел 2.4).</p>
+<p><strong>Что нашёл ИИ.</strong> В учебном договоре десять условий, невыгодных покупателю. Хороший ответ находит большинство из них.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Пункт</th>
+<th>Что написано</th>
+<th>Чем рискует покупатель</th>
+</tr>
+</thead><tbody><tr>
+<td>2.2</td>
+<td>Предоплата 100 % за 5 банковских дней</td>
+<td>Деньги отданы до поставки. Если поставка сорвётся, возвращать их придётся через претензию и суд</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Поставщик может в одностороннем порядке поднять цену при росте стоимости металлопроката</td>
+<td>Итоговая цена не зафиксирована</td>
+</tr>
+<tr>
+<td>2.4 и 3.3</td>
+<td>Доставка не входит в цену, но везёт её поставщик</td>
+<td>Стоимость доставки не определена, поставщик выставит свой счёт</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Поставщик может перенести срок на 30 дней, и это не нарушение</td>
+<td>Срок 45 рабочих дней на деле может вырасти ещё на месяц</td>
+</tr>
+<tr>
+<td>4.1–4.2</td>
+<td>Приёмка за 1 рабочий день, потом претензии не принимаются, даже по скрытым недостаткам</td>
+<td>Брак, найденный после монтажа, не предъявить</td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Риск случайной гибели переходит к покупателю при передаче перевозчику</td>
+<td>Груз в пути на риске покупателя, хотя везёт поставщик</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>Гарантия не действует, если стеллажи перемещал не поставщик</td>
+<td>Любая перестановка на складе снимает гарантию</td>
+</tr>
+<tr>
+<td>6.1 и 6.2</td>
+<td>Неустойка покупателя 0,5 % в день, поставщика 0,01 % в день и не больше 1 %</td>
+<td>Ответственность сторон несоразмерна</td>
+</tr>
+<tr>
+<td>8.2</td>
+<td>Суд по месту нахождения поставщика</td>
+<td>Спорить придётся на территории поставщика</td>
+</tr>
+<tr>
+<td>9.2</td>
+<td>Поставщик может передать договор третьему лицу без согласия покупателя</td>
+<td>Контрагент может смениться без вашего ведома</td>
+</tr>
+</tbody></table></div>
+<p><strong>Как я проверял.</strong> Открыл пункт 4.1: «в течение 1 (одного) рабочего дня», совпадает. Открыл пункт 6.2: 0,01 % в день и не более 1 %, совпадает. Проверка заняла двадцать секунд, потому что у каждого вывода был номер пункта.</p>
+<p><strong>Что ещё проверить в таком ответе.</strong></p>
+<ol>
+<li>У каждой строки есть номер пункта. Строку без номера считайте догадкой.</li>
+<li>Связки пунктов. Риск по доставке складывается из двух пунктов, 2.4 и 3.3. Если ИИ разобрал их по отдельности и риска не увидел, спросите: «Как связаны пункты 2.4 и 3.3?»</li>
+<li>Ссылки на закон. Фраза «по закону покупатель вправе…» берётся из общих знаний модели. В этом показе мы проверяем только сам договор, нормы юрист сверяет по КонсультантПлюс или Гаранту.</li>
+<li>Арифметика спецификации. В учебном договоре она сходится: 3 420 000 + 270 000 + 900 000 + 270 000 = 4 860 000 руб., НДС 22 % внутри: 876 393,44 руб. В своём договоре пересчитайте спецификацию в Excel (раздел 2.7).</li>
+</ol>
+<p>Юрист прочитал бы этот договор за полчаса и нашёл бы то же самое и больше. ИИ его не заменяет. Он делает первый проход за минуту, и к юристу вы приходите с конкретными вопросами.</p>
+<aside class="callout c-warn"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><span class="c-title">Внимание: проверьте</span></div><div class="c-body"><p>Таблица рисков от ИИ годится как черновик. Подписывать договор или нет, какую занять позицию и как сформулировать протокол разногласий, решает юрист.</p>
+</div></aside>
+<h3 id="показ-2-три-кп-на-погрузчик">Показ 2. Три КП на погрузчик</h3>
+<p>На фото заметок с первого урока была строка «ТЗ на погрузчик, ждём 3 КП». Вот они пришли: три предложения на электрический погрузчик от компаний В, Г и Д. На уроке я спросил группу, какое выгоднее, если смотреть на итоговую цену. Многие выбрали Г, у него самая низкая цифра.</p>
+<p>В новом чате я прикрепил все три файла сразу и отправил промпт.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.2</span></span><span class="vh"> — </span><span class="pc-title">сравнение трёх КП</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Сравни три коммерческих предложения таблицей: цена с НДС, что входит
+в комплект, срок, оплата, гарантия, сервис.
+Пересчитай итог каждого КП по строкам и отметь, если он не сходится.
+Отдельно: что не указано и какие вопросы задать каждому поставщику.</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> свои строки сравнения. Для услуг это могут быть состав работ, сроки этапов и штрафы. Если файлов больше трёх, назовите их в промпте: «первый файл — Компания В, второй — Компания Г».<br><strong>Что проверить в ответе:</strong> итог каждого КП пересчитайте в Excel, даже если ИИ написал «сходится». Проверьте, везде ли цены указаны с НДС.</p>
+</div></figure>
+<p>Здесь я попросил ИИ пересчитать итоги, чтобы он заметил расхождение. Окончательную цифру всё равно даёт Excel, это мы сделаем в разделе 2.7.</p>
+<p><strong>Правильное сравнение</strong> выглядит так.</p>
+<div class="table-wrap"><table><thead><tr>
+<th></th>
+<th>КП 1 · Компания В</th>
+<th>КП 2 · Компания Г</th>
+<th>КП 3 · Компания Д</th>
+</tr>
+</thead><tbody><tr>
+<td>Итог в КП</td>
+<td>2 734 000 с НДС</td>
+<td>2 480 000 с НДС</td>
+<td>2 640 000 <strong>без НДС</strong></td>
+</tr>
+<tr>
+<td>Итог по строкам</td>
+<td>2 734 000, сходится</td>
+<td><strong>2 498 400, ошибка на 18 400</strong></td>
+<td>2 640 000, сходится</td>
+</tr>
+<tr>
+<td>Итог с НДС</td>
+<td>2 734 000</td>
+<td>2 498 400 + цена АКБ</td>
+<td><strong>3 220 800</strong></td>
+</tr>
+<tr>
+<td>Аккумулятор</td>
+<td>в комплекте</td>
+<td><strong>не входит</strong>, цены нет</td>
+<td>в комплекте</td>
+</tr>
+<tr>
+<td>Погрузчик</td>
+<td>1,5 т, 4,5 м</td>
+<td>1,6 т, 4,8 м</td>
+<td>1,5 т, 4,5 м</td>
+</tr>
+<tr>
+<td>Срок</td>
+<td>30 раб. дней</td>
+<td>60 раб. дней</td>
+<td>14 раб. дней</td>
+</tr>
+<tr>
+<td>Оплата</td>
+<td>50 / 50</td>
+<td><strong>100 % предоплата</strong></td>
+<td>30 / 70</td>
+</tr>
+<tr>
+<td>Гарантия</td>
+<td>12 мес. / 1 500 моточасов</td>
+<td>24 мес. / 2 000 моточасов</td>
+<td>12 мес.</td>
+</tr>
+<tr>
+<td>Сервис</td>
+<td>выезд за 48 ч</td>
+<td>выезд за 72 ч</td>
+<td>выезд за 24 ч, центр в городе</td>
+</tr>
+<tr>
+<td>Действует</td>
+<td>10 календ. дней</td>
+<td>5 раб. дней</td>
+<td>14 календ. дней</td>
+</tr>
+</tbody></table></div>
+<p><strong>Три ловушки.</strong></p>
+<ol>
+<li><strong>В КП Г итог не сходится.</strong> Строки дают 2 290 000 + 162 000 + 28 400 + 18 000 = 2 498 400, в предложении написано 2 480 000. Ошибка на 18 400 рублей.</li>
+<li><strong>В КП Г нет аккумулятора.</strong> Под таблицей одной строкой написано, что батарея в комплект не входит и поставляется по отдельному запросу. Самое дешёвое предложение оказалось без батареи, цену которой ещё предстоит узнать.</li>
+<li><strong>КП Д указано без НДС.</strong> 2 640 000 × 1,22 = 3 220 800. С НДС оно самое дорогое из трёх.</li>
+</ol>
+<p>Самое дешёвое нельзя выбрать, пока цены не приведены к одному виду. ИИ увидел это за минуту и составил вопросы каждому поставщику:</p>
+<ul>
+<li><strong>Компания В:</strong> что входит в пусконаладку, дают ли подменный погрузчик на время ремонта.</li>
+<li><strong>Компания Г:</strong> стоимость и ёмкость аккумулятора, исправленный итог, возможна ли оплата частями, почему срок 60 дней.</li>
+<li><strong>Компания Д:</strong> итоговая цена с НДС, год выпуска техники со склада, условия гарантии на аккумулятор.</li>
+</ul>
+<p>Если ИИ пропустил ловушку, это тоже результат. Он показывает, зачем цифры и комплект проверяет человек.</p>
+<aside class="callout c-try"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/><path d="m15 5 3 3"/></svg></span><span class="c-title">Попробуйте сами</span></div><div class="c-body"><p>Повторите оба показа на учебных файлах, каждый в своём чате. Ожидаемый результат: в таблице рисков 8–10 строк с номерами пунктов, в сравнении КП найдены три ловушки. Если какой‑то ловушки нет, уточните: «Проверь, всё ли входит в комплект КП Компании Г», и посмотрите, найдёт ли ИИ её со второго раза.</p>
+</div></aside>
+<hr>
+</section>
+<section class="chapter acc-3" aria-labelledby="2-3-как-ии-читает-файлы">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.3</span></span><h2 id="2-3-как-ии-читает-файлы"><span class="vh">2.3. </span>Как ИИ читает файлы</h2></header>
+<p>Вы видели, как это выглядит снаружи. Теперь о том, что происходит с файлом внутри и где здесь подвох.</p>
+<aside class="callout c-date"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg></span><span class="c-title">Актуально на 14.11.2026</span></div><div class="c-body"><p>DeepSeek принимает документы Word и PDF, таблицы Excel и изображения, в том числе фото рукописного текста. Сколько файлов и какого размера можно прикрепить, зависит от сервиса и меняется. Поэтому вместо цифр ниже способ проверить, всё ли ИИ прочитал.</p>
+</div></aside>
+<h3 id="какие-файлы-и-как">Какие файлы и как</h3>
+<div class="table-wrap"><table><thead><tr>
+<th>Файл</th>
+<th>Как ИИ его читает</th>
+<th>Что может пойти не так</th>
+</tr>
+</thead><tbody><tr>
+<td>Word</td>
+<td>Берёт готовый текст из файла вместе с таблицами</td>
+<td>Картинки внутри документа, надписи, колонтитулы</td>
+</tr>
+<tr>
+<td>PDF с текстом</td>
+<td>Так же, как Word</td>
+<td>Сложные таблицы рассыпаются: колонки склеиваются, строки съезжают</td>
+</tr>
+<tr>
+<td>PDF‑скан</td>
+<td>Распознаёт страницу как картинку</td>
+<td>Печать поверх текста, подписи, правки ручкой, перекошенные страницы</td>
+</tr>
+<tr>
+<td>Excel</td>
+<td>Читает строки и столбцы</td>
+<td>Объединённые ячейки, несколько таблиц на одном листе, скрытые листы</td>
+</tr>
+<tr>
+<td>Фото</td>
+<td>Распознаёт картинку, почерк тоже</td>
+<td>Блики, мелкий шрифт, обрезанные края, снимок под углом</td>
+</tr>
+</tbody></table></div>
+<p>Документы Word и PDF с текстом ИИ читает лучше всего: текст лежит в файле готовым. Сканы и фото он сначала распознаёт как картинку, так же как фото заметок на первом уроке. Почерк и печатный текст на ровном фото он разбирает хорошо, а на сканах с печатями, подписями и правками ручкой ошибается чаще.</p>
+<p>На уроке мы проверили это опросом: какой файл ИИ прочитает хуже всего? Правильно ответили те, кто выбрал скан договора с печатями и правками ручкой. На нём собрано всё сложное сразу. Страницу блокнота на фото ИИ разберёт лучше, там один почерк. Если у вас скан, проверяйте ответ внимательнее и по возможности ищите исходник в Word.</p>
+<h3 id="что-теряется-по-дороге">Что теряется по дороге</h3>
+<p>ИИ может не увидеть часть документа, и вы об этом не узнаете:</p>
+<ul>
+<li>приложения, вставленные в документ картинкой;</li>
+<li>мелкий шрифт и сноски;</li>
+<li>таблицы в сканах: строки съезжают, и цифра встаёт не в ту колонку;</li>
+<li>рукописные правки на полях и зачёркивания;</li>
+<li>колонтитулы и штампы.</li>
+</ul>
+<p>ИИ не скажет «я не прочитал приложение». Он ответит по тому, что прочитал. Ловушка с аккумулятором в КП Г стояла одной строкой под таблицей, и такие строки ИИ иногда пропускает. Поэтому важные части документа запрашивайте отдельно:</p>
+<div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Перечисли все разделы и приложения, которые ты видишь в файле,
+с их номерами и названиями. Затем выпиши строки Приложения 1
+таблицей. Ничего не добавляй от себя.</code></pre></div>
+<p>Если ответ пустой, неполный или странный, откройте документ, скопируйте приложение и вставьте его в чат текстом. С таблицей из скана поступите так же: найдите исходник в Word или Excel, а если его нет, сфотографируйте таблицу отдельно, крупно и ровно.</p>
+<h3 id="длинный-документ">Длинный документ</h3>
+<p>На первом уроке мы сравнивали память ИИ с рабочим столом: места на нём ограниченное количество. Договор на три страницы помещается легко. Регламент на сто страниц может не поместиться целиком, и тогда ИИ будет отвечать по части документа, не предупредив вас.</p>
+<p>Что делать с длинным документом:</p>
+<ol>
+<li><strong>Один документ, один чат.</strong> Не смешивайте в одном разговоре регламент, договор и письмо.</li>
+<li><strong>Спрашивайте по разделам.</strong> «Разбери раздел 5» даст точнее, чем «разбери регламент».</li>
+<li><strong>Проверяйте, что ИИ видел.</strong> В конце попросите перечислить разделы, которые он прочитал. Если какого‑то нет, до него ИИ не дочитал.</li>
+</ol>
+<p>В длинном чате ИИ начинает забывать начало разговора. Если ответы поплыли, откройте новый чат и загрузите документ заново.</p>
+<div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Это регламент из [N] разделов. Сейчас разбери только раздел [N]:
+[ЗАДАЧА, например «выпиши сроки и ответственных»].
+Ссылайся на номера подпунктов. Остальные разделы пока не трогай.</code></pre></div>
+<aside class="callout c-mistake"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span><span class="c-title">Типичная ошибка</span></div><div class="c-body"><div class="m-rows"><p class="m-row m-how"><span class="m-lbl">Как делают:</span> загружают регламент на сто страниц и спрашивают «какие сроки установлены в регламенте».</p><p class="m-row m-bad"><span class="m-lbl">Чем плохо:</span> ИИ мог прочитать только начало и уверенно перечислит сроки из первой трети документа.</p><p class="m-row m-ok"><span class="m-lbl">Как правильно:</span> сначала попросите список разделов, потом разбирайте документ по разделам.</p></div>
+</div></aside>
+<h3 id="несколько-файлов-сразу">Несколько файлов сразу</h3>
+<p>Прикрепить можно несколько файлов, как три КП на уроке. Тогда назовите в промпте, где какой: «первый файл — договор, второй — спецификация». И попросите указывать, из какого файла каждый вывод, для этого добавьте в таблицу колонку «Файл». Без неё в ответе по трём КП легко перепутать, чья гарантия на 24 месяца.</p>
+<h3 id="если-файл-не-загрузился">Если файл не загрузился</h3>
+<ul>
+<li><strong>DeepSeek не принял файл или прочитал его криво.</strong> Откройте документ, скопируйте текст и вставьте его в чат. Этот приём выручает чаще, чем кажется.</li>
+<li><strong>«Сервер занят» или ответ завис.</strong> Подождите несколько минут и повторите запрос в новом чате.</li>
+<li><strong>Таблица из скана рассыпалась.</strong> Ищите исходник или фотографируйте таблицу отдельно.</li>
+</ul>
+<hr>
+</section>
+<section class="chapter acc-1" aria-labelledby="2-4-три-правила-аналитика">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.4</span></span><h2 id="2-4-три-правила-аналитика"><span class="vh">2.4. </span>Три правила Аналитика</h2></header>
+<p>Эти три правила превращают ответ ИИ из «вроде похоже» в результат, который можно проверить и отдать дальше. Они короткие, и их стоит дописывать в конец каждого промпта с документом.</p>
+<h3 id="правило-1-только-по-документу-со-ссылкой-на-пункт">Правило 1. Только по документу, со ссылкой на пункт</h3>
+<p>Фраза для промпта: «Отвечай только по документу и у каждого вывода указывай пункт».</p>
+<p>Без этой фразы ИИ смешивает документ со своими общими знаниями. Он может написать «по закону покупатель имеет право…», хотя в договоре этого нет. Со ссылкой на пункт вы проверяете вывод за секунды, как я проверил пункт 4.1. Нет номера, значит, нет вывода.</p>
+<p>Для разных документов ссылка выглядит по‑разному:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Документ</th>
+<th>Что просить указывать</th>
+</tr>
+</thead><tbody><tr>
+<td>Договор, регламент, ТЗ</td>
+<td>номер пункта или подпункта</td>
+</tr>
+<tr>
+<td>Таблица, смета, ведомость</td>
+<td>номер строки и название столбца</td>
+</tr>
+<tr>
+<td>Длинный документ без нумерации</td>
+<td>страницу и первые слова абзаца</td>
+</tr>
+<tr>
+<td>Протокол</td>
+<td>номер вопроса повестки</td>
+</tr>
+<tr>
+<td>Несколько файлов</td>
+<td>файл и пункт в нём</td>
+</tr>
+</tbody></table></div>
+<h3 id="правило-2-чего-нет-пишите-в-документе-нет">Правило 2. Чего нет, пишите «в документе нет»</h3>
+<p>Фраза для промпта: «Если в документе этого нет, пиши „в документе нет“».</p>
+<p>Это та же защита от выдумки, что «не указано» в заметках на первом уроке. Спросите ИИ про штраф за просрочку монтажа в учебном договоре. Пункт 3.4 даёт поставщику 10 рабочих дней на монтаж, а неустойка в пункте 6.2 касается только срока поставки. Без правила ИИ может придумать разумный штраф. С правилом он напишет «в договоре нет», и это ценная находка: в договор надо добавить условие.</p>
+<p>Часто самое важное в договоре то, чего в нём нет. В учебном договоре, кроме штрафа за монтаж, нет раздела о расторжении и порядка возврата предоплаты. Найти отсутствующее помогает проверка по списку:</p>
+<div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Проверь, есть ли в договоре условия: [СПИСОК, например «штраф
+за просрочку монтажа, порядок расторжения, возврат предоплаты,
+срок устранения недостатков»].
+Ответ — таблица: условие · пункт договора · что написано.
+Если условия нет — пиши «в договоре нет».</code></pre></div>
+<h3 id="правило-3-цифры-считает-excel">Правило 3. Цифры считает Excel</h3>
+<p>Цифры ИИ не принимаем на веру, пересчитываем в Excel.</p>
+<p>На первом уроке мы говорили, что модель подбирает правдоподобное продолжение текста и не считает. В коротком примере она посчитает верно. В длинной таблице она может ошибиться в одной строке, и ответ при этом будет выглядеть идеально. Поэтому сумму, процент и итог по смете вы пересчитываете сами. Как это сделать за минуту, разобрано в разделе 2.7.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Правило</th>
+<th>Фраза в промпт</th>
+<th>Что даёт</th>
+</tr>
+</thead><tbody><tr>
+<td>1. Только по документу</td>
+<td>«Отвечай только по документу, у каждого вывода указывай пункт»</td>
+<td>Вывод можно проверить за секунды</td>
+</tr>
+<tr>
+<td>2. Чего нет</td>
+<td>«Если этого нет, пиши „в документе нет“»</td>
+<td>ИИ не додумывает. Пропуски становятся находками</td>
+</tr>
+<tr>
+<td>3. Цифры</td>
+<td>«Итоги не считай, перенеси цифры в таблицу»</td>
+<td>Итог считает Excel, ошибка в строке видна сразу</td>
+</tr>
+</tbody></table></div>
+<h3 id="светофор-для-документов">Светофор для документов</h3>
+<p>Светофор из первого урока работает и здесь. Только теперь вы загружаете целые файлы, а в файле легко пропустить лишнее: подпись, реквизиты в колонтитуле, фамилии в листе согласования.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Цвет</th>
+<th>Примеры документов</th>
+<th>Что делать</th>
+</tr>
+</thead><tbody><tr>
+<td><span class="tl tl-red" aria-hidden="true"></span><strong>Красный</strong></td>
+<td>Скан паспорта водителя для пропуска; договор с реквизитами и подписями; приказ или ведомость с ФИО и зарплатами; документ под соглашением о конфиденциальности</td>
+<td>Не загружать. Описать задачу словами или взять учебный документ</td>
+</tr>
+<tr>
+<td><span class="tl tl-yellow" aria-hidden="true"></span><strong>Жёлтый</strong></td>
+<td>Смета с названием заказчика и адресом объекта; КП с реквизитами поставщика; протокол с фамилиями; ТЗ с названием проекта</td>
+<td>Сначала обезличить по разделу 0</td>
+</tr>
+<tr>
+<td><span class="tl tl-green" aria-hidden="true"></span><strong>Зелёный</strong></td>
+<td>Договор, где названия заменены на «Компания А, Б» и удалены реквизиты; закон, ГОСТ, публичная оферта; учебные документы курса; ваш шаблон без чужих данных</td>
+<td>Можно загружать</td>
+</tr>
+</tbody></table></div>
+<p>Перед загрузкой пролистайте документ до конца. Последние страницы и приложения чаще всего и выдают компанию.</p>
+<hr>
+</section>
+<section class="chapter acc-4" aria-labelledby="2-5-формула-для-документа">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.5</span></span><h2 id="2-5-формула-для-документа"><span class="vh">2.5. </span>Формула для документа</h2></header>
+<p>Формула та же, что на первом уроке: роль, контекст, задача, формат, ограничения. Контекстом теперь служит ваш файл, а в ограничения мы дописываем три правила Аналитика. Получается промпт, который годится почти для любого рабочего документа.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.3</span></span><span class="vh"> — </span><span class="pc-title">формула для документа</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Ты — [РОЛЬ: юрист, закупщик, сметчик, аналитик, руководитель отдела].
+Прикреплён документ: [ЧТО ЗА ДОКУМЕНТ, например «договор поставки,
+мы покупатель»]. Документ обезличен.
+Задача: [ЧТО НУЖНО: найти риски / сравнить / выписать сроки
+и обязанности / составить вопросы].
+Формат: таблица с колонками [КОЛОНКИ].
+Правила:
+1) Отвечай только по этому документу. У каждого вывода указывай пункт.
+2) Если в документе чего-то нет — пиши «в документе нет», не додумывай.
+3) Итоги и суммы не считай. Если нужен расчёт, перенеси цифры в таблицу.</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> роль, тип документа, задачу и колонки. Три правила в конце не меняйте.<br><strong>Что проверить в ответе:</strong> есть ли номер пункта у каждой строки и не появились ли выводы, которых нет в документе (ссылки на законы, «обычно принято»).</p>
+</div></figure>
+<h3 id="из-чего-состоит-промпт">Из чего состоит промпт</h3>
+<div class="table-wrap"><table><thead><tr>
+<th>Часть</th>
+<th>Что писать</th>
+<th>Пример</th>
+</tr>
+</thead><tbody><tr>
+<td>Роль</td>
+<td>Кто вы или какой специалист вам нужен</td>
+<td>«Ты — закупщик», «Ты — сметчик»</td>
+</tr>
+<tr>
+<td>Контекст</td>
+<td>Что за документ и чья вы сторона</td>
+<td>«Договор поставки, мы покупатель», «смета подрядчика, мы заказчик»</td>
+</tr>
+<tr>
+<td>Задача</td>
+<td>Одно действие с документом</td>
+<td>Найти риски, сравнить, выписать сроки, составить вопросы</td>
+</tr>
+<tr>
+<td>Формат</td>
+<td>Таблица и её колонки</td>
+<td>«пункт · что написано · риск · что предложить»</td>
+</tr>
+<tr>
+<td>Ограничения</td>
+<td>Три правила Аналитика</td>
+<td>Только по документу, «в документе нет», итоги не считать</td>
+</tr>
+</tbody></table></div>
+<p>Чаще всего ответ портит размытая задача. «Проанализируй договор» даёт пересказ. «Найди условия, невыгодные покупателю» даёт таблицу рисков. Ставьте одну задачу в одном сообщении. Следующую задайте уточнением в том же чате: документ ИИ уже прочитал.</p>
+<h3 id="колонки-под-задачу">Колонки под задачу</h3>
+<div class="table-wrap"><table><thead><tr>
+<th>Задача</th>
+<th>Колонки таблицы</th>
+</tr>
+</thead><tbody><tr>
+<td>Найти риски</td>
+<td>пункт · что написано · чем рискуем · что предложить</td>
+</tr>
+<tr>
+<td>Сравнить варианты</td>
+<td>параметр · вариант 1 · вариант 2 · вариант 3 · что не указано</td>
+</tr>
+<tr>
+<td>Выписать сроки и обязанности</td>
+<td>пункт · кто · что делает · срок</td>
+</tr>
+<tr>
+<td>Составить вопросы</td>
+<td>пункт · что неясно · вопрос · кому задать</td>
+</tr>
+<tr>
+<td>Найти противоречия</td>
+<td>пункт 1 · пункт 2 · в чём противоречие</td>
+</tr>
+</tbody></table></div>
+<aside class="callout c-mistake"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span><span class="c-title">Типичная ошибка</span></div><div class="c-body"><div class="m-rows"><p class="m-row m-how"><span class="m-lbl">Как делают:</span> прикрепляют файл и пишут «посмотри» или «что скажешь».</p><p class="m-row m-bad"><span class="m-lbl">Чем плохо:</span> ИИ перескажет документ своими словами, а риски, сроки и вопросы вам придётся искать самим.</p><p class="m-row m-ok"><span class="m-lbl">Как правильно:</span> файл и промпт по формуле отправляйте одним сообщением, с задачей и колонками.</p></div>
+</div></aside>
+<hr>
+</section>
+<section class="chapter acc-5" aria-labelledby="2-6-задание-урока-ваш-ход">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.6</span></span><h2 id="2-6-задание-урока-ваш-ход"><span class="vh">2.6. </span>Задание урока «Ваш ход»</h2></header>
+<p>На уроке вы 15 минут работали на своём документе: 7 минут на промпт, 4 на уточнение, 4 на проверку. Если вы пропустили урок или хотите повторить, выполните три шага ниже с таймером.</p>
+<aside class="callout c-warn"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><span class="c-title">Внимание: данные</span></div><div class="c-body"><p>Работайте только с обезличенным документом (раздел 0) или с учебным. Перед загрузкой ещё раз пролистайте файл до последней страницы.</p>
+</div></aside>
+<h3 id="шаг-1-промпт-по-формуле-7-минут">Шаг 1. Промпт по формуле, 7 минут</h3>
+<ol>
+<li>Откройте DeepSeek, начните новый чат.</li>
+<li>Нажмите скрепку и прикрепите свой документ или учебный.</li>
+<li>Вставьте промпт П‑2.3 и подставьте роль, документ, задачу и колонки.</li>
+<li>Для договора или сложного ТЗ включите DeepThink.</li>
+<li>Отправьте и дождитесь ответа целиком.</li>
+</ol>
+<p>Если не знаете, какую задачу выбрать, начните с рисков для договора, со сравнения для КП и со сроков и обязанностей для регламента.</p>
+<h3 id="шаг-2-одно-уточнение-4-минуты">Шаг 2. Одно уточнение, 4 минуты</h3>
+<p>Прочитайте ответ. Не те колонки, слишком общо, пропущен важный раздел? Напишите одно уточнение по схеме «что не так и как надо».</p>
+<div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Уточнение: [ЧТО НЕ ТАК]. Сделай [КАК НАДО].</code></pre></div>
+<p>Например: «Ты пропустил раздел про оплату. Добавь его и для каждого риска предложи формулировку пункта». Или: «В таблице 25 строк, мне нужны 7 главных. Оставь самые опасные для покупателя и объясни выбор одной фразой».</p>
+<h3 id="шаг-3-проверьте-три-вывода-4-минуты">Шаг 3. Проверьте три вывода, 4 минуты</h3>
+<p>Этот шаг самый важный.</p>
+<ol>
+<li>Выберите в ответе три вывода с номерами пунктов. Лучше те, на которые вы опирались бы в работе.</li>
+<li>Откройте свой документ и найдите эти пункты. В Word поможет поиск (Ctrl+F) по номеру пункта или по слову из вывода.</li>
+<li>Сравните, что написал ИИ, с тем, что написано в пункте.</li>
+<li>Запишите результат: «3 из 3», «2 из 3» или «1 из 3», и одной фразой, что не совпало.</li>
+</ol>
+<p>Несовпадения бывают разные, и по ним видно, где ИИ ошибается:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Что не совпало</th>
+<th>Как выглядит</th>
+<th>Что сделать</th>
+</tr>
+</thead><tbody><tr>
+<td>Номер пункта</td>
+<td>Вывод верный, но стоит в пункте 5.3 вместо 5.2</td>
+<td>Поправить номер. Для работы вывод годится</td>
+</tr>
+<tr>
+<td>Смысл</td>
+<td>В пункте «вправе», а ИИ написал «обязан»</td>
+<td>Исправить вывод и перепроверить соседние строки</td>
+</tr>
+<tr>
+<td>Вывода нет в документе</td>
+<td>ИИ сослался на пункт, где об этом ни слова</td>
+<td>Удалить строку. Это выдумка или общие знания</td>
+</tr>
+</tbody></table></div>
+<p>Если нашли расхождение, скажите об этом ИИ в том же чате:</p>
+<div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Вывод по пункту [N] не совпадает с документом. Там написано:
+«[ЦИТАТА ИЗ ДОКУМЕНТА]». Перепроверь остальные выводы по тексту
+документа и исправь таблицу. Если не уверен в пункте, пометь [ПРОВЕРИТЬ].</code></pre></div>
+<p>У кого‑то будет «3 из 3», у кого‑то что‑то не совпадёт. Это нормально, ради этого мы и проверяем. Документ, промпт с тремя правилами, уточнение и проверка по пунктам вместе составляют рабочий цикл Аналитика.</p>
+<aside class="callout c-practice"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span><span class="c-title">Из практики</span></div><div class="c-body"><p>Раньше первый проход по договору на [N] страниц занимал у меня [ВРЕМЯ АВТОРА]. Сейчас ИИ даёт таблицу за минуту, а я трачу [M] минут на проверку трёх‑пяти пунктов и на то, что знаю только я: историю отношений с контрагентом и наши договорённости.</p>
+</div></aside>
+<h3 id="для-самостоятельной-практики-найти-то-чего-нет">Для самостоятельной практики: найти то, чего нет</h3>
+<p>Возьмите договор и список условий, которые вы ожидаете в нём увидеть: штрафы, порядок расторжения, сроки устранения недостатков, ответственность за качество. Используйте промпт «проверь, есть ли в договоре условия» из правила 2 (раздел 2.4). Ожидаемый результат: таблица, в которой у каждого условия либо номер пункта, либо «в договоре нет». Все «нет» проверьте сами поиском по документу.</p>
+<h3 id="для-самостоятельной-практики-сравнить-две-редакции">Для самостоятельной практики: сравнить две редакции</h3>
+<p>Поставщик вернул договор со своими правками, а режим исправлений выключен. Прикрепите обе редакции в один чат.</p>
+<div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Первый файл — наша редакция договора, второй — редакция поставщика.
+Найди все отличия таблицей: пункт · наша редакция · редакция
+поставщика · что изменилось для нас.
+Ссылайся только на эти два файла. Если пункт есть только в одной
+редакции, так и напиши.</code></pre></div>
+<p><strong>Что проверить:</strong> два‑три отличия сверьте по обоим файлам. Мелкие правки (запятая, «рабочих» вместо «календарных») ИИ может пропустить, а для договора они меняют смысл. Если сравнение важно, включите в Word «Рецензирование → Сравнить»: эта функция сравнивает редакции точно, а ИИ объясняет, что изменилось.</p>
+<h3 id="для-самостоятельной-практики-вопросы-к-документу-перед-встречей">Для самостоятельной практики: вопросы к документу перед встречей</h3>
+<p>Завтра встреча по ТЗ или договору. Попросите: «Составь 10 вопросов к этому документу для встречи с [КЕМ]: пункт · что неясно · вопрос. Только по документу». Ожидаемый результат: вопросы с номерами пунктов, которые можно распечатать и взять с собой.</p>
+<hr>
+</section>
+<section class="chapter acc-0" aria-labelledby="2-7-цифры-ии-переносит-excel-считает">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.7</span></span><h2 id="2-7-цифры-ии-переносит-excel-считает"><span class="vh">2.7. </span>Цифры: ИИ переносит, Excel считает</h2></header>
+<p>Помните ошибку на 18 400 в КП Г? На уроке я проверил её по‑честному, без ИИ в роли калькулятора. Правило простое: ИИ переносит цифры из документа в таблицу и пишет формулы, Excel считает.</p>
+<h3 id="приём-1-перенеси-строки-итог-не-считай">Приём 1. Перенеси строки, итог не считай</h3>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.4</span></span><span class="vh"> — </span><span class="pc-title">перенести строки в таблицу без подсчёта</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Перенеси строки КП Компании Г в таблицу: наименование · количество ·
+цена · сумма. Только цифры из документа, итог не считай.
+Таблицу оформи так, чтобы я мог вставить её в Excel.</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> свой документ и колонки: строки сметы, позиции спецификации, статьи отчёта. Если Excel потом не считает вставленные цифры, допишите: «числа пиши без пробелов между разрядами».<br><strong>Что проверить в ответе:</strong> число строк совпадает с документом, ни одна строка не пропущена и не добавлена.</p>
+</div></figure>
+<p>Дальше всё делает Excel:</p>
+<ol>
+<li>Выделите таблицу в ответе DeepSeek, скопируйте и вставьте в пустой лист Excel.</li>
+<li>Проверьте, что цифры встали как числа: Excel выравнивает их по правому краю. Если цифры прижаты влево, это текст. Уберите пробелы через «Найти и заменить» или попросите ИИ переписать таблицу без пробелов.</li>
+<li>Под столбцом сумм напишите формулу <code>=СУММ(D2:D6)</code>. Текст «включено» функция СУММ пропустит.</li>
+<li>Рядом напишите итог из КП и разницу между ними.</li>
+</ol>
+<div class="table-wrap"><table><thead><tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead><tbody><tr>
+<td>1</td>
+<td>Наименование</td>
+<td>Кол‑во</td>
+<td>Цена</td>
+<td>Сумма</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Погрузчик 1,6 т, 4,8 м</td>
+<td>1</td>
+<td>2 290 000</td>
+<td>2 290 000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Зарядное устройство 48 В</td>
+<td>1</td>
+<td>162 000</td>
+<td>162 000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Доставка</td>
+<td>1</td>
+<td>28 400</td>
+<td>28 400</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Пусконаладка</td>
+<td>1</td>
+<td>включено</td>
+<td>включено</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Обучение операторов</td>
+<td>2</td>
+<td>9 000</td>
+<td>18 000</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Сумма по строкам</td>
+<td></td>
+<td></td>
+<td><code>=СУММ(D2:D6)</code> → <strong>2 498 400</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Итог в КП</td>
+<td></td>
+<td></td>
+<td>2 480 000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Разница</td>
+<td></td>
+<td></td>
+<td><code>=D7-D8</code> → <strong>18 400</strong></td>
+</tr>
+</tbody></table></div>
+<p>Excel получил 2 498 400. В предложении написано 2 480 000. Ошибка подтвердилась, и посчитал её Excel.</p>
+<p>Проверьте и сами строки: в столбце E напишите <code>=B2*C2</code> и сравните с суммой из КП. В строке со словом «включено» Excel покажет ошибку #ЗНАЧ!, это нормально: умножать там нечего.</p>
+<h3 id="приём-2-попросите-формулу-вместо-ответа">Приём 2. Попросите формулу вместо ответа</h3>
+<p>ИИ хорошо пишет формулы Excel, даже сложные. Вы видите, как считается каждая цифра, и можете проверить формулу на одной строке.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.5</span></span><span class="vh"> — </span><span class="pc-title">формула Excel вместо ответа</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Напиши формулу Excel, которая посчитает итог с НДС.
+Цены в столбце C, количество в столбце D, строки со 2 по [N].
+Цены указаны [С НДС / БЕЗ НДС], ставка НДС [СТАВКА ИЗ ДОКУМЕНТА] %.
+Excel у меня на русском: названия функций по-русски,
+разделитель аргументов — точка с запятой.
+Объясни формулу одной строкой. Сам итог не считай.</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> свои столбцы, строки и ставку НДС из документа. В учебных документах ставка 20 %.<br><strong>Что проверить в ответе:</strong> вставьте формулу в Excel и проверьте её на одной строке вручную или калькулятором.</p>
+</div></figure>
+<p>Для КП Компании Д, где цены без НДС, ответ будет примерно таким: <code>=СУММПРОИЗВ(C2:C5;D2:D5)*1,22</code>. Функция перемножает цену на количество в каждой строке, складывает и добавляет НДС 20 %. Текст «включено» она считает нулём. В сумме 2 640 000 × 1,22 = 3 220 800, и КП Д из самого дешёвого на вид становится самым дорогим.</p>
+<p>Ещё одна частая формула: НДС, который уже сидит внутри суммы. Для учебного договора <code>=4860000*22/122</code> даёт 876 393,44, ровно как в пункте 2.1.</p>
+<h3 id="если-ии-всё-таки-посчитал-сам">Если ИИ всё‑таки посчитал сам</h3>
+<p>Сверяйте его итог с Excel. Совпало, хорошо. Не совпало, верьте Excel и ищите строку, где разошлось. Иногда ИИ складывает строку, которую не надо было складывать, или пропускает строку с мелким шрифтом.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Что поручить ИИ</th>
+<th>Что делает Excel</th>
+</tr>
+</thead><tbody><tr>
+<td>Перенести строки из документа в таблицу</td>
+<td>Сложить, умножить, посчитать НДС</td>
+</tr>
+<tr>
+<td>Написать и объяснить формулу</td>
+<td>Пересчитать итог по строкам</td>
+</tr>
+<tr>
+<td>Найти, где цены без НДС и чего не хватает в комплекте</td>
+<td>Дать окончательную цифру для решения</td>
+</tr>
+<tr>
+<td>Привести названия позиций к одному виду для сравнения</td>
+<td>Проверить, сходятся ли суммы строк с итогом</td>
+</tr>
+</tbody></table></div>
+<aside class="callout c-mistake"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span><span class="c-title">Типичная ошибка</span></div><div class="c-body"><div class="m-rows"><p class="m-row m-how"><span class="m-lbl">Как делают:</span> спрашивают ИИ «какое КП дешевле» и берут ответ в служебную записку.</p><p class="m-row m-bad"><span class="m-lbl">Чем плохо:</span> ИИ может сложить с ошибкой, не заметить цены без НДС или пропустить строку о том, чего нет в комплекте.</p><p class="m-row m-ok"><span class="m-lbl">Как правильно:</span> ИИ переносит строки и отмечает разницу в условиях, Excel считает итоги, а сравниваете вы.</p></div>
+</div></aside>
+<aside class="callout c-warn"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><span class="c-title">Внимание: проверьте</span></div><div class="c-body"><p>Сумма, которая уходит в служебную записку, заявку на оплату или смету, должна быть посчитана в Excel. Цифру из ответа ИИ в такие документы не переносите.</p>
+</div></aside>
+<hr>
+</section>
+<section class="chapter acc-2" aria-labelledby="2-8-карточки-по-ролям">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.8</span></span><h2 id="2-8-карточки-по-ролям"><span class="vh">2.8. </span>Карточки по ролям</h2></header>
+<p>У каждой роли свои документы. Найдите свою карточку: в ней типичный документ, готовый промпт и что проверить. Промпты построены по формуле из раздела 2.5, три правила Аналитика уже стоят в конце.</p>
+<aside class="callout c-warn"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><span class="c-title">Внимание: данные</span></div><div class="c-body"><p>Все промпты ниже рассчитаны на обезличенный документ (раздел 0). Если в документе есть персональные данные, реквизиты или коммерческая тайна, сначала уберите их. Если убрать нельзя, документ не загружайте.</p>
+</div></aside>
+<h3 id="аналитик-тз-и-протоколы">Аналитик: ТЗ и протоколы</h3>
+<p><strong>Типичный документ:</strong> техническое задание, требования, протокол встречи с заказчиком.<br><strong>Что делает ИИ:</strong> находит противоречия, размытые формулировки и пропуски, составляет вопросы заказчику.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.6</span></span><span class="vh"> — </span><span class="pc-title">ревью ТЗ</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Ты — опытный бизнес-аналитик. Прикреплено техническое задание
+на [ЧТО, например «доработку складского учёта»]. Документ обезличен.
+Найди противоречия, неоднозначные формулировки и пропуски.
+Ответ — таблица: пункт ТЗ · что написано · в чём проблема ·
+вопрос заказчику.
+Отвечай только по документу, у каждой строки указывай пункт.
+Если чего-то нет (сроков, критериев приёмки, ответственных) —
+пиши «в ТЗ нет».</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> предмет ТЗ. Для протокола замените задачу: «выпиши решения и поручения таблицей: вопрос повестки · решение · кто · срок; без ответственного или срока пиши „в протоколе нет“».<br><strong>Что проверить в ответе:</strong> каждое противоречие откройте в обоих пунктах. «Неоднозначную формулировку» оцените сами: для заказчика она может быть однозначной.</p>
+</div></figure>
+<h3 id="закупщик-кп-и-договоры">Закупщик: КП и договоры</h3>
+<p><strong>Типичный документ:</strong> коммерческие предложения, ТЗ на закупку, договор поставки.<br><strong>Что делает ИИ:</strong> сравнивает КП между собой (промпт П‑2.2) и сверяет КП с вашим ТЗ, составляет вопросы поставщикам.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.7</span></span><span class="vh"> — </span><span class="pc-title">сверка КП с ТЗ</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Ты — специалист по закупкам. Первый файл — наше ТЗ
+на [ПРЕДМЕТ ЗАКУПКИ], второй — коммерческое предложение поставщика.
+Сверь КП с ТЗ таблицей: требование ТЗ (пункт) · что предлагает
+поставщик (строка КП) · соответствует / не соответствует / в КП нет.
+Отдельно перечисли условия КП, которых нет в ТЗ, и вопросы поставщику.
+Ссылайся только на эти два файла. Итоги не считай.</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> предмет закупки. Если КП несколько, сверяйте каждое с ТЗ в отдельном чате, а сравнение между ними делайте промптом П‑2.2.<br><strong>Что проверить в ответе:</strong> строки «соответствует» по главным характеристикам; цены и итоги пересчитайте в Excel; проверьте, везде ли одинаковые условия по НДС.</p>
+</div></figure>
+<h3 id="юрист-договоры">Юрист: договоры</h3>
+<p><strong>Типичный документ:</strong> договор контрагента, редакция с правками, дополнительное соглашение.<br><strong>Что делает ИИ:</strong> первый проход по договору по разделам, черновик формулировок для протокола разногласий.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.8</span></span><span class="vh"> — </span><span class="pc-title">первый проход по договору</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Ты — юрист со стороны [НАША СТОРОНА: покупатель, заказчик, арендатор].
+Проверь прикреплённый договор по разделам: предмет, цена и оплата,
+сроки, приёмка, гарантия, ответственность, расторжение, споры.
+Ответ — таблица: раздел · пункт · что написано · риск для нас ·
+предлагаемая формулировка.
+Если условия нет — пиши «в договоре нет» и предложи, что добавить.
+Ссылайся только на пункты договора, на законы не ссылайся.</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> свою сторону и при необходимости свой список разделов, например добавить конфиденциальность или интеллектуальные права.<br><strong>Что проверить в ответе:</strong> все строки «в договоре нет» проверьте поиском по документу. В учебном договоре № 47/11 нет раздела о расторжении, хороший ответ это заметит. Предложенные формулировки считайте черновиком.</p>
+</div></figure>
+<aside class="callout c-warn"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span><span class="c-title">Внимание: проверьте</span></div><div class="c-body"><p>ИИ делает первый проход и помогает не пропустить очевидное. Правовую позицию, соответствие закону и практике, итоговые формулировки определяет юрист.</p>
+</div></aside>
+<h3 id="сметчик-сметы-и-ведомости">Сметчик: сметы и ведомости</h3>
+<p><strong>Типичный документ:</strong> смета подрядчика, ведомость объёмов работ, спецификация материалов.<br><strong>Что делает ИИ:</strong> переносит позиции в таблицу, ищет повторы, разные единицы измерения и пропуски. Итоги проверяет Excel.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.9</span></span><span class="vh"> — </span><span class="pc-title">разбор сметы</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Ты — опытный сметчик. Прикреплена смета на [ВИД РАБОТ]. Документ обезличен.
+1) Перенеси позиции в таблицу: № · наименование · ед. · кол-во ·
+цена · сумма. Только цифры из документа, итоги не считай.
+2) Отдельно отметь: повторяющиеся позиции; разные единицы
+для одного материала; позиции без цены или количества;
+работы, для которых в смете не видно материалов.
+Для каждой находки укажи номер строки. Чего нет — пиши «в смете нет».</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> вид работ. Для ведомости замените первую часть: «перенеси объёмы работ по разделам».<br><strong>Что проверить в ответе:</strong> таблицу вставьте в Excel и пересчитайте суммы по строкам и итог (раздел 2.7). Находки про пропущенные материалы проверьте сами: нормативов и ваших расценок ИИ не знает.</p>
+</div></figure>
+<h3 id="менеджер-регламенты-и-отчёты">Менеджер: регламенты и отчёты</h3>
+<p><strong>Типичный документ:</strong> регламент, положение, инструкция, отчёт подразделения.<br><strong>Что делает ИИ:</strong> выжимка на одну страницу, таблица «кто, что, когда», что меняется для вашего отдела.</p>
+<figure class="prompt-card"><div class="pc-head"><span class="pc-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><div class="pc-meta"><span class="pc-kicker">Готовый промпт <span class="pc-id">П‑2.10</span></span><span class="vh"> — </span><span class="pc-title">выжимка регламента</span></div></div><div class="code"><button class="copy" type="button" aria-label="Скопировать промпт"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span class="copy-l">Скопировать</span></button><pre><code>Ты — руководитель отдела. Прикреплён регламент [ЧЕГО]. Документ обезличен.
+Сделай выжимку на одну страницу:
+1) суть в 3 предложениях;
+2) таблица: пункт · кто · что делает · срок;
+3) что меняется для отдела [ОТДЕЛ];
+4) неясные места и противоречия.
+Отвечай только по документу, у каждой строки указывай пункт.
+Если срок или ответственный не указан — пиши «в регламенте нет».</code></pre></div>
+<div class="pc-foot"><p><strong>Что подставить:</strong> название регламента и свой отдел. Для отчёта замените задачу: «главные цифры, отклонения от плана, что требует решения руководителя; цифры только из отчёта».<br><strong>Что проверить в ответе:</strong> сроки и ответственных сверьте с пунктами, в них ошибаются чаще всего. Регламент длиннее нескольких десятков страниц разбирайте по разделам (раздел 2.3).</p>
+</div></figure>
+<aside class="callout c-try"><div class="c-head"><span class="c-ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/><path d="m15 5 3 3"/></svg></span><span class="c-title">Попробуйте сами</span></div><div class="c-body"><p>Найдите свою роль и запустите её промпт на документе этой недели. Ожидаемый результат: таблица, у каждой строки которой есть номер пункта, и хотя бы одна строка «в документе нет». Сохраните удачный промпт в личную библиотеку из урока 1.</p>
+</div></aside>
+<hr>
+</section>
+<section class="chapter acc-1 sec-faq" aria-labelledby="частые-вопросы">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><h2 id="частые-вопросы">Частые вопросы</h2></header>
+<p><strong>Можно загружать договоры с контрагентами?</strong><br>Только обезличенные: названия компаний заменить, реквизиты и подписи убрать, суммы при необходимости округлить или умножить на коэффициент. Договор с реквизитами относится к красной зоне.</p>
+<p><strong>Можно ли доверять юридическим выводам ИИ?</strong><br>Как первому проходу. ИИ находит, на что обратить внимание, и экономит время юристу. Решение и правовую позицию определяет юрист.</p>
+<p><strong>DeepSeek не видит таблицу в скане.</strong><br>Найдите исходник в Word или Excel. Если его нет, вставьте таблицу текстом или сфотографируйте её отдельно, крупно и ровно.</p>
+<p><strong>Сколько страниц можно загрузить?</strong><br>Зависит от сервиса и меняется. Ориентир такой: если ИИ не может перечислить все разделы документа, он прочитал не всё. Длинный документ разбирайте по разделам.</p>
+<p><strong>Почему ИИ ошибся в сумме?</strong><br>Модель подбирает правдоподобный текст и не считает. Поэтому цифры пересчитываем в Excel.</p>
+<p><strong>Документ на английском, можно?</strong><br>Да. Попросите отвечать по‑русски и сохранять номера пунктов как в оригинале.</p>
+<p><strong>Можно загрузить несколько документов сразу?</strong><br>Да. Назовите в промпте, какой файл что содержит, и просите указывать, из какого файла каждый вывод.</p>
+<p><strong>DeepSeek не принял файл или пишет «сервер занят».</strong><br>Откройте документ, скопируйте текст и вставьте его в чат. Если сервер занят, подождите несколько минут и повторите запрос в новом чате.</p>
+<p><strong>Таблица из ответа вставилась в Excel в один столбец.</strong><br>Попросите ИИ: «Дай ту же таблицу, столбцы раздели точкой с запятой». Вставьте результат в Excel и разделите его через «Данные → Текст по столбцам», указав точку с запятой.</p>
+<p><strong>Ответ оборвался на середине таблицы.</strong><br>Напишите в том же чате: «Продолжи таблицу с той строки, где остановился». Если таблица длинная, попросите разбить её на части по разделам документа.</p>
+<p><strong>Включать DeepThink?</strong><br>Для анализа договора, сравнения КП и поиска противоречий включайте. Ответ придёт медленнее, зато ИИ сначала разберёт задачу по шагам. Для пересказа и перевода хватит обычного режима.</p>
+<p><strong>Можно попросить ИИ самому обезличить документ?</strong><br>Только если в тексте уже нет красных данных. Документ с персональными данными, реквизитами или тайной обезличивайте вручную, до того как он попадёт в сервис.</p>
+<p><strong>ИИ сослался на пункт, которого в документе нет.</strong><br>Так выглядит выдумка. Напишите ИИ, что такого пункта нет, и попросите перепроверить все ссылки по тексту. Если ссылки продолжают «плыть», откройте новый чат и загрузите документ заново.</p>
+</section>
+<section class="chapter acc-3 sec-quiz" aria-labelledby="2-9-проверьте-себя">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><span class="ch-num">2.9</span></span><h2 id="2-9-проверьте-себя"><span class="vh">2.9. </span>Проверьте себя</h2></header><div class="sec-box">
+<ol>
+<li>Назовите четыре места в файле, кроме основного текста, где чаще всего остаются названия и фамилии.</li>
+<li>Какой файл ИИ прочитает хуже всего: договор в Word, смета в Excel, скан договора с печатями и правками ручкой или фото страницы блокнота? Почему?</li>
+<li>Назовите три правила Аналитика.</li>
+<li>Зачем просить ИИ писать «в документе нет»? Приведите пример из учебного договора № 47/11.</li>
+<li>Как проверить, что ИИ прочитал длинный документ целиком?</li>
+<li>Какие три ловушки были в трёх КП на погрузчик?</li>
+<li>ИИ сложил строки КП и написал итог. Что вы делаете с этой цифрой?</li>
+<li>Смета с названием заказчика и адресом объекта: какой это цвет светофора и что с ней сделать перед загрузкой?</li>
+</ol>
+<p>Ответы в конце книжки.</p>
+</div></section>
+<section class="chapter acc-1 sec-check" aria-labelledby="чек-лист-урока">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span><h2 id="чек-лист-урока">Чек‑лист урока</h2></header><div class="sec-box">
+<ul class="tasks">
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я подготовил свой документ: заменил названия и имена, проверил колонтитулы, подписи, лист согласования, приложения, свойства и имя файла.</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я повторил хотя бы один показ урока на учебных файлах: договор или три КП.</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я загрузил в DeepSeek свой документ и получил из него таблицу по промпту П‑2.3.</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я сделал уточнение по схеме «что не так и как надо».</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я проверил три вывода по пунктам документа и записал результат: «3 из 3», «2 из 3» или «1 из 3».</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я знаю три правила Аналитика и дописываю их в промпты с документами.</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я попросил ИИ перечислить разделы документа, чтобы проверить, всё ли он прочитал.</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я пересчитал в Excel хотя бы один итог из ответа ИИ.</span></label></li>
+<li class="task"><label><input type="checkbox"><span class="box" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="task-t">Я нашёл карточку своей роли и сохранил её промпт.</span></label></li>
+</ul>
+</div></section>
+<section class="chapter acc-1 sec-hw" aria-labelledby="домашнее-задание-2-аналитик-на-вашей-работе">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></span><h2 id="домашнее-задание-2-аналитик-на-вашей-работе">Домашнее задание 2. Аналитик на вашей работе</h2></header>
+<p><strong>Время:</strong> около 45 минут, примерно по 20 минут на задание.<br><strong>Где делать:</strong> только в DeepSeek, цифры пересчитывать в Excel.<br><strong>Сдать до:</strong> [ДАТА], в Яндекс Форму: [ССЫЛКА НА ФОРМУ].<br><strong>Кто проверяет:</strong> я, после урока. Я прочитаю все работы и каждому пришлю короткий отзыв. Лучшие промпты из этого задания станут основой вашего помощника на уроке 3.</p>
+<p><strong>Что сделать: два задания.</strong></p>
+<ol>
+<li><strong>Документ вашей роли.</strong> Договор, ТЗ, регламент или протокол, обязательно обезличенный (раздел 0). Получите из него таблицу со ссылками на пункты: промпт П‑2.3 или промпт своей роли из раздела 2.8. Сделайте <strong>два уточнения</strong> и <strong>проверьте три вывода</strong> по документу.</li>
+<li><strong>Таблица или цифры.</strong> КП, смета или отчёт, тоже обезличенные. Получите сравнение или итог, затем <strong>пересчитайте цифры в Excel</strong> (раздел 2.7) и напишите, сошлось ли.</li>
+</ol>
+<p><strong>В обоих заданиях замерьте время:</strong> сколько бы задача заняла без ИИ и сколько заняла с ИИ вместе с проверкой. На третьем уроке мы сложим часы всей группы.</p>
+<p><strong>Что сдать по каждому заданию:</strong> какой документ (тип, без названий) и задача; итоговый промпт; уточнения, которые вы сделали; фрагмент результата (обезличенный); для задания 1 три проверенных вывода и результат «3 из 3», «2 из 3» или «1 из 3»; для задания 2 итог ИИ или итог документа, итог Excel и сошлось ли; время без ИИ и с ИИ.</p>
+<p><strong>Критерии (по 1 баллу):</strong></p>
+<div class="table-wrap"><table><thead><tr>
+<th>Критерий</th>
+<th>Что значит</th>
+</tr>
+</thead><tbody><tr>
+<td>Промпт по формуле с тремя правилами</td>
+<td>Видны роль, документ, задача, формат и три правила Аналитика</td>
+</tr>
+<tr>
+<td>Есть уточнения</td>
+<td>В задании 1 два уточнения, в задании 2 хотя бы одно; каждое по схеме «что не так и как надо»</td>
+</tr>
+<tr>
+<td>Выводы проверены по пунктам</td>
+<td>Названы три вывода, их пункты и результат сверки</td>
+</tr>
+<tr>
+<td>Цифры пересчитаны в Excel</td>
+<td>Указаны итог из документа или от ИИ, итог Excel и сошлось ли</td>
+</tr>
+<tr>
+<td>Замер времени</td>
+<td>Указано время без ИИ и с ИИ по обоим заданиям</td>
+</tr>
+<tr>
+<td>Данные безопасны</td>
+<td>В работе и в файле нет персональных данных, реквизитов и названий</td>
+</tr>
+</tbody></table></div>
+<h3 id="пример-выполненного-задания-2">Пример выполненного задания 2</h3>
+<p><strong>Документ и задача.</strong> Смета подрядчика на монтаж освещения склада, обезличена: названия заменены, суммы умножены на один коэффициент. Задача: проверить итог и найти странные позиции.</p>
+<p><strong>Итоговый промпт.</strong> П‑2.9 с подстановкой «монтаж освещения склада».</p>
+<p><strong>Уточнение.</strong> «Ты объединил кабель из разных разделов в одну строку. Верни строки как в смете и добавь колонку „Раздел“».</p>
+<p><strong>Результат.</strong> ИИ перенёс 38 позиций и отметил две: кабель в одном разделе в метрах, в другом в бухтах; светильники в смете есть, а креплений для них не видно.</p>
+<p><strong>Цифры.</strong> Вставил таблицу в Excel, сложил строки функцией СУММ: итог совпал с итогом сметы. Проверил строки формулой «количество × цена»: в одной строке сумма не равна произведению. Вопрос подрядчику записал.</p>
+<p><strong>Время.</strong> Без ИИ около 50 минут, с ИИ около 20 вместе с Excel.</p>
+<p><strong>Данные.</strong> Название подрядчика, адрес склада и реальные суммы в работе не указаны.</p>
+</section>
+<section class="chapter acc-1 sec-read" aria-labelledby="что-почитать">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><h2 id="что-почитать">Что почитать</h2></header>
+<ul>
+<li><strong>Книжка 1, разделы 1.4, 1.6 и 1.7.</strong> Формула запроса, проверка ответа и светофор данных. Всё, что мы делали сегодня, стоит на них.</li>
+<li><strong>Справочник курса.</strong> Библиотека промптов по ролям (табл. А) и памятка по безопасности (табл. В). Промпты из этой книжки дополняют библиотеку.</li>
+<li><strong>Справка Microsoft по функциям СУММ и СУММПРОИЗВ.</strong> Есть на сайте поддержки Microsoft, ищите по названию функции. Двух этих функций хватает почти для любой проверки КП и смет.</li>
+<li><strong>Правила вашей компании о внешних сервисах.</strong> Узнайте у руководителя или службы безопасности, какие документы можно загружать и в какие сервисы.</li>
+</ul>
+</section>
+<section class="chapter acc-1 sec-cheat" aria-labelledby="шпаргалка">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span><h2 id="шпаргалка">Шпаргалка</h2></header><div class="sec-box">
+<div class="cs-item"><p><strong>Цикл Аналитика:</strong> обезличить документ → промпт по формуле с тремя правилами → уточнение → проверка трёх выводов по пунктам → цифры в Excel.</p>
+</div>
+<div class="cs-item"><p><strong>Перед загрузкой проверить:</strong> текст · колонтитулы · подписи · лист согласования · приложения · примечания · свойства файла · имя файла.</p>
+</div>
+<div class="cs-item"><p><strong>Формула для документа:</strong> Роль · Документ · Задача · Колонки таблицы · Три правила.</p>
+</div>
+<div class="cs-item"><p><strong>Три правила в конец промпта:</strong></p>
+<ol>
+<li>«Отвечай только по документу, у каждого вывода указывай пункт».</li>
+<li>«Если этого нет, пиши „в документе нет“».</li>
+<li>«Итоги не считай, перенеси цифры в таблицу».</li>
+</ol>
+</div>
+<div class="cs-item"><p><strong>Файлы:</strong> Word и PDF с текстом читаются лучше всего · скан с печатями хуже всего · приложения картинкой и сноски могут пропасть.</p>
+</div>
+<div class="cs-item"><p><strong>Проверить, всё ли прочитано:</strong> «Перечисли все разделы и приложения, которые ты видишь».</p>
+</div>
+<div class="cs-item"><p><strong>Длинный документ:</strong> один документ, один чат · по разделам · ответы поплыли → новый чат.</p>
+</div>
+<div class="cs-item"><p><strong>Цифры:</strong> ИИ переносит, Excel считает · <code>=СУММ(D2:D6)</code> · «дай формулу Excel, итог не считай» · не совпало → верьте Excel.</p>
+</div>
+<div class="cs-item"><p><strong>Сравнение КП:</strong> все цены с НДС · одинаковый комплект · итог по строкам · вопросы каждому поставщику.</p>
+</div>
+<div class="cs-item"><p><strong>Светофор:</strong></p>
+<ul>
+<li><strong>Красный:</strong> паспорта, ФИО с данными, зарплаты, реквизиты, тайны.</li>
+<li><strong>Жёлтый:</strong> договор, смета, КП, протокол, ТЗ с названиями.</li>
+<li><strong>Зелёный:</strong> обезличенный документ, закон, учебные файлы.</li>
+</ul>
+</div>
+</div></section>
+<section class="chapter acc-1 sec-answers" aria-labelledby="ответы-на-проверьте-себя">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span><h2 id="ответы-на-проверьте-себя">Ответы на «Проверьте себя»</h2></header><div class="sec-box">
+<ol>
+<li>Колонтитулы, подписи и расшифровки, лист согласования, приложения. Ещё примечания с именами авторов, свойства файла и его имя.</li>
+<li>Скан договора с печатями и правками ручкой. В нём сразу всё сложное: печать поверх текста, подписи, рукописные правки. Фото блокнота ИИ разберёт лучше, там один почерк.</li>
+<li>Только по документу и со ссылкой на пункт. Чего нет, пиши «в документе нет». Цифры считает Excel.</li>
+<li>Чтобы ИИ не придумал недостающее условие. Пропуск становится находкой. В договоре № 47/11 нет штрафа за просрочку монтажа: пункт 3.4 даёт срок монтажа, а неустойка в пункте 6.2 касается только поставки. Ещё в нём нет раздела о расторжении.</li>
+<li>Попросить ИИ перечислить все разделы и приложения, которые он видит. Если какого‑то нет, он прочитал не всё: разбирайте документ по разделам или вставьте недостающее текстом.</li>
+<li>В КП Г итог не сходится на 18 400 руб. (по строкам 2 498 400). В КП Г нет аккумулятора. КП Д указано без НДС, с НДС это 3 220 800.</li>
+<li>Пересчитываю в Excel. Если итоги совпали, хорошо. Если нет, верю Excel и ищу строку, где разошлось.</li>
+<li>Жёлтый. Перед загрузкой убрать название заказчика и адрес объекта, проверить колонтитулы, подписи, приложения и свойства файла.</li>
+</ol>
+</div></section>
+<section class="chapter acc-1 sec-log" aria-labelledby="журнал-изменений">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></span><h2 id="журнал-изменений">Журнал изменений</h2></header>
+<div class="table-wrap"><table><thead><tr>
+<th>Редакция</th>
+<th>Дата</th>
+<th>Что изменено</th>
+</tr>
+</thead><tbody><tr>
+<td>1.0</td>
+<td>14.11.2026</td>
+<td>Первая редакция</td>
+</tr>
+</tbody></table></div>
+</section>
+
+</main>
+<footer><div class="team-strip" aria-hidden="true"><span style="background:#2F6BFF"></span><span style="background:#12A35B"></span><span style="background:#FF7A1A"></span><span style="background:#7B4DFF"></span><span style="background:#EE3E86"></span><span style="background:#F5B400"></span></div>ИИ‑команда · авторский курс · Книжка 2. Цены, лимиты и доступность сервисов — в Справочнике курса.</footer>
+</div>
+</div>
+<script>
+(function () {
+  // copy buttons
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    var label = btn.querySelector('.copy-l');
+    btn.addEventListener('click', function () {
+      var pre = btn.nextElementSibling, text = pre.innerText;
+      var done = function () { label.textContent = 'Скопировано'; btn.classList.add('done'); setTimeout(function () { label.textContent = 'Скопировать'; btn.classList.remove('done'); }, 1600); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); label.textContent = 'Выделено — нажмите Ctrl+C'; };
+      try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+  // check-list: remember ticks in this browser only
+  var key = 'ai-team-book-2-' + location.pathname + '-tasks';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.task input'));
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    b.checked = !!saved[i];
+    b.addEventListener('change', function () { try { localStorage.setItem(key, JSON.stringify(boxes.map(function (x) { return x.checked; }))); } catch (e) {} });
+  });
+  // reading progress + current section in the side contents
+  var bar = document.querySelector('.progress span');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side a'));
+  var side = document.querySelector('.side nav');
+  var heads = links.map(function (a) { return document.getElementById(decodeURIComponent(a.hash.slice(1))); });
+  var current = -1, ticking = false;
+  function update() {
+    ticking = false;
+    var h = document.documentElement, max = h.scrollHeight - innerHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+    var idx = -1;
+    for (var i = 0; i < heads.length; i++) { if (heads[i] && heads[i].getBoundingClientRect().top < 140) idx = i; else if (heads[i]) break; }
+    if (idx !== current) {
+      if (current >= 0) links[current].removeAttribute('aria-current');
+      current = idx;
+      if (idx >= 0) {
+        var a = links[idx]; a.setAttribute('aria-current', 'true');
+        if (side && side.scrollHeight > side.clientHeight) {
+          var top = a.offsetTop;
+          if (top < side.scrollTop + 40 || top > side.scrollTop + side.clientHeight - 80) side.scrollTop = top - side.clientHeight / 2;
+        }
+      }
+    }
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();
+</script>

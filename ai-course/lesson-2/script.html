@@ -1,0 +1,633 @@
+<title>ИИ‑команда · Книжка 2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600..800&family=Golos+Text:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap">
+<style>
+/* Course colours: the lesson colour leads (cover, prompts, links); every chapter gets one
+   team colour for its opener, bullets and table head. Callouts are coloured by type. */
+:root {
+  --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: transparent;
+  --lesson-50: #DCF4E6; --lesson-700: #0A6A3A;
+  --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
+  --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
+  --shadow: 0 1px 2px rgba(22,24,29,.05), 0 10px 30px -16px rgba(22,24,29,.25);
+  --lesson: #12A35B; --lesson-strong: #10844A; --on-lesson: #FFFFFF;
+  --warn: #D93036; --mistake: #FF7A1A; --ok: #12A35B; --date: #6B7080;
+  --f-head: 'Manrope', Verdana, sans-serif; --f-body: 'Golos Text', Arial, sans-serif; --f-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+.acc-0 { --acc: #2F6BFF; --acc-mark: #2F6BFF; --acc-on: #FFFFFF; --acc-s: #2E68F7; --acc-s-on: #FFFFFF; --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
+.acc-1 { --acc: #12A35B; --acc-mark: #12A35B; --acc-on: #FFFFFF; --acc-s: #10844A; --acc-s-on: #FFFFFF; --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
+.acc-2 { --acc: #FF7A1A; --acc-mark: #FF7A1A; --acc-on: #16181D; --acc-s: #FF7A1A; --acc-s-on: #16181D; --acc-50: #FFEBDC; --acc-700: #A3460A; }
+.acc-3 { --acc: #7B4DFF; --acc-mark: #7B4DFF; --acc-on: #FFFFFF; --acc-s: #7B4DFF; --acc-s-on: #FFFFFF; --acc-50: #ECE5FF; --acc-700: #4F26C9; }
+.acc-4 { --acc: #EE3E86; --acc-mark: #EE3E86; --acc-on: #FFFFFF; --acc-s: #D23676; --acc-s-on: #FFFFFF; --acc-50: #FDE4EF; --acc-700: #A3184F; }
+.acc-5 { --acc: #F5B400; --acc-mark: #DDA200; --acc-on: #16181D; --acc-s: #F5B400; --acc-s-on: #16181D; --acc-50: #FFF4CC; --acc-700: #7A5700; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038; --zebra: #20242B;
+  --code-bg: #0B0C0F; --code-fg: #E6E8EE; --code-line: #2C3038;
+  --lesson-50: #19392F; --lesson-700: #94D6B5;
+  --warn-50: #3A1E20; --warn-700: #FF9A9E; --mistake-50: #3A2617; --mistake-700: #FFB37A;
+  --ok-50: #16301F; --ok-700: #7FDDA8; --date-50: #22262D; --date-700: #AEB3BF;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6); color-scheme: dark; }
+:root:not([data-theme="light"]) .acc-0 { --acc-50: #1F2D50; --acc-700: #A1BCFF; }
+:root:not([data-theme="light"]) .acc-1 { --acc-50: #19392F; --acc-700: #94D6B5; }
+:root:not([data-theme="light"]) .acc-2 { --acc-50: #493022; --acc-700: #FFC398; }
+:root:not([data-theme="light"]) .acc-3 { --acc-50: #2E2750; --acc-700: #C4AFFF; }
+:root:not([data-theme="light"]) .acc-4 { --acc-50: #452438; --acc-700: #F7A8C9; }
+:root:not([data-theme="light"]) .acc-5 { --acc-50: #473C1D; --acc-700: #FBDD8C; } }
+:root[data-theme="dark"] {
+  --bg: #121418; --card: #1B1E24; --ink: #EEF0F4; --soft: #AEB3BF; --line: #2C3038; --zebra: #20242B;
+  --code-bg: #0B0C0F; --code-fg: #E6E8EE; --code-line: #2C3038;
+  --lesson-50: #19392F; --lesson-700: #94D6B5;
+  --warn-50: #3A1E20; --warn-700: #FF9A9E; --mistake-50: #3A2617; --mistake-700: #FFB37A;
+  --ok-50: #16301F; --ok-700: #7FDDA8; --date-50: #22262D; --date-700: #AEB3BF;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -16px rgba(0,0,0,.6); color-scheme: dark; }
+:root[data-theme="dark"] .acc-0 { --acc-50: #1F2D50; --acc-700: #A1BCFF; }
+:root[data-theme="dark"] .acc-1 { --acc-50: #19392F; --acc-700: #94D6B5; }
+:root[data-theme="dark"] .acc-2 { --acc-50: #493022; --acc-700: #FFC398; }
+:root[data-theme="dark"] .acc-3 { --acc-50: #2E2750; --acc-700: #C4AFFF; }
+:root[data-theme="dark"] .acc-4 { --acc-50: #452438; --acc-700: #F7A8C9; }
+:root[data-theme="dark"] .acc-5 { --acc-50: #473C1D; --acc-700: #FBDD8C; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.7 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.i { width: 1em; height: 1em; flex: none; }
+:focus-visible { outline: 3px solid var(--lesson); outline-offset: 3px; border-radius: 6px; }
+a { color: var(--lesson-700); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* reading progress */
+.progress { position: fixed; inset: 0 0 auto 0; height: 4px; z-index: 10; background: transparent; pointer-events: none; }
+.progress span { display: block; height: 100%; background: var(--lesson); transform-origin: 0 50%; transform: scaleX(0); }
+
+/* ---------- cover ---------- */
+.top { max-width: 1048px; margin: 0 auto; padding-top: 32px; }
+.hero { position: relative; overflow: hidden; isolation: isolate; background: var(--lesson-strong); color: var(--on-lesson);
+  border-radius: 32px; padding: 48px 48px 40px; display: grid; grid-template-columns: minmax(0, 1fr) 248px; gap: 32px; align-items: center; }
+.hero-big { position: absolute; z-index: -1; right: -24px; bottom: -92px; font: 800 340px/1 var(--f-head); letter-spacing: -0.06em; color: currentColor; opacity: .08; user-select: none; }
+.brand { display: inline-block; font: 800 12.5px/1 var(--f-body); letter-spacing: .08em; color: #16181D; background: #FFFFFF; border-radius: 999px; padding: 9px 14px; }
+.hero h1 { font: 800 clamp(38px, 6.4vw, 64px)/1.02 var(--f-head); letter-spacing: -0.035em; margin: 20px 0 14px; text-wrap: balance; }
+.hero .lead { margin: 0; font-size: 19px; line-height: 1.55; max-width: 34em; }
+.facts { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.facts li { display: flex; align-items: center; gap: 10px; background: rgba(8, 16, 48, .22); border-radius: 14px; padding: 10px 14px 10px 12px; margin: 0; line-height: 1.2; }
+.facts .i { width: 20px; height: 20px; opacity: .95; }
+.facts b { display: block; font: 800 17px/1.15 var(--f-head); }
+.facts small { display: block; font-size: 13px; }
+.pass { position: relative; justify-self: end; width: 248px; color: #16181D; background: #FFFFFF; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 24px 48px -12px rgba(8, 16, 48, .45); transform: rotate(-4deg); }
+.pass-top { background: #16181D; color: #FFFFFF; font: 800 11px/1 var(--f-body); letter-spacing: .16em; padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; }
+.pass-top i { width: 8px; height: 8px; border-radius: 50%; background: var(--lesson); display: inline-block; margin-right: 8px; }
+.pass-body { padding: 18px 18px 16px; display: grid; gap: 4px; }
+.pass-av { width: 76px; height: 76px; border-radius: 22px; background: var(--lesson); color: #FFFFFF; display: grid; place-items: center; margin-bottom: 10px; }
+.pass-av .i { width: 40px; height: 40px; stroke-width: 1.75; }
+.pass-name { font: 800 26px/1.1 var(--f-head); letter-spacing: -0.02em; }
+.pass-role { font-size: 13px; color: #555A66; line-height: 1.35; }
+.pass-team { display: flex; gap: 6px; margin-top: 14px; }
+.ts { width: 22px; height: 8px; border-radius: 4px; opacity: .35; }
+.ts.on { opacity: 1; width: 40px; }
+.pass-code { height: 26px; margin: 14px 0 0; border-radius: 4px; background: repeating-linear-gradient(90deg, #16181D 0 2px, transparent 2px 5px, #16181D 5px 6px, transparent 6px 9px, #16181D 9px 12px, transparent 12px 14px); opacity: .85; }
+
+/* ---------- layout ---------- */
+.layout { max-width: 1048px; margin: 0 auto; padding: 40px 0 96px; }
+.content { max-width: 760px; margin: 0 auto; min-width: 0; }
+.side { display: none; }
+@media (min-width: 1120px) {
+  .layout { display: grid; grid-template-columns: 232px minmax(0, 760px); gap: 56px; }
+  .content { margin: 0; }
+  .side { display: block; }
+  .side nav { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; padding: 4px 6px 16px 0; scrollbar-width: thin; }
+  nav.toc { display: none; }
+}
+
+/* ---------- contents ---------- */
+.toc-h { font: 800 13px/1 var(--f-head); letter-spacing: .1em; text-transform: uppercase; color: var(--soft); margin: 0 0 14px; }
+.toc ul, .side ul { list-style: none; margin: 0; padding: 0; }
+.toc li, .side li { margin: 0; padding: 0; }
+.toc a, .side a { display: flex; align-items: flex-start; gap: 12px; color: var(--ink); text-decoration: none; border-radius: 12px; padding: 7px 8px; line-height: 1.35; }
+.toc a:hover, .side a:hover { background: var(--acc-50); }
+.toc-b { flex: none; min-width: 44px; height: 26px; padding: 0 7px; display: inline-grid; place-items: center; border-radius: 8px; background: var(--acc-50); color: var(--acc-700);
+  font: 800 13px/1 var(--f-head); font-variant-numeric: tabular-nums; }
+.toc-i .i { width: 15px; height: 15px; }
+.toc-t { padding-top: 3px; }
+nav.toc { background: var(--card); border-radius: 24px; padding: 24px; margin-bottom: 48px; box-shadow: var(--shadow); }
+nav.toc ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 2px; }
+nav.toc.many ul { grid-template-columns: 1fr; }
+.side .toc-h { padding-left: 8px; }
+.side a { font-size: 14.5px; padding: 6px 8px; gap: 10px; }
+.side .toc-b { min-width: 38px; height: 22px; font-size: 11.5px; border-radius: 7px; }
+.side .toc-t { padding-top: 2px; }
+.side .toc-l3 a { padding-left: 8px; }
+.side a[aria-current="true"] { background: var(--acc-50); font-weight: 600; }
+.side a[aria-current="true"] .toc-b { background: var(--acc-s); color: var(--acc-s-on); }
+
+/* ---------- chapters ---------- */
+.chapter { margin-top: 72px; }
+.chapter:first-child { margin-top: 0; }
+.ch-head { display: flex; align-items: center; gap: 20px; background: var(--acc-50); border-radius: 24px; padding: 20px 24px; margin: 0 0 28px; position: relative; overflow: hidden; }
+.ch-head::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: var(--acc); }
+.ch-tile { flex: none; min-width: 76px; height: 76px; padding: 0 12px; border-radius: 20px; background: var(--acc); color: var(--acc-on); display: grid; place-items: center; }
+.ch-num { font: 800 32px/1 var(--f-head); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.ch-tile .i { width: 36px; height: 36px; }
+h2 { font: 800 32px/1.12 var(--f-head); letter-spacing: -0.025em; margin: 0; text-wrap: balance; color: var(--ink); }
+h3 { font: 800 22px/1.25 var(--f-head); letter-spacing: -0.01em; margin: 40px 0 10px; text-wrap: balance; }
+h3::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px; background: var(--acc-mark); margin-right: 12px; vertical-align: 0.12em; }
+h3 + p, h3 + ul, h3 + ol { margin-top: 0; }
+p, ul, ol { margin: 0 0 16px; }
+strong { font-weight: 700; }
+:not(pre) > code { font: 0.88em/1 var(--f-mono); background: var(--zebra); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }
+hr { display: none; }
+
+/* lists */
+main ul { list-style: none; padding-left: 0; }
+main ul > li { position: relative; padding-left: 26px; margin: 6px 0; }
+main ul > li::before { content: ''; position: absolute; left: 5px; top: 0.66em; width: 8px; height: 8px; border-radius: 3px; background: var(--acc-mark); }
+main ol { list-style: none; padding-left: 0; counter-reset: li; }
+main ol > li { position: relative; padding-left: 40px; margin: 8px 0; counter-increment: li; }
+main ol > li::before { content: counter(li); position: absolute; left: 0; top: 0.1em; width: 26px; height: 26px; border-radius: 9px; background: var(--acc-50); color: var(--acc-700);
+  font: 800 13.5px/26px var(--f-head); text-align: center; font-variant-numeric: tabular-nums; }
+
+/* tasks (check-list) */
+ul.tasks > li { padding-left: 0; margin: 2px 0; }
+ul.tasks > li::before { display: none; }
+.task label { display: flex; gap: 14px; align-items: flex-start; cursor: pointer; padding: 8px 12px; border-radius: 14px; }
+.task p { margin: 0; }
+.task label:hover { background: var(--zebra); }
+.task input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.task .box { flex: none; width: 26px; height: 26px; border-radius: 8px; border: 2px solid var(--acc); display: grid; place-items: center; color: transparent; margin-top: 1px; background: var(--card); }
+.task .box .i { width: 16px; height: 16px; stroke-width: 3; }
+.task input:checked + .box { background: var(--acc-s); border-color: var(--acc-s); color: var(--acc-s-on); }
+.task input:checked ~ .task-t { color: var(--soft); text-decoration: line-through; text-decoration-thickness: 1px; }
+.task input:focus-visible + .box { outline: 3px solid var(--lesson); outline-offset: 2px; }
+
+/* tables */
+.table-wrap { overflow-x: auto; margin: 18px 0 22px; background: var(--card); border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; }
+th { font: 800 13px/1.3 var(--f-head); letter-spacing: .04em; text-transform: uppercase; background: var(--acc-50); color: var(--acc-700); border-bottom: 3px solid var(--acc); }
+tbody tr:nth-child(even) td { background: var(--zebra); }
+td + td, th + th { border-left: 1px solid var(--line); }
+.kv td:first-child { width: 32%; color: var(--soft); font-weight: 600; }
+.kv td + td { border-left: 0; }
+.tl { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -0.05em; box-shadow: 0 0 0 3px var(--card); }
+.tm-dot { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 10px; vertical-align: -0.05em; }
+.tl-red { background: #E5484D; } .tl-yellow { background: #F5B400; } .tl-green { background: #12A35B; }
+
+/* code + copy */
+.code { position: relative; margin: 0 0 16px; }
+pre { margin: 0; background: var(--code-bg); color: var(--code-fg); border: 1px solid var(--code-line); border-radius: 18px; padding: 54px 22px 20px; overflow-x: auto;
+  font: 14.5px/1.65 var(--f-mono); white-space: pre-wrap; word-break: break-word; }
+.copy { position: absolute; top: 12px; right: 12px; display: inline-flex; align-items: center; gap: 8px; font: 700 13.5px/1 var(--f-body); color: #16181D; background: #FFFFFF;
+  border: 0; border-radius: 999px; padding: 9px 14px 9px 12px; cursor: pointer; min-height: 34px; }
+.copy .i { width: 16px; height: 16px; }
+.copy:hover { background: #DCF4E6; }
+.copy.done { background: #C9F2DA; }
+.copy:focus-visible { outline: 3px solid #65C394; outline-offset: 2px; }
+
+/* prompt card */
+.prompt-card { margin: 28px 0 22px; border-radius: 22px; overflow: hidden; background: var(--code-bg); box-shadow: var(--shadow); border: 1px solid var(--code-line); }
+.pc-head { display: flex; align-items: center; gap: 14px; background: var(--lesson-strong); color: var(--on-lesson); padding: 16px 20px; }
+.pc-ico { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(8, 16, 48, .22); }
+.pc-ico .i { width: 22px; height: 22px; }
+.pc-meta { display: grid; gap: 3px; min-width: 0; }
+.pc-kicker { font: 700 12.5px/1.3 var(--f-body); letter-spacing: .06em; text-transform: uppercase; }
+.pc-id { display: inline-block; font: 600 12px/1 var(--f-mono); letter-spacing: 0; text-transform: none; border: 1px solid currentColor; border-radius: 6px; padding: 3px 6px; margin-left: 4px; }
+.pc-title { font: 800 19px/1.25 var(--f-head); letter-spacing: -0.01em; }
+.pc-title::first-letter { text-transform: uppercase; }
+.pc-note { background: var(--lesson-strong); color: var(--on-lesson); padding: 0 20px 14px; font-size: 15px; }
+.pc-note p { margin: 0; }
+.prompt-card .code { margin: 0; }
+.prompt-card pre { border: 0; border-radius: 0; }
+.pc-foot { background: var(--card); padding: 16px 20px; font-size: 15.5px; line-height: 1.6; border-top: 1px solid var(--line); }
+.pc-foot p { margin: 0; }
+.pc-foot strong { color: var(--lesson-700); }
+
+/* callouts */
+.callout { --c: var(--lesson); --c-on: #FFFFFF; --c-50: var(--lesson-50); --c-700: var(--lesson-700); --acc-mark: var(--c);
+  background: var(--c-50); border-radius: 20px; padding: 18px 22px 18px; margin: 26px 0 20px; }
+.c-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.c-ico { flex: none; width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: var(--c); color: var(--c-on); }
+.c-ico .i { width: 19px; height: 19px; }
+.c-title { font: 800 17px/1.3 var(--f-head); color: var(--c-700); }
+.c-body > :last-child, .c-body > :last-child > :last-child { margin-bottom: 0; }
+.c-warn { --c: var(--warn); --c-50: var(--warn-50); --c-700: var(--warn-700); }
+.c-mistake { --c: var(--mistake); --c-on: #16181D; --c-50: var(--mistake-50); --c-700: var(--mistake-700); }
+.c-try { --c: var(--lesson); --c-on: #FFFFFF; }
+.c-practice { --c: var(--ok); --c-on: #FFFFFF; --c-50: var(--ok-50); --c-700: var(--ok-700); }
+.c-date, .c-note { --c: var(--date); --c-50: var(--date-50); --c-700: var(--date-700); }
+.m-rows { display: grid; gap: 8px; }
+.m-row { margin: 0; padding: 10px 14px; border-radius: 12px; background: var(--card); }
+.m-lbl { display: block; font: 800 12.5px/1.3 var(--f-head); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; color: var(--soft); }
+.m-bad .m-lbl { color: var(--mistake-700); }
+.m-ok { box-shadow: inset 4px 0 0 var(--ok); }
+.m-ok .m-lbl { color: var(--ok-700); }
+.c-note { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); }
+.c-note .c-ico { background: var(--date-50); color: var(--date-700); }
+.c-note .c-body { padding-top: 4px; }
+.c-before { border-left: 5px solid #E5484D; }
+.c-after { border-left: 5px solid var(--ok); }
+.ba-label { font: 800 13px/1 var(--f-head); letter-spacing: .08em; text-transform: uppercase; margin: 24px 0 -12px; color: var(--soft); }
+
+/* special sections */
+.sec-box { background: var(--card); border-radius: 24px; padding: 24px 28px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.sec-box > :last-child { margin-bottom: 0; }
+.sec-quiz .sec-box { border: 2px solid var(--acc); box-shadow: none; }
+.sec-quiz .sec-box ol > li { padding: 10px 14px 10px 52px; background: var(--zebra); border-radius: 14px; }
+.sec-quiz .sec-box ol > li::before { left: 14px; top: 11px; background: var(--acc-s); color: var(--acc-s-on); }
+.sec-cheat .sec-box { border: 2px solid var(--acc); columns: 2 300px; column-gap: 16px; padding: 18px; }
+.cs-item { break-inside: avoid; background: var(--acc-50); border-radius: 16px; padding: 14px 16px; margin: 0 0 16px; font-size: 15.5px; line-height: 1.6; display: flow-root; }
+.cs-item p, .cs-item ul, .cs-item ol { margin: 0 0 6px; }
+.cs-item > :last-child { margin-bottom: 0; }
+.cs-item strong { color: var(--acc-700); }
+.cs-item ul > li, .cs-item ol > li { margin: 3px 0; }
+.cs-item ol > li::before { background: var(--card); }
+.sec-faq p { background: var(--card); border-radius: 16px; padding: 16px 20px; border: 1px solid var(--line); }
+.sec-faq p > strong:first-child { display: block; font-family: var(--f-head); font-weight: 800; color: var(--acc-700); margin-bottom: 4px; }
+.sec-hw .ch-head + p { background: var(--card); border-radius: 18px; padding: 16px 20px; border: 1px solid var(--line); box-shadow: var(--shadow); }
+.sec-answers .sec-box ol > li::before { background: var(--ok-50); color: var(--ok-700); }
+.sec-log table { font-size: 14px; }
+
+/* presenter script */
+.slide-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-top: 28px; border-top: 1px solid var(--line); }
+.slide-h::before { display: none; }
+.slide-no { font: 800 12.5px/1 var(--f-head); letter-spacing: .06em; text-transform: uppercase; background: var(--acc-s); color: var(--acc-s-on); border-radius: 8px; padding: 7px 10px; transform: translateY(-3px); }
+.p-time { max-width: 100%; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; background: var(--acc-50); color: var(--acc-700); border-radius: 999px; padding: 4px 14px 4px 10px; }
+.p-time .i { width: 16px; height: 16px; }
+.p-do { background: var(--card); border: 1px solid var(--line); border-left: 5px solid var(--mistake); border-radius: 14px; padding: 12px 16px; }
+.p-say strong:first-child { color: var(--acc-700); }
+
+footer { margin-top: 80px; color: var(--soft); font-size: 14px; display: grid; gap: 14px; }
+.team-strip { display: flex; gap: 6px; }
+.team-strip span { height: 6px; flex: 1; border-radius: 3px; }
+
+@media (max-width: 760px) {
+  .top { padding-top: 16px; }
+  .hero { grid-template-columns: 1fr; padding: 28px 22px 26px; border-radius: 26px; gap: 24px; }
+  .hero-big { font-size: 220px; bottom: -60px; right: -12px; }
+  .hero .lead { font-size: 17px; }
+  .pass { justify-self: start; width: 100%; max-width: 300px; transform: rotate(-2deg); }
+  .pass-body { grid-template-columns: auto 1fr; column-gap: 14px; align-items: center; }
+  .pass-av { grid-row: span 2; width: 60px; height: 60px; border-radius: 18px; margin: 0; }
+  .pass-av .i { width: 32px; height: 32px; }
+  .pass-name { font-size: 22px; align-self: end; }
+  .pass-role { align-self: start; }
+  .pass-team { grid-column: 1 / -1; }
+  .pass-code { display: none; }
+  .facts { gap: 8px; }
+  .facts li { flex: 1 1 140px; }
+  .layout { padding-top: 28px; }
+  nav.toc { padding: 18px 14px; border-radius: 20px; }
+  nav.toc ul { grid-template-columns: 1fr; }
+  .chapter { margin-top: 56px; }
+  .ch-head { gap: 14px; padding: 16px; border-radius: 20px; }
+  .ch-tile { min-width: 56px; height: 56px; border-radius: 16px; padding: 0 8px; }
+  .ch-num { font-size: 22px; }
+  .ch-tile .i { width: 28px; height: 28px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+  body { font-size: 16.5px; }
+  table { font-size: 14px; }
+  th, td { padding: 10px 12px; }
+  pre { padding: 54px 16px 16px; font-size: 13.5px; }
+  .pc-head { padding: 14px 16px; }
+  .pc-ico { width: 34px; height: 34px; }
+  .pc-title { font-size: 17px; }
+  .pc-foot { padding: 14px 16px; }
+  .callout { padding: 16px; }
+  .sec-box { padding: 16px; border-radius: 20px; }
+  .sec-cheat .sec-box { padding: 12px; }
+}
+
+@page { size: A4; margin: 20mm 17mm 17mm; }
+@page :first { margin: 0; }
+@media print {
+  :root:root:root:root {
+  --bg: #F5F6F8; --card: #FFFFFF; --ink: #16181D; --soft: #555A66; --line: #E2E5EB; --zebra: #F7F8FA;
+  --code-bg: #16181D; --code-fg: #EEF0F4; --code-line: transparent;
+  --lesson-50: #DCF4E6; --lesson-700: #0A6A3A;
+  --warn-50: #FDECEC; --warn-700: #A11A1F; --mistake-50: #FFEFE2; --mistake-700: #A3460A;
+  --ok-50: #E2F5EA; --ok-700: #0A6A3A; --date-50: #ECEEF3; --date-700: #555A66;
+  --shadow: 0 1px 2px rgba(22,24,29,.05), 0 10px 30px -16px rgba(22,24,29,.25); }
+  :root:root:root:root .acc-0 { --acc-50: #E3EBFF; --acc-700: #1A3FA6; }
+  :root:root:root:root .acc-1 { --acc-50: #DDF5E8; --acc-700: #0A6A3A; }
+  :root:root:root:root .acc-2 { --acc-50: #FFEBDC; --acc-700: #A3460A; }
+  :root:root:root:root .acc-3 { --acc-50: #ECE5FF; --acc-700: #4F26C9; }
+  :root:root:root:root .acc-4 { --acc-50: #FDE4EF; --acc-700: #A3184F; }
+  :root:root:root:root .acc-5 { --acc-50: #FFF4CC; --acc-700: #7A5700; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10.5pt; line-height: 1.6; padding: 0; background: #FFFFFF; }
+  .progress, .side, .copy, .no-print { display: none !important; }
+  .top { max-width: none; padding: 0; }
+  .hero { height: 297mm; border-radius: 0; padding: 26mm 20mm 22mm; grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; align-items: start; gap: 0; break-after: page; }
+  .hero-main { display: contents; }
+  .hero .brand { grid-row: 1; justify-self: start; }
+  .hero .pass { grid-row: 1; justify-self: end; width: 64mm; margin-top: 6mm; transform: rotate(-4deg); box-shadow: 0 18px 40px -12px rgba(8,16,48,.5); }
+  .hero .titles { grid-row: 2; align-self: end; }
+  .hero h1 { font-size: 52pt; margin: 0 0 6mm; }
+  .hero .lead { font-size: 14pt; max-width: 150mm; }
+  .hero .facts { grid-row: 3; margin-top: 12mm; }
+  .layout { display: block; max-width: none; padding: 0; }
+  .content { max-width: none; }
+  nav.toc { display: block; box-shadow: none; border: 1px solid var(--line); break-after: page; padding: 8mm; }
+  nav.toc ul { grid-template-columns: 1fr 1fr; }
+  nav.toc.many ul { grid-template-columns: 1fr 1fr 1fr; column-gap: 8px; font-size: 8.5pt; }
+  nav.toc.many a { padding: 3px 4px; gap: 8px; }
+  nav.toc.many .toc-b { min-width: 30px; height: 18px; font-size: 8pt; border-radius: 5px; }
+  nav.toc.many .toc-t { padding-top: 1px; }
+  .chapter { margin-top: 0; break-before: page; }
+  .chapter:first-child { break-before: auto; }
+  .ch-head { break-after: avoid; }
+  h3 { break-after: avoid; margin-top: 8mm; }
+  .callout, .prompt-card, .m-row, .cs-item, tr, .sec-faq p, .task, .sec-quiz li, .pc-head { break-inside: avoid; }
+  .pc-head { break-after: avoid; }
+  pre { background: #F3F5F9; color: #16181D; border: 0; border-left: 4px solid var(--lesson); padding: 12px 16px; font-size: 9.5pt; }
+  .prompt-card { background: #F3F5F9; box-shadow: none; border: 1px solid var(--line); }
+  .prompt-card pre { border-left: 0; }
+  .table-wrap, .sec-box, nav.toc, .sec-hw .ch-head + p { box-shadow: none; }
+  .table-wrap { overflow: visible; }
+  footer { margin-top: 12mm; }
+  table { font-size: 9.5pt; }
+  .pc-foot, .callout { font-size: 10pt; }
+  .pc-foot { padding: 10px 16px; }
+  .sec-cheat .ch-head { margin-bottom: 12px; }
+  .sec-cheat .sec-box { padding: 10px; column-gap: 10px; }
+  .cs-item { font-size: 9.3pt; line-height: 1.45; padding: 9px 12px; margin-bottom: 10px; }
+  .cs-item ol > li { padding-left: 28px; margin: 4px 0; }
+  .cs-item ol > li::before { width: 18px; height: 18px; line-height: 18px; font-size: 8pt; border-radius: 6px; top: 0; }
+  .hero-big { top: 92mm; bottom: auto; right: 14mm; font-size: 80mm; line-height: 1; opacity: .12; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="top">
+<header class="hero">
+  <div class="hero-big" aria-hidden="true">02</div>
+  <div class="hero-main">
+    <span class="brand">ИИ‑КОМАНДА · ДЛЯ ВЕДУЩЕГО</span>
+    <div class="titles"><h1>Сценарий ведущего · Урок 2</h1>
+    <p class="lead">Что говорить и что делать на каждом слайде урока «ИИ на моей работе». Время указано от начала урока.</p></div>
+    <ul class="facts" aria-label="Что внутри"><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><b>≈ 20 мин</b><small>чтения</small></span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg><span><b>33</b><small>слайда</small></span></li></ul>
+  </div>
+  <div class="pass" aria-hidden="true"><div class="pass-top"><span><i></i>ПРОПУСК</span><span>№ 02</span></div>
+    <div class="pass-body"><div class="pass-av"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></div><div class="pass-name">Аналитик</div><div class="pass-role">Участник вашей ИИ‑команды с урока 2</div>
+    <div class="pass-team"><span class="ts" style="background:#2F6BFF"></span><span class="ts on" style="background:#12A35B"></span><span class="ts" style="background:#FF7A1A"></span><span class="ts" style="background:#7B4DFF"></span><span class="ts" style="background:#EE3E86"></span><span class="ts" style="background:#F5B400"></span></div><div class="pass-code"></div></div></div>
+</header>
+</div>
+<div class="layout">
+<aside class="side"><nav aria-label="Навигация по разделам"><p class="toc-h">Содержание</p><ul><li class="acc-1 toc-l2"><a href="#как-пользоваться-сценарием"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="toc-t">Как пользоваться сценарием</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-1-урок-2-пропуск-аналитика"><span class="toc-b" aria-hidden="true">1</span><span class="toc-t"><span class="vh">Слайд 1 · </span>Урок 2. Пропуск Аналитика</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-2-команда-растёт"><span class="toc-b" aria-hidden="true">2</span><span class="toc-t"><span class="vh">Слайд 2 · </span>Команда растёт</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-3-план-урока"><span class="toc-b" aria-hidden="true">3</span><span class="toc-t"><span class="vh">Слайд 3 · </span>План урока</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-4-блок-1-что-получилось-в-дз-1"><span class="toc-b" aria-hidden="true">4</span><span class="toc-t"><span class="vh">Слайд 4 · </span>Блок 1. Что получилось в ДЗ 1</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-5-что-получилось"><span class="toc-b" aria-hidden="true">5</span><span class="toc-t"><span class="vh">Слайд 5 · </span>Что получилось</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-6-две-работы-которые-стоит-увидеть"><span class="toc-b" aria-hidden="true">6</span><span class="toc-t"><span class="vh">Слайд 6 · </span>Две работы, которые стоит увидеть</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-7-три-частые-ошибки"><span class="toc-b" aria-hidden="true">7</span><span class="toc-t"><span class="vh">Слайд 7 · </span>Три частые ошибки</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-8-вау-демо-1-договор-за-минуту"><span class="toc-b" aria-hidden="true">8</span><span class="toc-t"><span class="vh">Слайд 8 · </span>Вау‑демо 1. Договор за минуту</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-9-что-нашёл-аналитик"><span class="toc-b" aria-hidden="true">9</span><span class="toc-t"><span class="vh">Слайд 9 · </span>Что нашёл Аналитик</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-10-вау-демо-2-три-кп"><span class="toc-b" aria-hidden="true">10</span><span class="toc-t"><span class="vh">Слайд 10 · </span>Вау‑демо 2. Три КП</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-11-три-ловушки-в-трёх-кп"><span class="toc-b" aria-hidden="true">11</span><span class="toc-t"><span class="vh">Слайд 11 · </span>Три ловушки в трёх КП</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-12-блок-3-как-ии-читает-файлы"><span class="toc-b" aria-hidden="true">12</span><span class="toc-t"><span class="vh">Слайд 12 · </span>Блок 3. Как ИИ читает файлы</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-13-какие-файлы-читает-аналитик"><span class="toc-b" aria-hidden="true">13</span><span class="toc-t"><span class="vh">Слайд 13 · </span>Какие файлы читает Аналитик</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-14-что-теряется-по-дороге"><span class="toc-b" aria-hidden="true">14</span><span class="toc-t"><span class="vh">Слайд 14 · </span>Что теряется по дороге</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-15-длинный-документ"><span class="toc-b" aria-hidden="true">15</span><span class="toc-t"><span class="vh">Слайд 15 · </span>Длинный документ</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-16-опрос"><span class="toc-b" aria-hidden="true">16</span><span class="toc-t"><span class="vh">Слайд 16 · </span>Опрос</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-17-блок-4-три-правила-аналитика"><span class="toc-b" aria-hidden="true">17</span><span class="toc-t"><span class="vh">Слайд 17 · </span>Блок 4. Три правила Аналитика</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-18-правило-1-только-по-документу-со-ссылкой-на-пункт"><span class="toc-b" aria-hidden="true">18</span><span class="toc-t"><span class="vh">Слайд 18 · </span>Правило 1. Только по документу, со ссылкой на пункт</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-19-правило-2-чего-нет-пиши-в-документе-нет"><span class="toc-b" aria-hidden="true">19</span><span class="toc-t"><span class="vh">Слайд 19 · </span>Правило 2. Чего нет — пиши «в документе нет»</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-20-правило-3-цифры-в-excel"><span class="toc-b" aria-hidden="true">20</span><span class="toc-t"><span class="vh">Слайд 20 · </span>Правило 3. Цифры — в Excel</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-21-светофор-для-документов"><span class="toc-b" aria-hidden="true">21</span><span class="toc-t"><span class="vh">Слайд 21 · </span>Светофор для документов</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-22-перерыв"><span class="toc-b" aria-hidden="true">22</span><span class="toc-t"><span class="vh">Слайд 22 · </span>Перерыв</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-23-блок-5-формула-для-документа"><span class="toc-b" aria-hidden="true">23</span><span class="toc-t"><span class="vh">Слайд 23 · </span>Блок 5. Формула для документа</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-24-формула-запроса-три-правила"><span class="toc-b" aria-hidden="true">24</span><span class="toc-t"><span class="vh">Слайд 24 · </span>Формула запроса + три правила</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-25-ваш-ход-свой-документ"><span class="toc-b" aria-hidden="true">25</span><span class="toc-t"><span class="vh">Слайд 25 · </span>Ваш ход: свой документ</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-26-проверьте-три-вывода"><span class="toc-b" aria-hidden="true">26</span><span class="toc-t"><span class="vh">Слайд 26 · </span>Проверьте три вывода</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-27-блок-7-цифры"><span class="toc-b" aria-hidden="true">27</span><span class="toc-t"><span class="vh">Слайд 27 · </span>Блок 7. Цифры</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-28-пересчитываю-кп-2-в-excel"><span class="toc-b" aria-hidden="true">28</span><span class="toc-t"><span class="vh">Слайд 28 · </span>Пересчитываю КП 2 в Excel</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-29-ии-переносит-excel-считает"><span class="toc-b" aria-hidden="true">29</span><span class="toc-t"><span class="vh">Слайд 29 · </span>ИИ переносит, Excel считает</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-30-что-это-значит-для-вашей-роли"><span class="toc-b" aria-hidden="true">30</span><span class="toc-t"><span class="vh">Слайд 30 · </span>Что это значит для вашей роли</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-31-домашнее-задание"><span class="toc-b" aria-hidden="true">31</span><span class="toc-t"><span class="vh">Слайд 31 · </span>Домашнее задание</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-32-что-вы-теперь-умеете"><span class="toc-b" aria-hidden="true">32</span><span class="toc-t"><span class="vh">Слайд 32 · </span>Что вы теперь умеете</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-33-следующий-урок-и-вопросы"><span class="toc-b" aria-hidden="true">33</span><span class="toc-t"><span class="vh">Слайд 33 · </span>Следующий урок и вопросы</span></a></li><li class="acc-1 toc-l2"><a href="#готовые-ответы-на-частые-вопросы"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="toc-t">Готовые ответы на частые вопросы</span></a></li></ul></nav></aside>
+<div class="content">
+<nav class="toc many" aria-label="Содержание"><h2 class="toc-h">Содержание</h2><ul><li class="acc-1 toc-l2"><a href="#как-пользоваться-сценарием"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="toc-t">Как пользоваться сценарием</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-1-урок-2-пропуск-аналитика"><span class="toc-b" aria-hidden="true">1</span><span class="toc-t"><span class="vh">Слайд 1 · </span>Урок 2. Пропуск Аналитика</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-2-команда-растёт"><span class="toc-b" aria-hidden="true">2</span><span class="toc-t"><span class="vh">Слайд 2 · </span>Команда растёт</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-3-план-урока"><span class="toc-b" aria-hidden="true">3</span><span class="toc-t"><span class="vh">Слайд 3 · </span>План урока</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-4-блок-1-что-получилось-в-дз-1"><span class="toc-b" aria-hidden="true">4</span><span class="toc-t"><span class="vh">Слайд 4 · </span>Блок 1. Что получилось в ДЗ 1</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-5-что-получилось"><span class="toc-b" aria-hidden="true">5</span><span class="toc-t"><span class="vh">Слайд 5 · </span>Что получилось</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-6-две-работы-которые-стоит-увидеть"><span class="toc-b" aria-hidden="true">6</span><span class="toc-t"><span class="vh">Слайд 6 · </span>Две работы, которые стоит увидеть</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-7-три-частые-ошибки"><span class="toc-b" aria-hidden="true">7</span><span class="toc-t"><span class="vh">Слайд 7 · </span>Три частые ошибки</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-8-вау-демо-1-договор-за-минуту"><span class="toc-b" aria-hidden="true">8</span><span class="toc-t"><span class="vh">Слайд 8 · </span>Вау‑демо 1. Договор за минуту</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-9-что-нашёл-аналитик"><span class="toc-b" aria-hidden="true">9</span><span class="toc-t"><span class="vh">Слайд 9 · </span>Что нашёл Аналитик</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-10-вау-демо-2-три-кп"><span class="toc-b" aria-hidden="true">10</span><span class="toc-t"><span class="vh">Слайд 10 · </span>Вау‑демо 2. Три КП</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-11-три-ловушки-в-трёх-кп"><span class="toc-b" aria-hidden="true">11</span><span class="toc-t"><span class="vh">Слайд 11 · </span>Три ловушки в трёх КП</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-12-блок-3-как-ии-читает-файлы"><span class="toc-b" aria-hidden="true">12</span><span class="toc-t"><span class="vh">Слайд 12 · </span>Блок 3. Как ИИ читает файлы</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-13-какие-файлы-читает-аналитик"><span class="toc-b" aria-hidden="true">13</span><span class="toc-t"><span class="vh">Слайд 13 · </span>Какие файлы читает Аналитик</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-14-что-теряется-по-дороге"><span class="toc-b" aria-hidden="true">14</span><span class="toc-t"><span class="vh">Слайд 14 · </span>Что теряется по дороге</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-15-длинный-документ"><span class="toc-b" aria-hidden="true">15</span><span class="toc-t"><span class="vh">Слайд 15 · </span>Длинный документ</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-16-опрос"><span class="toc-b" aria-hidden="true">16</span><span class="toc-t"><span class="vh">Слайд 16 · </span>Опрос</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-17-блок-4-три-правила-аналитика"><span class="toc-b" aria-hidden="true">17</span><span class="toc-t"><span class="vh">Слайд 17 · </span>Блок 4. Три правила Аналитика</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-18-правило-1-только-по-документу-со-ссылкой-на-пункт"><span class="toc-b" aria-hidden="true">18</span><span class="toc-t"><span class="vh">Слайд 18 · </span>Правило 1. Только по документу, со ссылкой на пункт</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-19-правило-2-чего-нет-пиши-в-документе-нет"><span class="toc-b" aria-hidden="true">19</span><span class="toc-t"><span class="vh">Слайд 19 · </span>Правило 2. Чего нет — пиши «в документе нет»</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-20-правило-3-цифры-в-excel"><span class="toc-b" aria-hidden="true">20</span><span class="toc-t"><span class="vh">Слайд 20 · </span>Правило 3. Цифры — в Excel</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-21-светофор-для-документов"><span class="toc-b" aria-hidden="true">21</span><span class="toc-t"><span class="vh">Слайд 21 · </span>Светофор для документов</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-22-перерыв"><span class="toc-b" aria-hidden="true">22</span><span class="toc-t"><span class="vh">Слайд 22 · </span>Перерыв</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-23-блок-5-формула-для-документа"><span class="toc-b" aria-hidden="true">23</span><span class="toc-t"><span class="vh">Слайд 23 · </span>Блок 5. Формула для документа</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-24-формула-запроса-три-правила"><span class="toc-b" aria-hidden="true">24</span><span class="toc-t"><span class="vh">Слайд 24 · </span>Формула запроса + три правила</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-25-ваш-ход-свой-документ"><span class="toc-b" aria-hidden="true">25</span><span class="toc-t"><span class="vh">Слайд 25 · </span>Ваш ход: свой документ</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-26-проверьте-три-вывода"><span class="toc-b" aria-hidden="true">26</span><span class="toc-t"><span class="vh">Слайд 26 · </span>Проверьте три вывода</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-27-блок-7-цифры"><span class="toc-b" aria-hidden="true">27</span><span class="toc-t"><span class="vh">Слайд 27 · </span>Блок 7. Цифры</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-28-пересчитываю-кп-2-в-excel"><span class="toc-b" aria-hidden="true">28</span><span class="toc-t"><span class="vh">Слайд 28 · </span>Пересчитываю КП 2 в Excel</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-29-ии-переносит-excel-считает"><span class="toc-b" aria-hidden="true">29</span><span class="toc-t"><span class="vh">Слайд 29 · </span>ИИ переносит, Excel считает</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-30-что-это-значит-для-вашей-роли"><span class="toc-b" aria-hidden="true">30</span><span class="toc-t"><span class="vh">Слайд 30 · </span>Что это значит для вашей роли</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-31-домашнее-задание"><span class="toc-b" aria-hidden="true">31</span><span class="toc-t"><span class="vh">Слайд 31 · </span>Домашнее задание</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-32-что-вы-теперь-умеете"><span class="toc-b" aria-hidden="true">32</span><span class="toc-t"><span class="vh">Слайд 32 · </span>Что вы теперь умеете</span></a></li><li class="acc-1 toc-l3"><a href="#слайд-33-следующий-урок-и-вопросы"><span class="toc-b" aria-hidden="true">33</span><span class="toc-t"><span class="vh">Слайд 33 · </span>Следующий урок и вопросы</span></a></li><li class="acc-1 toc-l2"><a href="#готовые-ответы-на-частые-вопросы"><span class="toc-b toc-i" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><span class="toc-t">Готовые ответы на частые вопросы</span></a></li></ul></nav>
+<main>
+<section class="chapter acc-1" aria-labelledby="как-пользоваться-сценарием">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><h2 id="как-пользоваться-сценарием">Как пользоваться сценарием</h2></header>
+<ul>
+<li>Ниже расписано, <strong>что говорить на каждом слайде</strong>, живым текстом. Читать дословно не нужно: перескажите своими словами, но держитесь смысла и порядка.</li>
+<li><strong>Делаете</strong>: действия руками. Переключиться в браузер, открыть файл, вставить промпт в чат Телемоста, запустить таймер.</li>
+<li><strong>Время</strong>: сколько минут от начала урока прошло к концу слайда. Если отстаёте, сокращайте по плану Б ниже: задание «Ваш ход» не трогаем.</li>
+<li>Квадратные скобки <code>[...]</code> заполните заранее своими данными.</li>
+<li>Логика урока та же, что в первом: <strong>показываю → объясняю → вы повторяете</strong>. Сначала разбор домашнего задания, потом два показа на документах, правила работы с файлами, после перерыва формула для документа и ваша практика на своём документе. Каждые 6–10 минут группа что‑то делает: отвечает в чат или работает в DeepSeek.</li>
+<li>Тот же текст лежит в заметках к каждому слайду.</li>
+</ul>
+<p><strong>За 2–3 дня до урока</strong></p>
+<ul>
+<li>Разошлите отзывы на ДЗ 1. В том же письме попросите каждого выбрать один свой рабочий документ (договор, ТЗ, КП, смету, регламент, таблицу), обезличить его по светофору и сохранить на компьютере. Приложите ссылку на папку с учебными документами (<code>materials/lesson-2/</code>): кто не найдёт своего, будет работать на учебном.</li>
+<li>Выберите 3–4 работы ДЗ 1 для разбора и спросите у авторов согласия показать их без имени.</li>
+<li>Посчитайте по формам ДЗ 1: сколько человек сдали, у скольких промпт по формуле, сколько всего минут группа сэкономила по замеру «без ИИ → с ИИ». Впишите цифры в слайд «Что получилось».</li>
+</ul>
+<p><strong>Подготовка за час до урока</strong></p>
+<ol>
+<li>Откройте DeepSeek, проверьте, что работает. Отдельный профиль браузера, режим «Не беспокоить».</li>
+<li>Откройте папку <code>materials/lesson-2/</code>: договор поставки № 47/11 и три КП. Прогоните оба показа заранее и сверьте ответы с <code>answers.md</code>. Удачные ответы оставьте в отдельных вкладках.</li>
+<li>Подготовьте Excel с пустым листом: в блоке «Цифры» вы будете пересчитывать КП 2 на экране.</li>
+<li>Откройте книжку 2 на разделе с промптами, оттуда будете копировать их в чат Телемоста.</li>
+<li>Впишите в слайды время после перерыва и дату сдачи ДЗ. Подготовьте ссылку на Яндекс Форму.</li>
+<li>Подключите к Телемосту второе устройство без звука.</li>
+<li>В начале урока включите запись и скажите группе, что урок записывается.</li>
+</ol>
+<p><strong>План Б</strong></p>
+<ul>
+<li>DeepSeek не принял файл или прочитал его криво: откройте документ, скопируйте текст и вставьте в чат. Скажите об этом вслух, это полезный приём и для группы.</li>
+<li>DeepSeek завис или «сервер занят»: переключитесь на заготовленную вкладку с ответом, повторите запрос в перерыве.</li>
+<li>У ученика нет своего документа: пусть возьмёт учебный договор или КП из папки.</li>
+<li>Отстаёте до перерыва: разберите две работы ДЗ вместо четырёх, блок про файлы сократите до слайдов «Какие файлы читает» и «Длинный документ».</li>
+<li>Отстаёте после перерыва: роли только назовите, они целиком есть в книжке. Задание «Ваш ход» не сокращайте.</li>
+</ul>
+<hr>
+<h3 id="слайд-1-урок-2-пропуск-аналитика" class="slide-h"><span class="slide-no">Слайд 1</span><span class="vh"> · </span><span class="slide-t">Урок 2. Пропуск Аналитика</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:00–0:01 (заставка висит, пока все подключаются)</p>
+<p class="p-say"><strong>Говорите:</strong><br>Добрый вечер! Рад, что вы снова здесь. Сегодня в команду приходит второй участник, Аналитик. Ассистент отвечает в чате, а Аналитик работает с вашими файлами: договорами, техзаданиями, коммерческими предложениями, таблицами. К концу урока вы загрузите в DeepSeek свой рабочий документ и получите из него таблицу, которую можно проверить по пунктам.</p>
+<hr>
+<h3 id="слайд-2-команда-растёт" class="slide-h"><span class="slide-no">Слайд 2</span><span class="vh"> · </span><span class="slide-t">Команда растёт</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:01–0:02</p>
+<p class="p-say"><strong>Говорите:</strong><br>Напомню, где мы. Ассистент у вас уже есть: формула запроса, уточнение, проверка ответа и светофор. Сегодня Аналитик. Всё, чему мы научились на первом уроке, остаётся. Теперь ИИ работает с вашим документом. На третьем уроке придёт Редактор, и мы соберём вашего собственного помощника.</p>
+<hr>
+<h3 id="слайд-3-план-урока" class="slide-h"><span class="slide-no">Слайд 3</span><span class="vh"> · </span><span class="slide-t">План урока</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:02–0:03</p>
+<p class="p-say"><strong>Говорите:</strong><br>План на сегодня. Сначала разберём ваши домашние задания. Потом я покажу два примера на документах: договор и три коммерческих предложения. Разберёмся, какие файлы ИИ читает хорошо, а какие плохо, и выучим три правила Аналитика. После перерыва вы работаете на своём документе пятнадцать минут. Потом проверяем цифры в Excel, смотрим, что это значит для каждой роли, и домашнее задание.<br>Вопросы, как обычно, в чат. Я читаю его в конце каждого блока.</p>
+<hr>
+<h3 id="слайд-4-блок-1-что-получилось-в-дз-1" class="slide-h"><span class="slide-no">Слайд 4</span><span class="vh"> · </span><span class="slide-t">Блок 1. Что получилось в ДЗ 1</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:03</p>
+<p class="p-say"><strong>Говорите:</strong><br>Начнём с ваших работ. Спасибо всем, кто сдал. Я прочитал каждую и каждому отправил отзыв.</p>
+<hr>
+<h3 id="слайд-5-что-получилось" class="slide-h"><span class="slide-no">Слайд 5</span><span class="vh"> · </span><span class="slide-t">Что получилось</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:03–0:06</p>
+<p class="p-do"><strong>Делаете:</strong> перед уроком впишите в слайд цифры из форм ДЗ 1.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Немного цифр. Домашнее задание сдали [N] человек из [N]. У [N] из них промпт собран по формуле. И самое интересное: по вашим же замерам «без ИИ → с ИИ» группа сэкономила [N] часов на задачах, которые вы и так бы делали.<br>Напишите в чат, сколько минут сэкономили лично вы на рабочем задании. <em>(прочитайте 3–4 ответа)</em> Эти цифры мы будем копить до третьего урока.</p>
+<hr>
+<h3 id="слайд-6-две-работы-которые-стоит-увидеть" class="slide-h"><span class="slide-no">Слайд 6</span><span class="vh"> · </span><span class="slide-t">Две работы, которые стоит увидеть</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:06–0:11</p>
+<p class="p-do"><strong>Делаете:</strong> покажите 2 работы с согласия авторов, без имён. Для каждой: задача, первый промпт, уточнение, результат.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Две работы, на которых хорошо видно, как это работает. <em>(первая работа)</em> Посмотрите на первый промпт: [что в нём было]. А вот уточнение: [что автор попросил исправить]. После него ответ стал [что изменилось]. Это ровно тот цикл, который мы тренировали: запрос, уточнение, проверка.<br><em>(вторая работа)</em> Здесь автор проверил три факта и нашёл, что [что нашёл]. Если бы он отдал ответ как есть, [последствие].</p>
+<hr>
+<h3 id="слайд-7-три-частые-ошибки" class="slide-h"><span class="slide-no">Слайд 7</span><span class="vh"> · </span><span class="slide-t">Три частые ошибки</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:11–0:15</p>
+<p class="p-say"><strong>Говорите:</strong><br>И три ошибки, которые встречались чаще всего. Это нормальные ошибки первой недели, они были почти у всех.<br>Первая: промпт без контекста. «Напиши письмо поставщику», и всё. ИИ не знает, кто поставщик, что случилось и чего вы хотите, поэтому пишет общие слова.<br>Вторая: приняли первый ответ. Уточнение было формальным: «сделай лучше». Работает уточнение с «что не так и как надо».<br>Третья: проверка «на глаз». «Вроде всё правильно». Проверить значит открыть источник и сверить конкретную цифру или факт.<br>Сегодня мы закроем все три, потому что работать будем с документом: в нём и контекст, и источник для проверки.</p>
+<hr>
+<h3 id="слайд-8-вау-демо-1-договор-за-минуту" class="slide-h"><span class="slide-no">Слайд 8</span><span class="vh"> · </span><span class="slide-t">Вау‑демо 1. Договор за минуту</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:15–0:19</p>
+<p class="p-do"><strong>Делаете:</strong> переключитесь в браузер, в DeepSeek новый чат. Нажмите скрепку, прикрепите <code>dogovor-postavki-47-11.docx</code>, вставьте промпт П‑2.1 и отправьте.</p>
+<p>Промпт:<br>«Ты — юрист со стороны покупателя. Найди в договоре условия, невыгодные для покупателя. Ответ — таблица: пункт · что написано · чем рискует покупатель · что предложить поставщику. Ссылайся только на пункты этого договора. Чего в договоре нет — пиши „в договоре нет“.»</p>
+<p class="p-say"><strong>Говорите:</strong><br>Первый пример. Это договор поставки складского оборудования на три страницы. Компании и цифры вымышленные, документ уже обезличен: вместо названий «Компания А» и «Компания Б», реквизиты удалены. Именно так выглядит жёлтый документ после обезличивания.<br>Представьте, что этот договор пришёл вам от поставщика вечером, а подписать надо завтра. Прикрепляю файл… прошу найти, что в нём невыгодно покупателю, и обязательно со ссылкой на пункт.<br><em>(пока идёт ответ)</em> Обратите внимание на последние две строки промпта. Они важнее всего остального, к ним вернёмся через двадцать минут.</p>
+<hr>
+<h3 id="слайд-9-что-нашёл-аналитик" class="slide-h"><span class="slide-no">Слайд 9</span><span class="vh"> · </span><span class="slide-t">Что нашёл Аналитик</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:19–0:21</p>
+<p class="p-do"><strong>Делаете:</strong> покажите ответ DeepSeek. Откройте договор и сверьте вслух 2 пункта, например 4.1 и 6.2.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Вот таблица. Предоплата сто процентов, пункт 2.2. Поставщик может сам перенести срок на месяц, пункт 3.2. Приёмка за один день, и после этого претензии даже по скрытым недостаткам не принимаются, пункты 4.1 и 4.2. Неустойка: покупатель платит полпроцента в день, поставщик одну сотую, и не больше одного процента.<br>Теперь проверяю. Открываю пункт 4.1… да, «в течение одного рабочего дня». Пункт 6.2… совпадает. Проверка заняла двадцать секунд, потому что у каждого вывода есть номер пункта.<br>Юрист прочитал бы этот договор за полчаса и нашёл бы то же самое, и ещё больше. ИИ не заменяет юриста. Он даёт вам первый проход за минуту, и к юристу вы идёте уже с конкретными вопросами.</p>
+<hr>
+<h3 id="слайд-10-вау-демо-2-три-кп" class="slide-h"><span class="slide-no">Слайд 10</span><span class="vh"> · </span><span class="slide-t">Вау‑демо 2. Три КП</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:21–0:24</p>
+<p class="p-do"><strong>Делаете:</strong> покажите на экране три КП по очереди, по 5 секунд на каждое. Спросите группу. Затем в DeepSeek новый чат, прикрепите три файла КП, вставьте промпт П‑2.2 и отправьте.</p>
+<p>Промпт:<br>«Сравни три коммерческих предложения таблицей: цена с НДС, что входит в комплект, срок, оплата, гарантия, сервис. Пересчитай итог каждого КП по строкам и отметь, если он не сходится. Отдельно: что не указано и какие вопросы задать каждому поставщику.»</p>
+<p class="p-say"><strong>Говорите:</strong><br>Второй пример, для закупщиков и не только. Помните фото заметок с первого урока? Там было «ТЗ на погрузчик, ждём 3 КП». Вот они пришли. Три предложения на электрический погрузчик от трёх компаний.<br>Вопрос в чат, пока я загружаю: какое предложение выгоднее? Напишите В, Г или Д. Смотрите на итоговую цену.<br><em>(прочитайте ответы)</em> Многие выбрали Г, у него самая низкая цифра. Посмотрим, что скажет Аналитик.</p>
+<hr>
+<h3 id="слайд-11-три-ловушки-в-трёх-кп" class="slide-h"><span class="slide-no">Слайд 11</span><span class="vh"> · </span><span class="slide-t">Три ловушки в трёх КП</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:24–0:26</p>
+<p class="p-say"><strong>Говорите:</strong><br>Вот сравнение, и в нём три ловушки.<br>Первая: в КП Г итог не сходится. Если сложить строки, получается 2 498 400, а в предложении написано 2 480 000. Ошибка на 18 400 рублей.<br>Вторая: в КП Г нет аккумулятора, он «по отдельному запросу». То есть самое дешёвое предложение без самой дорогой детали.<br>Третья: КП Д указано без НДС. С НДС оно становится самым дорогим, 3 220 800.<br>Самое дешёвое нельзя выбрать, пока цены не приведены к одному виду. ИИ это увидел за минуту и составил вопросы каждому поставщику. А итоговые цифры мы ещё пересчитаем в Excel, ближе к концу урока.<br><em>(если ИИ пропустил ловушку)</em> Видите, ИИ не заметил [что]. Поэтому цифры и проверяем сами.</p>
+<hr>
+<h3 id="слайд-12-блок-3-как-ии-читает-файлы" class="slide-h"><span class="slide-no">Слайд 12</span><span class="vh"> · </span><span class="slide-t">Блок 3. Как ИИ читает файлы</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:26</p>
+<p class="p-say"><strong>Говорите:</strong><br>Вы видели, как это выглядит. Теперь разберёмся, что происходит внутри и где здесь подвох.</p>
+<hr>
+<h3 id="слайд-13-какие-файлы-читает-аналитик" class="slide-h"><span class="slide-no">Слайд 13</span><span class="vh"> · </span><span class="slide-t">Какие файлы читает Аналитик</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:26–0:29</p>
+<p class="p-say"><strong>Говорите:</strong><br>DeepSeek принимает почти всё, с чем вы работаете. Документы Word и PDF с текстом он читает лучше всего, там текст лежит в файле готовым. Таблицы Excel тоже читает, вместе со строками и столбцами. Сканы и фотографии он сначала распознаёт как картинку, как фото заметок на прошлом уроке. Почерк и печатный текст на фото он разбирает хорошо, но на сканах с печатями, подписями и правками ручкой ошибается чаще.<br>Можно прикрепить несколько файлов сразу, как три КП. Тогда в промпте называйте, где какой: «первый файл — договор, второй — спецификация».</p>
+<hr>
+<h3 id="слайд-14-что-теряется-по-дороге" class="slide-h"><span class="slide-no">Слайд 14</span><span class="vh"> · </span><span class="slide-t">Что теряется по дороге</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:29–0:31</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь о том, что ИИ может не увидеть, и вы об этом не узнаете.<br>Приложения, вставленные в документ картинкой. Мелкий шрифт и сноски. Таблицы в сканах: строки могут съехать, и цифра встанет не в ту колонку. Рукописные правки на полях и зачёркивания. Колонтитулы и штампы.<br>ИИ не скажет «я не прочитал приложение». Он ответит по тому, что прочитал. Поэтому, если в документе важно приложение, спросите отдельно: «Что написано в Приложении 1? Перечисли его строки». Если ответ пустой или странный, вставьте приложение текстом.</p>
+<hr>
+<h3 id="слайд-15-длинный-документ" class="slide-h"><span class="slide-no">Слайд 15</span><span class="vh"> · </span><span class="slide-t">Длинный документ</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:31–0:34</p>
+<p class="p-say"><strong>Говорите:</strong><br>Помните «рабочий стол» из первого урока? У ИИ ограниченная память на один разговор. Договор на три страницы помещается легко. Регламент на сто страниц может не поместиться целиком, и тогда ИИ будет отвечать по части документа.<br>Что делать с длинным документом. Первое: один документ — один чат. Второе: спрашивайте по разделам, «разбери раздел 5». Третье: в конце попросите ИИ перечислить разделы, которые он видел. Если какого‑то нет, значит, до него ИИ не дочитал.<br>И ещё: в длинном чате ИИ начинает «забывать» начало. Если ответы поплыли, откройте новый чат и загрузите документ заново.</p>
+<hr>
+<h3 id="слайд-16-опрос" class="slide-h"><span class="slide-no">Слайд 16</span><span class="vh"> · </span><span class="slide-t">Опрос</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:34–0:36</p>
+<p class="p-do"><strong>Делаете:</strong> дайте 30 секунд, затем назовите правильный ответ.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Короткий вопрос, ответ буквой в чат. Какой файл ИИ прочитает хуже всего? A: договор в Word. B: таблица Excel со сметой. C: скан договора с печатями и правками ручкой. D: фото страницы блокнота.<br><em>(после ответов)</em> Правильно, C. На скане сразу всё сложное: печать поверх текста, подписи, правки ручкой. Блокнот с фото ИИ разберёт лучше, там просто почерк. Если у вас скан, проверяйте особенно внимательно и при возможности ищите исходник в Word.</p>
+<hr>
+<h3 id="слайд-17-блок-4-три-правила-аналитика" class="slide-h"><span class="slide-no">Слайд 17</span><span class="vh"> · </span><span class="slide-t">Блок 4. Три правила Аналитика</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:36</p>
+<p class="p-say"><strong>Говорите:</strong><br>Три правила, которые превращают ответ ИИ из «вроде похоже» в то, что можно проверить и отдать дальше.</p>
+<hr>
+<h3 id="слайд-18-правило-1-только-по-документу-со-ссылкой-на-пункт" class="slide-h"><span class="slide-no">Слайд 18</span><span class="vh"> · </span><span class="slide-t">Правило 1. Только по документу, со ссылкой на пункт</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:36–0:38</p>
+<p class="p-say"><strong>Говорите:</strong><br>Первое правило: «отвечай только по документу и у каждого вывода указывай пункт».<br>Без этой фразы ИИ смешивает документ со своими общими знаниями. Он может написать «по закону покупатель имеет право…», хотя в договоре этого нет. Со ссылкой на пункт вы проверяете вывод за секунды, как я проверил пункт 4.1. Нет номера — нет вывода.<br>Для таблиц то же самое: «указывай строку и столбец». Для длинных документов — «указывай страницу».</p>
+<hr>
+<h3 id="слайд-19-правило-2-чего-нет-пиши-в-документе-нет" class="slide-h"><span class="slide-no">Слайд 19</span><span class="vh"> · </span><span class="slide-t">Правило 2. Чего нет — пиши «в документе нет»</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:38–0:40</p>
+<p class="p-say"><strong>Говорите:</strong><br>Второе правило: «если в документе этого нет, пиши „в документе нет“».<br>Это та же защита от выдумки, что «не указано» в заметках на первом уроке. Спросите ИИ про штраф за просрочку монтажа, а такого пункта в договоре нет. Без этого правила он может придумать разумный штраф. С правилом он напишет «в договоре нет», и это ценная находка: значит, в договор надо добавить условие.<br>Часто самое важное в договоре именно то, чего в нём нет.</p>
+<hr>
+<h3 id="слайд-20-правило-3-цифры-в-excel" class="slide-h"><span class="slide-no">Слайд 20</span><span class="vh"> · </span><span class="slide-t">Правило 3. Цифры — в Excel</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:40–0:42</p>
+<p class="p-say"><strong>Говорите:</strong><br>Третье правило: цифры ИИ не принимаем на веру, пересчитываем в Excel.<br>Помните, на первом уроке я говорил: модель подбирает правдоподобное продолжение, а не считает. В коротком примере она посчитает верно, в длинной таблице может ошибиться в одной строке, и ответ будет выглядеть идеально. Поэтому сумму, процент, итог по смете вы пересчитываете сами. Как это сделать за минуту, я покажу после практики.</p>
+<hr>
+<h3 id="слайд-21-светофор-для-документов" class="slide-h"><span class="slide-no">Слайд 21</span><span class="vh"> · </span><span class="slide-t">Светофор для документов</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:42–0:44</p>
+<p class="p-do"><strong>Делаете:</strong> назовите три документа по очереди, после каждого дайте 10 секунд на ответ в чат.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Светофор из первого урока работает и здесь, только теперь вы загружаете целые файлы, а в файле легко пропустить что‑то лишнее. Подписи, реквизиты в колонтитуле, фамилии в листе согласования.<br>Проверим. Напишите цвет в чат. Договор с поставщиком, где названия заменены на «Компания А, Б» и удалены реквизиты? <em>(ответы)</em> Зелёный, можно. Смета с названием заказчика и адресом объекта? <em>(ответы)</em> Жёлтый: сначала уберите название и адрес. Скан паспорта водителя для пропуска? <em>(ответы)</em> Красный, никогда.<br>Перед загрузкой пролистайте документ до конца: последние страницы и приложения чаще всего и выдают компанию.</p>
+<hr>
+<h3 id="слайд-22-перерыв" class="slide-h"><span class="slide-no">Слайд 22</span><span class="vh"> · </span><span class="slide-t">Перерыв</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:44–0:49</p>
+<p class="p-do"><strong>Делаете:</strong> запустите таймер 5 минут. Демонстрацию не выключайте.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Перерыв пять минут, вернёмся в [ВРЕМЯ]. За перерыв откройте свой документ, который подготовили к уроку, и проверьте, что он обезличен. У кого документа нет, скачайте учебный договор или КП по ссылке в чате.</p>
+<hr>
+<h3 id="слайд-23-блок-5-формула-для-документа" class="slide-h"><span class="slide-no">Слайд 23</span><span class="vh"> · </span><span class="slide-t">Блок 5. Формула для документа</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:49</p>
+<p class="p-say"><strong>Говорите:</strong><br>С возвращением. Соберём всё в одну формулу, и дальше ваша очередь.</p>
+<hr>
+<h3 id="слайд-24-формула-запроса-три-правила" class="slide-h"><span class="slide-no">Слайд 24</span><span class="vh"> · </span><span class="slide-t">Формула запроса + три правила</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:49–0:53</p>
+<p class="p-do"><strong>Делаете:</strong> скопируйте промпт П‑2.3 из книжки в чат Телемоста.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Формула та же, что на первом уроке: роль, контекст, задача, формат, ограничения. Контекст теперь — это ваш файл, а в ограничения мы дописываем три правила Аналитика.<br>Промпт на слайде и в чате. Роль: кто вы или какой специалист вам нужен, «юрист», «закупщик», «сметчик». Что за документ. Что нужно: найти риски, сравнить, выписать сроки, составить вопросы. Формат: таблица и её колонки. И три правила в конце, их не меняйте.<br>Этот промпт годится почти для любого рабочего документа. В книжке есть готовые варианты для договора, ТЗ, сметы, КП, регламента и протокола.</p>
+<hr>
+<h3 id="слайд-25-ваш-ход-свой-документ" class="slide-h"><span class="slide-no">Слайд 25</span><span class="vh"> · </span><span class="slide-t">Ваш ход: свой документ</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 0:53–1:04</p>
+<p class="p-do"><strong>Делаете:</strong> таймер на 7 минут, затем на 4. Пока группа работает, читайте чат и отвечайте на вопросы.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь вы. Откройте DeepSeek, новый чат. Прикрепите свой обезличенный документ, у кого нет своего — учебный. Вставьте промпт из чата и подставьте свою роль, документ и задачу. Семь минут.<br><em>(после 7 минут)</em> Прочитайте ответ. Что не так? Не те колонки, слишком общо, пропущен важный раздел? Одно уточнение по схеме «что не так, и как надо». Например: «Ты пропустил раздел про оплату. Добавь его и для каждого риска предложи формулировку пункта». Четыре минуты.</p>
+<hr>
+<h3 id="слайд-26-проверьте-три-вывода" class="slide-h"><span class="slide-no">Слайд 26</span><span class="vh"> · </span><span class="slide-t">Проверьте три вывода</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:04–1:08</p>
+<p class="p-do"><strong>Делаете:</strong> таймер на 4 минуты. После таймера прочитайте 4–5 ответов из чата.</p>
+<p class="p-say"><strong>Говорите:</strong><br>И последний шаг, самый важный. Выберите в ответе три вывода с номерами пунктов. Откройте свой документ и найдите эти пункты. Совпало?<br>Напишите в чат результат: «3 из 3», «2 из 3» или «1 из 3», и одной фразой, что не совпало. Четыре минуты.<br><em>(после таймера)</em> Смотрите, у [N] человек «3 из 3», а у [N] что‑то не совпало. Это нормально, и именно поэтому мы проверяем. Кто расскажет в двух словах, что не совпало? <em>(1–2 ответа)</em><br>Это рабочий цикл Аналитика: документ, промпт с тремя правилами, уточнение, проверка по пунктам.</p>
+<hr>
+<h3 id="слайд-27-блок-7-цифры" class="slide-h"><span class="slide-no">Слайд 27</span><span class="vh"> · </span><span class="slide-t">Блок 7. Цифры</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:08</p>
+<p class="p-say"><strong>Говорите:</strong><br>Теперь обещанные цифры. Пять минут, и вы больше никогда не будете принимать итог от ИИ на веру.</p>
+<hr>
+<h3 id="слайд-28-пересчитываю-кп-2-в-excel" class="slide-h"><span class="slide-no">Слайд 28</span><span class="vh"> · </span><span class="slide-t">Пересчитываю КП 2 в Excel</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:08–1:12</p>
+<p class="p-do"><strong>Делаете:</strong> в DeepSeek, в чате с тремя КП, отправьте промпт П‑2.4. Скопируйте таблицу из ответа и вставьте в Excel. В пустой ячейке под суммами напишите <code>=СУММ(...)</code> и покажите результат.</p>
+<p>Промпт:<br>«Перенеси строки КП Компании Г в таблицу: наименование · количество · цена · сумма. Только цифры из документа, итог не считай. Таблицу оформи так, чтобы я мог вставить её в Excel.»</p>
+<p class="p-say"><strong>Говорите:</strong><br>Помните ошибку на 18 400 в КП Г? Проверим её по‑честному, без ИИ в роли калькулятора.<br>Прошу ИИ только перенести строки в таблицу и ничего не считать. Копирую… вставляю в Excel… пишу формулу «СУММ» по столбцу сумм. Получается 2 498 400. В предложении написано 2 480 000. Ошибка подтвердилась, и посчитал её Excel.<br>Напишите в чат: если бы вы сравнивали эти КП по работе, вы бы заметили ошибку без пересчёта? <em>(прочитайте 2–3 ответа)</em></p>
+<hr>
+<h3 id="слайд-29-ии-переносит-excel-считает" class="slide-h"><span class="slide-no">Слайд 29</span><span class="vh"> · </span><span class="slide-t">ИИ переносит, Excel считает</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:12–1:14</p>
+<p class="p-say"><strong>Говорите:</strong><br>Правило простое: ИИ переносит цифры из документа в таблицу и пишет формулы, Excel считает.<br>Есть два удобных приёма. Первый вы видели: «перенеси строки в таблицу, итог не считай». Второй: «напиши формулу Excel, которая посчитает итог с НДС, если цены в столбце C, а количество в столбце D». ИИ отлично пишет формулы, даже сложные, и вы видите, как считается каждая цифра.<br>А если ИИ всё‑таки посчитал сам, сверяйте его итог с Excel. Совпало — хорошо. Не совпало — верьте Excel.</p>
+<hr>
+<h3 id="слайд-30-что-это-значит-для-вашей-роли" class="slide-h"><span class="slide-no">Слайд 30</span><span class="vh"> · </span><span class="slide-t">Что это значит для вашей роли</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:14–1:19</p>
+<p class="p-do"><strong>Делаете:</strong> дайте минуту на ответ в чат, прочитайте 3–4 ответа.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Пять ролей, пять типичных документов. Аналитик: ТЗ и протоколы, найти противоречия и открытые вопросы. Закупщик: КП и договоры, сравнение и вопросы поставщикам. Юрист: договоры, первый проход по рискам. Сметчик: сметы и ведомости, структура и проверка итогов в Excel. Менеджер: регламенты и отчёты, выжимка и сроки.<br>Для каждой роли в книжке есть готовый промпт. Найдите свою и напишите в чат, какой документ вы попробуете на этой неделе.</p>
+<hr>
+<h3 id="слайд-31-домашнее-задание" class="slide-h"><span class="slide-no">Слайд 31</span><span class="vh"> · </span><span class="slide-t">Домашнее задание</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:19–1:22</p>
+<p class="p-do"><strong>Делаете:</strong> скиньте в чат ссылку на Яндекс Форму.</p>
+<p class="p-say"><strong>Говорите:</strong><br>Домашнее задание: два задания, примерно сорок пять минут, только в DeepSeek.<br>Первое: документ вашей роли. Договор, ТЗ, регламент или протокол, обязательно обезличенный. Получите из него таблицу со ссылками на пункты, сделайте два уточнения и проверьте три вывода по документу.<br>Второе: таблица или цифры. КП, смета или отчёт. Сравнение или итог, а потом пересчитайте цифры в Excel и напишите, сошлось ли.<br>В обоих заданиях замерьте время: сколько бы заняло без ИИ и сколько заняло с ИИ. На третьем уроке сложим часы всей группы.<br>Сдать в Яндекс Форму до [ДАТА]. Я прочитаю все работы и каждому пришлю отзыв. Лучшие промпты из этого ДЗ станут основой вашего помощника на третьем уроке.</p>
+<hr>
+<h3 id="слайд-32-что-вы-теперь-умеете" class="slide-h"><span class="slide-no">Слайд 32</span><span class="vh"> · </span><span class="slide-t">Что вы теперь умеете</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:22–1:24</p>
+<p class="p-say"><strong>Говорите:</strong><br>Итог. Сегодня вы загрузили свой документ и получили из него таблицу. Вы знаете три правила Аналитика: только по документу со ссылкой на пункт, чего нет — «в документе нет», цифры — в Excel. Вы проверили три вывода по пунктам и увидели, какие файлы ИИ читает хуже.<br>Одна минута: оцените урок от 1 до 5 и одной фразой напишите в чат, что осталось непонятным. <em>(дайте минуту, зачитайте среднюю оценку и 1–2 непонятных места)</em></p>
+<hr>
+<h3 id="слайд-33-следующий-урок-и-вопросы" class="slide-h"><span class="slide-no">Слайд 33</span><span class="vh"> · </span><span class="slide-t">Следующий урок и вопросы</span></h3>
+<p class="p-time"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><strong>Время:</strong> 1:24–1:30</p>
+<p class="p-say"><strong>Говорите:</strong><br>На третьем уроке приходит Редактор. Будем доводить результат до качества, которое не стыдно отдать руководителю, и соберём вашего собственного помощника: инструкцию, образец и чек‑лист под вашу роль. Это последний урок основного курса.<br>А теперь ваши вопросы. Пишите в чат или включайте микрофон.<br><em>(отвечаете 5 минут; самые частые вопросы запишите, они пойдут в книжку следующего урока)</em><br>Спасибо всем! Увидимся через неделю.</p>
+<hr>
+</section>
+<section class="chapter acc-1 sec-faq" aria-labelledby="готовые-ответы-на-частые-вопросы">
+<header class="ch-head"><span class="ch-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span><h2 id="готовые-ответы-на-частые-вопросы">Готовые ответы на частые вопросы</h2></header>
+<p><strong>«Можно загружать договоры с контрагентами?»</strong> Только обезличенные: названия компаний заменить, реквизиты и подписи убрать, суммы при необходимости округлить. Договор с реквизитами — красная зона.</p>
+<p><strong>«Можно ли доверять юридическим выводам ИИ?»</strong> Как первому проходу. ИИ находит, на что обратить внимание, и экономит время юристу. Решение и правовую позицию определяет юрист.</p>
+<p><strong>«DeepSeek не видит таблицу в скане.»</strong> Найдите исходник в Word или Excel. Если его нет, вставьте таблицу текстом или сфотографируйте её отдельно, крупно и ровно.</p>
+<p><strong>«Сколько страниц можно загрузить?»</strong> Зависит от сервиса и меняется. Ориентир: если ИИ не может перечислить все разделы документа, он прочитал не всё. Длинный документ разбирайте по разделам.</p>
+<p><strong>«Почему ИИ ошибся в сумме?»</strong> Модель подбирает правдоподобный текст, а не считает. Поэтому цифры пересчитываем в Excel.</p>
+<p><strong>«Документ на английском, можно?»</strong> Да. Попросите отвечать по‑русски и сохранять номера пунктов как в оригинале.</p>
+<p><strong>«Можно загрузить несколько документов сразу?»</strong> Да. Назовите в промпте, какой файл что содержит, и просите указывать, из какого файла каждый вывод.</p>
+</section>
+
+</main>
+<footer><div class="team-strip" aria-hidden="true"><span style="background:#2F6BFF"></span><span style="background:#12A35B"></span><span style="background:#FF7A1A"></span><span style="background:#7B4DFF"></span><span style="background:#EE3E86"></span><span style="background:#F5B400"></span></div>ИИ‑команда · авторский курс · Книжка 2. Цены, лимиты и доступность сервисов — в Справочнике курса.</footer>
+</div>
+</div>
+<script>
+(function () {
+  // copy buttons
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    var label = btn.querySelector('.copy-l');
+    btn.addEventListener('click', function () {
+      var pre = btn.nextElementSibling, text = pre.innerText;
+      var done = function () { label.textContent = 'Скопировано'; btn.classList.add('done'); setTimeout(function () { label.textContent = 'Скопировать'; btn.classList.remove('done'); }, 1600); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); label.textContent = 'Выделено — нажмите Ctrl+C'; };
+      try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+  // check-list: remember ticks in this browser only
+  var key = 'ai-team-book-2-' + location.pathname + '-tasks';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.task input'));
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) {}
+  boxes.forEach(function (b, i) {
+    b.checked = !!saved[i];
+    b.addEventListener('change', function () { try { localStorage.setItem(key, JSON.stringify(boxes.map(function (x) { return x.checked; }))); } catch (e) {} });
+  });
+  // reading progress + current section in the side contents
+  var bar = document.querySelector('.progress span');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side a'));
+  var side = document.querySelector('.side nav');
+  var heads = links.map(function (a) { return document.getElementById(decodeURIComponent(a.hash.slice(1))); });
+  var current = -1, ticking = false;
+  function update() {
+    ticking = false;
+    var h = document.documentElement, max = h.scrollHeight - innerHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+    var idx = -1;
+    for (var i = 0; i < heads.length; i++) { if (heads[i] && heads[i].getBoundingClientRect().top < 140) idx = i; else if (heads[i]) break; }
+    if (idx !== current) {
+      if (current >= 0) links[current].removeAttribute('aria-current');
+      current = idx;
+      if (idx >= 0) {
+        var a = links[idx]; a.setAttribute('aria-current', 'true');
+        if (side && side.scrollHeight > side.clientHeight) {
+          var top = a.offsetTop;
+          if (top < side.scrollTop + 40 || top > side.scrollTop + side.clientHeight - 80) side.scrollTop = top - side.clientHeight / 2;
+        }
+      }
+    }
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();
+</script>
