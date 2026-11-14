@@ -376,7 +376,7 @@ section.sec { background: linear-gradient(150deg, var(--lesson-600) 0%, var(--le
 
 /* ================= v3: brighter system ================= */
 /* In-flow content paints above the absolutely positioned decor layer in browsers too (viewer paints in markup order). */
-section > * { position: relative; }
+section > *:not(aside) { position: relative; }
 /* Decor: a full-canvas <svg class="deco-svg"> is the FIRST child of <section> (no z-index in the viewer).
    Circles are pre-clipped to the canvas (the checker flags anything past the right/bottom edge);
    fills follow the lesson colour via the classes below, the hex in the markup is only a fallback. */
