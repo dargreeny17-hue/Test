@@ -1,0 +1,107 @@
+{
+  "v": 5,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-14T12:00:00Z"
+  },
+  "lists": "css",
+  "format": {
+    "v": 1,
+    "shared": [
+      "project/deck.css"
+    ]
+  },
+  "title": "Урок 2. ИИ на моей работе",
+  "order": [
+    "cover",
+    "roster",
+    "agenda",
+    "s-hw",
+    "hw-numbers",
+    "hw-works",
+    "hw-errors",
+    "demo-contract",
+    "contract-result",
+    "demo-kp",
+    "kp-traps",
+    "s-files",
+    "file-types",
+    "lost",
+    "long-doc",
+    "poll-files",
+    "s-rules",
+    "rule-1",
+    "rule-2",
+    "rule-3",
+    "traffic-docs",
+    "break",
+    "s-formula",
+    "formula-doc",
+    "turn-doc",
+    "check-three",
+    "s-numbers",
+    "excel-kp",
+    "ai-excel",
+    "roles",
+    "homework",
+    "summary",
+    "next"
+  ],
+  "sections": {
+    "a": {
+      "description": "Старт: пропуск Аналитика, команда, план",
+      "start": "cover"
+    },
+    "b": {
+      "description": "Блок 1. Разбор ДЗ 1: цифры группы, две работы, три ошибки",
+      "start": "s-hw"
+    },
+    "c": {
+      "description": "Блок 2. Два показа: договор поставки и три КП",
+      "start": "demo-contract"
+    },
+    "d": {
+      "description": "Блок 3. Как ИИ читает файлы",
+      "start": "s-files"
+    },
+    "e": {
+      "description": "Блок 4. Три правила Аналитика, светофор для документов и перерыв",
+      "start": "s-rules"
+    },
+    "f": {
+      "description": "Блок 5. Формула для документа",
+      "start": "s-formula"
+    },
+    "g": {
+      "description": "Блок 6. Ваш ход: свой документ и проверка трёх выводов",
+      "start": "turn-doc"
+    },
+    "h": {
+      "description": "Блок 7. Цифры: пересчёт в Excel",
+      "start": "s-numbers"
+    },
+    "i": {
+      "description": "Блок 8. Шпаргалка по ролям",
+      "start": "roles"
+    },
+    "j": {
+      "description": "Домашнее задание, итоги и анонс урока 3",
+      "start": "homework"
+    }
+  },
+  "faces": {
+    "manrope": {
+      "family": "Manrope",
+      "href": "https://fonts.googleapis.com/css2?family=Manrope:wght@500..800&display=swap"
+    },
+    "golos-text": {
+      "family": "Golos Text",
+      "href": "https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..700&display=swap"
+    },
+    "jetbrains-mono": {
+      "family": "JetBrains Mono",
+      "href": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&display=swap"
+    }
+  },
+  "designSystems": []
+}
